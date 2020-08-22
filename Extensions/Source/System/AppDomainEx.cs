@@ -44,7 +44,7 @@ namespace System
 			return assemblies;
 		}
 
-		private static List<Assembly> GetAllAssemblies(AppDomain domain)
+		public static List<Assembly> GetAllAssemblies(this AppDomain domain)
 		{
 			if (allAssemblies.TryGetValue(domain, out List<Assembly> assemblies))
 			{
@@ -65,7 +65,7 @@ namespace System
 
 		public static Assembly GetAssembly(this AppDomain domain, string name)
 		{
-			return GetAllAssemblies(domain).Find(a => a.GetName().Name == name);
+			return domain.GetAllAssemblies().Find(a => a.GetName().Name == name);
 		}
 
 #if	UNITY_EDITOR
