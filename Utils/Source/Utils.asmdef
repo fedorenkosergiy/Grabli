@@ -1,0 +1,15 @@
+{
+    "name": "Grabli.Utils",
+    "references": [
+        "GUID:a34d521b0887da3499d31d8dcea48fc7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

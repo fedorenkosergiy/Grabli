@@ -1,0 +1,17 @@
+{
+    "name": "Grabli.Utils.Tests",
+    "references": [
+        "GUID:fd8056f45eb69e24ca64c630a1b676ff"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
