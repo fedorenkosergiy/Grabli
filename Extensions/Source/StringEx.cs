@@ -40,4 +40,9 @@ public static class StringEx
 		}
 		return result;
 	}
+
+	public static GUIContent ToGUIContent(this string text)
+	{
+		return new GUIContent(text);
+	}
 }
