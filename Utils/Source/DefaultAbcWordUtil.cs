@@ -26,7 +26,9 @@ namespace Grabli.Utils
 			{
 				NumbesExtractor.Extract(text, ref extractionResult);
 			}
-			return extractionResult.ToArray();
+			string[] result = extractionResult.ToArray();
+			extractionResult.Clear();
+			return result;
 		}
 
 		public DefaultAbcWordUtil() : this(All) { }
