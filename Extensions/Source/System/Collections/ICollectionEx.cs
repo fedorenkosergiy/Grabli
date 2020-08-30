@@ -6,5 +6,10 @@ namespace System.Collections
 		{
 			return collection.Count == 0;
 		}
+
+		public static bool IsNotEmpty(this ICollection collection)
+		{
+			return !collection.IsEmpty();
+		}
 	}
 }
