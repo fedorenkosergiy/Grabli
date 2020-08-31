@@ -11,5 +11,10 @@ namespace System.Collections
 		{
 			return !collection.IsEmpty();
 		}
+
+		public static bool IsNullOrEmpty(this ICollection collection)
+		{
+			return collection.IsNull() || collection.IsEmpty();
+		}
 	}
 }

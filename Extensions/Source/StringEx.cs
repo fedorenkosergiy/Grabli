@@ -45,4 +45,9 @@ public static class StringEx
 	{
 		return new GUIContent(text);
 	}
+
+	public static bool IsNullOrEmpty(this string text)
+	{
+		return string.IsNullOrEmpty(text);
+	}
 }

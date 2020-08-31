@@ -12,5 +12,9 @@ namespace System.Collections.Generic
 		{
 			return !collection.IsEmpty();
 		}
+		public static bool IsNullOrEmpty<T>(this ICollection<T> collection)
+		{
+			return collection.IsNull() || collection.IsEmpty();
+		}
 	}
 }
