@@ -1,7 +1,8 @@
 {
     "name": "Grabli.Utils",
     "references": [
-        "GUID:a34d521b0887da3499d31d8dcea48fc7"
+        "GUID:a34d521b0887da3499d31d8dcea48fc7",
+        "GUID:04b5238191c15d54c8b50ac5da55a06d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
