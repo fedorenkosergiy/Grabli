@@ -16,5 +16,19 @@ namespace System.Collections.Generic
 		{
 			return collection.IsNull() || collection.IsEmpty();
 		}
+
+		public static int FirstIndex<T>(this ICollection<T> list)
+		{
+			return 0;
+		}
+
+		public static int LastIndex<T>(this ICollection<T> list)
+		{
+			if (list.IsEmpty())
+			{
+				return -1;
+			}
+			return list.Count - 1;
+		}
 	}
 }

@@ -61,19 +61,5 @@ namespace System.Collections.Generic
 			}
 			return true;
 		}
-
-		public static int FirstIndex<T>(this IList<T> list)
-		{
-			return 0;
-		}
-
-		public static int LastIndex<T>(this IList<T> list)
-		{
-			if (list.IsEmpty())
-			{
-				return -1;
-			}
-			return list.Count - 1;
-		}
 	}
 }
