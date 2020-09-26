@@ -50,4 +50,9 @@ public static class StringEx
 	{
 		return string.IsNullOrEmpty(text);
 	}
+
+	public static bool IsSmth(this string text)
+	{
+		return !IsNullOrEmpty(text);
+	}
 }
