@@ -53,5 +53,10 @@ namespace UnityEngine
 			result[3] = new Vector2(rect.xMax, rect.yMin);
 			return result;
 		}
+
+		public static Vector2 GetTopRightPosition(this Rect rect)
+		{
+			return new Vector2(rect.xMax, rect.yMin);
+		}
 	}
 }
