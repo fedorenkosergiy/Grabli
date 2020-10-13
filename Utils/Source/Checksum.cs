@@ -44,18 +44,21 @@ namespace Grabli.Utils
 				{
 					builder.Append(value);
 				}
-				else if (field.FieldType.IsArray)
-				{
-					Array array = value as Array;
-					for(int j = 0; j < array.Length; ++j)
-					{
-						builder.Append(j);
-						builder.Append(GetStringDump(array.GetValue(j), handled));
-					}
-				}
 				else if (value.Is())
 				{
-					builder.Append(GetStringDump(value, handled));
+					if (field.FieldType.IsArray)
+					{
+						Array array = value as Array;
+						for (int j = 0; j < array.Length; ++j)
+						{
+							builder.Append(j);
+							builder.Append(GetStringDump(array.GetValue(j), handled));
+						}
+					}
+					else
+					{
+						builder.Append(GetStringDump(value, handled));
+					}
 				}
 			}
 			return StringBuilderPool.GetValueAndRelease(builder);
