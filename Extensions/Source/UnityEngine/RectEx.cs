@@ -58,5 +58,30 @@ namespace UnityEngine
 		{
 			return new Vector2(rect.xMax, rect.yMin);
 		}
+
+		public static Rect MoveRight(this Rect rect, float distance)
+		{
+			return new Rect(rect.x + distance, rect.y, rect.width, rect.height);
+		}
+
+		public static Rect MoveLeft(this Rect rect, float distance)
+		{
+			return new Rect(rect.x - distance, rect.y, rect.width, rect.height);
+		}
+
+		public static Rect MoveUp(this Rect rect, float distance)
+		{
+			return new Rect(rect.x, rect.y - distance, rect.width, rect.height);
+		}
+
+		public static Rect MoveDown(this Rect rect, float distance)
+		{
+			return new Rect(rect.x, rect.y + distance, rect.width, rect.height);
+		}
+
+		public static Rect Move(this Rect rect, Vector2 direction)
+		{
+			return new Rect(rect.position + direction, rect.size);
+		}
 	}
 }
