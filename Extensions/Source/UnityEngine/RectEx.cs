@@ -83,5 +83,25 @@ namespace UnityEngine
 		{
 			return new Rect(rect.position + direction, rect.size);
 		}
+
+		public static Rect GetLeftHalf(this Rect rect)
+		{
+			return new Rect(rect.x, rect.y, rect.width * 0.5f, rect.height);
+		}
+
+		public static Rect GetRightHalf(this Rect rect)
+		{
+			float width = rect.width * 0.5f;
+			return new Rect(rect.x + width, rect.y, width, rect.height);
+		}
+
+		public static Rect GetInner(this Rect rect, float border)
+		{
+			return new Rect(
+				rect.x + border,
+				rect.y + border,
+				rect.width - border - border,
+				rect.height - border - border);
+		}
 	}
 }

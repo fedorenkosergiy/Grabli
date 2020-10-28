@@ -26,5 +26,10 @@ namespace Grabli
 			public const int Nineteen = 19;
 			public const int Twenty = 20;
 		}
+
+		public static partial class Float
+		{
+			public const float Half = 0.5f;
+		}
 	}
 }
