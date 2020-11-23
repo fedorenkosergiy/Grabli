@@ -10,15 +10,19 @@ namespace System.Reflection
 		{
 			try
 			{
+				if (assembly.IsDynamic) return false;
+
 				FileInfo fileInfo = new FileInfo(assembly.Location);
 				if (fileInfo.Directory.Name != ApplicationEx.ScriptAssembliesDirName) return false;
+
 				DirectoryInfo library = fileInfo.Directory.Parent;
 				if (library.Name != ApplicationEx.LibraryDirName) return false;
+
 				string dataPath = ApplicationEx.ProjectPath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar).Trim(Path.DirectorySeparatorChar);
 				string projectPath = library.Parent.FullName.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar).Trim(Path.DirectorySeparatorChar);
 				return dataPath == projectPath;
 			}
-			catch(Exeption e)
+			catch (Exeption e)
 			{
 				assembly.Log();
 				e.Message.Log();
@@ -30,7 +34,7 @@ namespace System.Reflection
 		{
 			Type[] types = assembly.GetTypes();
 			List<Type> result = new List<Type>();
-			foreach(Type type in types)
+			foreach (Type type in types)
 			{
 				if (type.HasAttribute<T>())
 				{
