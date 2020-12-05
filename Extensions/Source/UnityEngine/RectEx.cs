@@ -103,5 +103,47 @@ namespace UnityEngine
 				rect.width - border - border,
 				rect.height - border - border);
 		}
+
+		public static Rect GetRightPart(this Rect rect, float width)
+		{
+			if (width > 0.0f)
+			{
+				return new Rect(
+					rect.xMax - width,
+					rect.y,
+					width,
+					rect.height);
+			}
+			else if (width < 0.0f)
+			{
+				return new Rect(
+					rect.x - width,
+					rect.y,
+					rect.width + width,
+					rect.height);
+			}
+			throw new ArgumentException("Width can not be 0.0f", nameof(width));
+		}
+
+		public static Rect GetLeftPart(this Rect rect, float width)
+		{
+			if (width > 0.0f)
+			{
+				return new Rect(
+					rect.x,
+					rect.y,
+					width,
+					rect.height);
+			}
+			else if (width < 0.0f)
+			{
+				return new Rect(
+					rect.x,
+					rect.y,
+					rect.width + width,
+					rect.height);
+			}
+			throw new ArgumentException("Width can not be 0.0f", nameof(width));
+		}
 	}
 }
