@@ -9,5 +9,10 @@ public static class BoolEx
 	{
 		return value ? 1 : uint.MinValue;
 	}
+
+	public static long ToLong(this bool value)
+	{
+		return value ? 1L : 0L;
+	}
 }
 
