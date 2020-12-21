@@ -7,7 +7,7 @@ public static class BoolEx
 
 	public static uint ToUint(this bool value)
 	{
-		return value ? 1 : uint.MinValue;
+		return value ? 1u : uint.MinValue;
 	}
 
 	public static long ToLong(this bool value)
