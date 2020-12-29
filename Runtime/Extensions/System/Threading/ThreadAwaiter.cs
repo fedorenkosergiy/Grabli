@@ -9,6 +9,15 @@ namespace System.Threading
 		private bool used;
 
 		public bool IsCompleted => TryCallCallback();
+		
+		public ThreadAwaiter(Thread thread)
+		{
+			this.thread = thread;
+			if (thread.ThreadState.IsNotRunning())
+			{
+				thread.Start();
+			}
+		}
 
 		private bool TryCallCallback()
 		{
@@ -22,15 +31,6 @@ namespace System.Threading
 				callback();
 			}
 			return true;
-		}
-
-		public ThreadAwaiter(Thread thread)
-		{
-			this.thread = thread;
-			if (thread.ThreadState.IsNotRunning())
-			{
-				thread.Start();
-			}
 		}
 
 		public void GetResult() { }

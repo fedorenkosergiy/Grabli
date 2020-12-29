@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Threading
 {
 	public static class ThreadEx
