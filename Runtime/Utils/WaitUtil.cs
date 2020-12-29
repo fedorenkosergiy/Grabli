@@ -8,7 +8,7 @@ namespace Grabli.Utils
 
 		public static async Task SkipFrames(uint numberOfFramesToSkip)
 		{
-			Time time = Context.Time;
+			Time time = Cxt.Time;
 			int frameNumber = time.frameCount;
 			while (time.frameCount - frameNumber < numberOfFramesToSkip)
 			{
