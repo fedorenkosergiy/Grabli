@@ -14,13 +14,13 @@ namespace Grabli.Utils
 		public void CheckIfSkipFrameWorksWell(int currentFrame, int nextFrame)
 		{
 			Time fakeTime = GetTimeThatIncreaseFrameNumberEachTenRequests(currentFrame);
-			using (TimeContext context = new TimeContext(fakeTime))
+			using (new TimeContext(fakeTime))
 			{
 				Task.Run(async () =>
 				{
 					await WaitUtil.SkipFrame();
 				}).GetAwaiter().GetResult();
-				Assert.AreEqual(TimeContext.Time.frameCount, nextFrame);
+				Assert.AreEqual(fakeTime.frameCount, nextFrame);
 			}
 		}
 
