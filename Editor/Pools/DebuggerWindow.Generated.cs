@@ -11,7 +11,7 @@ namespace Grabli.Pools
 	//[Generated]
 	public static class OpenDebuggerWindowMenuItem
 	{
-		[MenuItem("Window/Qwe/Core/Pools/Debugger")]
+		[MenuItem("Window/Grabli/Pools/Debugger")]
 		private static void Show()
 		{
 			DebuggerWindow.Open();

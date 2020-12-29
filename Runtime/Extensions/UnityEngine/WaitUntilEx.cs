@@ -1,10 +1,15 @@
+using System.Threading.Tasks;
+
 namespace UnityEngine
 {
 	public static class WaitUntilEx
 	{
-		public static VoidAwaiter GetAwaiter(this WaitUntil instruction)
+		public static async Task RunAsync(this WaitUntil instruction)
 		{
-			return new WaitUntilAwaiter(instruction);
+			while (instruction.keepWaiting)
+			{
+				await Task.Yield();
+			}
 		}
 	}
 }
