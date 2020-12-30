@@ -1,11 +1,7 @@
 {
-    "name": "Grabli.Extensions.Tests",
-    "references": [
-        "GUID:a34d521b0887da3499d31d8dcea48fc7"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "Unity.Grabli.Extensions",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

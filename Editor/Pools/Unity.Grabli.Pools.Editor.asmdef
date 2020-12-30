@@ -1,5 +1,5 @@
 {
-    "name": "Grabli.Pools.Tests",
+    "name": "Unity.Grabli.Pools.Editor",
     "references": [
         "GUID:04b5238191c15d54c8b50ac5da55a06d",
         "GUID:ec3d4e6b44bcb5444917c098834e158f"

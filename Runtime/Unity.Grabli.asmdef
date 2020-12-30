@@ -1,9 +1,6 @@
 {
-    "name": "Grabli.Pools",
-    "references": [
-        "GUID:ec3d4e6b44bcb5444917c098834e158f",
-        "GUID:a34d521b0887da3499d31d8dcea48fc7"
-    ],
+    "name": "Unity.Grabli",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
