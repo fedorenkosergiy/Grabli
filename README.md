@@ -11,14 +11,32 @@ Grabli is a bunch of solutions and ideas for Unity3d. All the code are under MIT
 This repository follows [Unity3d package layout convention](https://docs.unity3d.com/Manual/cus-layout.html). It means, you can import it into your project as a package.
 Also, you can attach it to your project as a git submodule.
 ## Integrate through the package manager
-1. Open the package manager. Use menu item *Window->Package Manager*
-2. Click on *+* button. And select a context menu item *Add package from git URL...*
+1. Prepare the repository URL. You need to select one according to your purpose.
+
+*  For fetching the latest release
+```
+https://github.com/fedorenkosergiy/Grabli.git
+```
+
+* For fetching the specific version. Where x.y.z is a version. For example, 0.0.1.
+```
+https://github.com/fedorenkosergiy/Grabli.git#x.y.z
+```
+
+* For fetching the latest commit of the development branch
+```
+https://github.com/fedorenkosergiy/Grabli.git#develop
+```
+2. Open the package manager. Use menu item *Window->Package Manager*
+3. Click on *+* button. And select a context menu item *Add package from git URL...*
 
 ![AddPackageFromGitUrl]
 
-3. Paste the repository URL into the appeared text field. And press *Add*
+4. Paste the repository URL into the appeared text field. And press *Add*
 
 ![AddPackageFromGitUrlPressButtonAdd]
+
+In case you want to know better all the details of installing a package from git URL you can visit a [Unity3d manual page](https://docs.unity3d.com/Manual/upm-ui-giturl.html)
 
 ## Integrate as a git submodule
 
