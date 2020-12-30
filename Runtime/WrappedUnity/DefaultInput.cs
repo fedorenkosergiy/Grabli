@@ -1,58 +1,85 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Grabli.WrappedUnity
 {
 	public class DefaultInput : Input
 	{
-		public bool simulateMouseWithTouches { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public bool simulateMouseWithTouches
+		{
+			get => UnityEngine.Input.simulateMouseWithTouches;
+			set => UnityEngine.Input.simulateMouseWithTouches = value;
+		}
 
-		public bool anyKey => throw new NotImplementedException();
+		public bool anyKey => UnityEngine.Input.anyKey;
 
-		public bool anyKeyDown => throw new NotImplementedException();
+		public bool anyKeyDown => UnityEngine.Input.anyKeyDown;
 
-		public string inputString => throw new NotImplementedException();
+		public string inputString => UnityEngine.Input.inputString;
 
-		public Vector3 mousePosition => throw new NotImplementedException();
+		public Vector3 mousePosition => UnityEngine.Input.mousePosition;
 
-		public Vector2 mouseScrollDelta => throw new NotImplementedException();
+		public Vector2 mouseScrollDelta => UnityEngine.Input.mouseScrollDelta;
 
-		public IMECompositionMode imeCompositionMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public IMECompositionMode imeCompositionMode
+		{
+			get => UnityEngine.Input.imeCompositionMode;
+			set => UnityEngine.Input.imeCompositionMode = value;
+		}
 
-		public string compositionString => throw new NotImplementedException();
+		public string compositionString => UnityEngine.Input.compositionString;
 
-		public bool imeIsSelected => throw new NotImplementedException();
+		public bool imeIsSelected => UnityEngine.Input.imeIsSelected;
 
-		public Vector2 compositionCursorPos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool eatKeyPressOnTextFieldFocus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public Vector2 compositionCursorPos
+		{
+			get => UnityEngine.Input.compositionCursorPos;
+			set => UnityEngine.Input.compositionCursorPos = value;
+		}
+#pragma warning disable CS0618 // Type or member is obsolete
+		public bool eatKeyPressOnTextFieldFocus
+		{
+			get => UnityEngine.Input.eatKeyPressOnTextFieldFocus;
+			set => UnityEngine.Input.eatKeyPressOnTextFieldFocus = value;
+		}
+#pragma warning restore CS0618 // Type or member is obsolete
 
-		public bool mousePresent => throw new NotImplementedException();
+		public bool mousePresent => UnityEngine.Input.mousePresent;
 
-		public int touchCount => throw new NotImplementedException();
+		public int touchCount => UnityEngine.Input.touchCount;
 
-		public bool touchPressureSupported => throw new NotImplementedException();
+		public bool touchPressureSupported => UnityEngine.Input.touchPressureSupported;
 
-		public bool stylusTouchSupported => throw new NotImplementedException();
+		public bool stylusTouchSupported => UnityEngine.Input.stylusTouchSupported;
 
-		public bool touchSupported => throw new NotImplementedException();
+		public bool touchSupported => UnityEngine.Input.touchSupported;
 
-		public bool multiTouchEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public bool multiTouchEnabled
+		{
+			get => UnityEngine.Input.multiTouchEnabled;
+			set => UnityEngine.Input.multiTouchEnabled = value;
+		}
 
-		public bool isGyroAvailable => throw new NotImplementedException();
+#pragma warning disable CS0618 // Type or member is obsolete
+		public bool isGyroAvailable => UnityEngine.Input.isGyroAvailable;
+#pragma warning restore CS0618 // Type or member is obsolete
 
-		public DeviceOrientation deviceOrientation => throw new NotImplementedException();
+		public DeviceOrientation deviceOrientation => UnityEngine.Input.deviceOrientation;
 
-		public Vector3 acceleration => throw new NotImplementedException();
+		public Vector3 acceleration => UnityEngine.Input.acceleration;
 
-		public bool compensateSensors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public bool compensateSensors
+		{
+			get => UnityEngine.Input.compensateSensors;
+			set => UnityEngine.Input.compensateSensors = value;
+		}
 
-		public int accelerationEventCount => throw new NotImplementedException();
+		public int accelerationEventCount => UnityEngine.Input.accelerationEventCount;
 
-		public bool backButtonLeavesApp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public bool backButtonLeavesApp
+		{
+			get => UnityEngine.Input.backButtonLeavesApp;
+			set => UnityEngine.Input.backButtonLeavesApp = value;
+		}
 
 		public LocationService location { get; } = new DefaultLocationService();
 
@@ -60,103 +87,52 @@ namespace Grabli.WrappedUnity
 
 		public Gyroscope gyro { get; } = new DefaultGyroscope();
 
-		public Touch[] touches => throw new NotImplementedException();
+		public Touch[] touches => UnityEngine.Input.touches;
 
-		public AccelerationEvent[] accelerationEvents => throw new NotImplementedException();
+		public AccelerationEvent[] accelerationEvents => UnityEngine.Input.accelerationEvents;
 
 		public AccelerationEvent GetAccelerationEvent(int index)
 		{
-			throw new NotImplementedException();
+			return UnityEngine.Input.GetAccelerationEvent(index);
 		}
 
-		public float GetAxis(string axisName)
-		{
-			throw new NotImplementedException();
-		}
+		public float GetAxis(string axisName) => UnityEngine.Input.GetAxis(axisName);
 
-		public float GetAxisRaw(string axisName)
-		{
-			throw new NotImplementedException();
-		}
+		public float GetAxisRaw(string axisName) => UnityEngine.Input.GetAxisRaw(axisName);
 
-		public bool GetButton(string buttonName)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetButton(string buttonName) => UnityEngine.Input.GetButton(buttonName);
 
-		public bool GetButtonDown(string buttonName)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetButtonDown(string buttonName) => UnityEngine.Input.GetButtonDown(buttonName);
 
-		public bool GetButtonUp(string buttonName)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetButtonUp(string buttonName) => UnityEngine.Input.GetButtonUp(buttonName);
 
-		public string[] GetJoystickNames()
-		{
-			throw new NotImplementedException();
-		}
+		public string[] GetJoystickNames() => UnityEngine.Input.GetJoystickNames();
 
-		public bool GetKey(KeyCode key)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetKey(KeyCode key) => UnityEngine.Input.GetKey(key);
 
-		public bool GetKey(string name)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetKey(string name) => UnityEngine.Input.GetKey(name);
 
-		public bool GetKeyDown(KeyCode key)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetKeyDown(KeyCode key) => UnityEngine.Input.GetKeyDown(key);
 
-		public bool GetKeyDown(string name)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetKeyDown(string name) => UnityEngine.Input.GetKeyDown(name);
 
-		public bool GetKeyUp(KeyCode key)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetKeyUp(KeyCode key) => UnityEngine.Input.GetKeyUp(key);
 
-		public bool GetKeyUp(string name)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetKeyUp(string name) => UnityEngine.Input.GetKeyUp(name);
 
-		public bool GetMouseButton(int button)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetMouseButton(int button) => UnityEngine.Input.GetMouseButton(button);
 
-		public bool GetMouseButtonDown(int button)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetMouseButtonDown(int button) => UnityEngine.Input.GetMouseButtonDown(button);
 
-		public bool GetMouseButtonUp(int button)
-		{
-			throw new NotImplementedException();
-		}
+		public bool GetMouseButtonUp(int button) => UnityEngine.Input.GetMouseButtonUp(button);
 
-		public Touch GetTouch(int index)
-		{
-			throw new NotImplementedException();
-		}
+		public Touch GetTouch(int index) => UnityEngine.Input.GetTouch(index);
 
 		public bool IsJoystickPreconfigured(string joystickName)
 		{
-			throw new NotImplementedException();
+			return UnityEngine.Input.IsJoystickPreconfigured(joystickName);
 		}
 
-		public void ResetInputAxes()
-		{
-			throw new NotImplementedException();
-		}
+		public void ResetInputAxes() => UnityEngine.Input.ResetInputAxes();
 	}
 }
