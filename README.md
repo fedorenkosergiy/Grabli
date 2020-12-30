@@ -7,10 +7,10 @@ Grabli is a bunch of solutions and ideas for Unity3d. All the code are under MIT
 ## Utils
 ## WrappedUnity
 
-# Integration
+# Installation
 This repository follows [Unity3d package layout convention](https://docs.unity3d.com/Manual/cus-layout.html). It means, you can import it into your project as a package.
 Also, you can attach it to your project as a git submodule.
-## Integrate through the package manager
+## Install through the package manager
 1. Prepare the repository URL. You need to select one according to your purpose.
 
 *  For fetching the latest release
@@ -38,7 +38,7 @@ https://github.com/fedorenkosergiy/Grabli.git#develop
 
 In case you want to know better all the details of installing a package from git URL you can visit a [Unity3d manual page](https://docs.unity3d.com/Manual/upm-ui-giturl.html)
 
-## Integrate as a git submodule
+## Install as a git submodule
 
 # Releases
 There are no releases yet
