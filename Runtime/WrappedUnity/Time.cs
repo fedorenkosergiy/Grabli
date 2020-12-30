@@ -10,6 +10,7 @@ namespace Grabli.WrappedUnity
 		/// The real time in seconds since the game started (Read Only).
 		/// </summary>
 		float realtimeSinceStartup { get; }
+
 		int renderedFrameCount { get; }
 		/// <summary>
 		/// The total number of frames that have passed (Read Only).
