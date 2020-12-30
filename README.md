@@ -20,6 +20,8 @@ Also, you can attach it to your project as a git submodule.
 
 ![AddPackageFromGitUrlPressButtonAdd]
 
+## Integrate as a git submodule
+
 # Releases
 There are no releases yet
 
