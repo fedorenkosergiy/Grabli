@@ -10,16 +10,13 @@ namespace Grabli.Utils
 		[TestCase(0, 1)]
 		[TestCase(100, 101)]
 		[TestCase(28, 29)]
-		[TestCase(int.MaxValue-1, int.MaxValue)]
+		[TestCase(int.MaxValue - 1, int.MaxValue)]
 		public void CheckIfSkipFrameWorksWell(int currentFrame, int nextFrame)
 		{
 			Time fakeTime = GetTimeThatIncreaseFrameNumberEachTenRequests(currentFrame);
 			using (new TimeContext(fakeTime))
 			{
-				Task.Run(async () =>
-				{
-					await WaitUtil.SkipFrame();
-				}).GetAwaiter().GetResult();
+				Task.Run(async () => await WaitUtil.SkipFrame()).GetAwaiter().GetResult();
 				Assert.AreEqual(fakeTime.frameCount, nextFrame);
 			}
 		}
