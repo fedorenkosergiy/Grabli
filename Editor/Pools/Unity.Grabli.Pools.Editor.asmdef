@@ -1,0 +1,18 @@
+{
+    "name": "Unity.Grabli.Pools.Editor",
+    "references": [
+        "GUID:04b5238191c15d54c8b50ac5da55a06d",
+        "GUID:ec3d4e6b44bcb5444917c098834e158f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

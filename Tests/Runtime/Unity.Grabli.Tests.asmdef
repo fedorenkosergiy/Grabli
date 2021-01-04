@@ -1,0 +1,17 @@
+{
+    "name": "Unity.Grabli.Tests",
+    "references": [
+        "GUID:ec3d4e6b44bcb5444917c098834e158f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
