@@ -1,6 +1,8 @@
 {
     "name": "Unity.Grabli.WrappedUnity.Tests",
-    "references": [],
+    "references": [
+        "GUID:41a3881af0056d5498eb40797c5a5c4f"
+    ],
     "includePlatforms": [
         "Editor"
     ],
