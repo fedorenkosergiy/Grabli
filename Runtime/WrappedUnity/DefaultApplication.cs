@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UApplication = UnityEngine.Application;
 
 namespace Grabli.WrappedUnity
 {
 	public class DefaultApplication : Application
 	{
-		public string version => throw new NotImplementedException();
+		public string version => UApplication.version;
 
 		public string unityVersion => throw new NotImplementedException();
 
@@ -16,7 +17,7 @@ namespace Grabli.WrappedUnity
 
 		public string persistentDataPath => throw new NotImplementedException();
 
-		public string streamingAssetsPath => throw new NotImplementedException();
+		public string streamingAssetsPath => UApplication.streamingAssetsPath;
 
 		public string installerName => throw new NotImplementedException();
 
@@ -48,9 +49,9 @@ namespace Grabli.WrappedUnity
 
 		public bool isConsolePlatform => throw new NotImplementedException();
 
-		public bool isMobilePlatform => throw new NotImplementedException();
+		public bool isMobilePlatform => UApplication.isMobilePlatform;
 
-		public RuntimePlatform platform => throw new NotImplementedException();
+		public RuntimePlatform platform => UApplication.platform;
 
 		public bool isShowingSplashScreen => throw new NotImplementedException();
 
@@ -77,7 +78,7 @@ namespace Grabli.WrappedUnity
 
 		public bool runInBackground { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-		public bool isEditor => throw new NotImplementedException();
+		public bool isEditor => UApplication.isEditor;
 
 		public string loadedLevelName => throw new NotImplementedException();
 
@@ -212,10 +213,7 @@ namespace Grabli.WrappedUnity
 			throw new NotImplementedException();
 		}
 
-		public void OpenURL(string url)
-		{
-			throw new NotImplementedException();
-		}
+		public void OpenURL(string url) => UApplication.OpenURL(url);
 
 		public void Quit(int exitCode)
 		{
