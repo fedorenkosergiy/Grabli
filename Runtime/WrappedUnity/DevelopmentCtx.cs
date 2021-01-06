@@ -1,6 +1,7 @@
+#if (DEVELOPMENT_BUILD || UNITY_EDITOR || DEV)
 namespace Grabli.WrappedUnity
 {
-	public static class Ctx
+	public static partial class Ctx
 	{
 		public static Time Time => TimeContext.Instance;
 
@@ -11,3 +12,4 @@ namespace Grabli.WrappedUnity
 		public static WrappersFactory Factory => WrappersFactoryContext.Instance;
 	}
 }
+#endif
