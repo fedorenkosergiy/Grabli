@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Grabli.WrappedUnity.WrappersFactory interface + implementation
 - Grabli.WrappedUnity.Screen interface + implementation
 - Development and Release contexts
+- Ability to create a custom context
 
 ## [0.1-alpha] - 2020-01-04
 ### Added
