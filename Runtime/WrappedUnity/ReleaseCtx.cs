@@ -9,6 +9,8 @@ namespace Grabli.WrappedUnity
 
 		public readonly static Screen Screen = new DefaultScreen();
 
+		public readonly static Application Application => new DefaultApplication();
+
 		public readonly static WrappersFactory Factory = new DefaultWrappersFactory();
 	}
 }

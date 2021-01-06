@@ -9,6 +9,8 @@ namespace Grabli.WrappedUnity
 
 		public static Screen Screen => ScreenContext.Instance;
 
+		public static Application Application => ApplicationContext.Instance;
+
 		public static WrappersFactory Factory => WrappersFactoryContext.Instance;
 	}
 }
