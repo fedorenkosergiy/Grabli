@@ -1,7 +1,7 @@
-#if (DEVELOPMENT_BUILD || UNITY_EDITOR || DEV)
+#if (DEVELOPMENT_BUILD || UNITY_EDITOR || DEVELOPMENT_CTX) && !CUSTOM_CTX
 namespace Grabli.WrappedUnity
 {
-	public static partial class Ctx
+	public static class Ctx
 	{
 		public static Time Time => TimeContext.Instance;
 

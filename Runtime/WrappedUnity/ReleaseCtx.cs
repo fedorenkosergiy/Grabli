@@ -1,7 +1,7 @@
-#if !(DEVELOPMENT_BUILD || UNITY_EDITOR || DEV)
+#if RELEASE_CTX && !CUSTOM_CTX
 namespace Grabli.WrappedUnity
 {
-	public static partial class Ctx
+	public static class Ctx
 	{
 		public readonly static Time Time = new DefaultTime();
 
