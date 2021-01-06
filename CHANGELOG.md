@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unity.Grabli.WrappedUnity.Extensions assembly
 - Unity.Grabli.WrappedUnity.Extensions.Tests assembly
 - Grabli.WrappedUnity.Ping interface and it's default implementation
+- Grabli.WrappedUnity.WrappersFactory interface + implementation
+- Grabli.WrappedUnity.Screen interface + implementation
 
 ## [0.1-alpha] - 2020-01-04
 ### Added
