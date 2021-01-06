@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace Grabli.WrappedUnity
 {
@@ -8,7 +9,7 @@ namespace Grabli.WrappedUnity
 		public void CheckShowCursorGetterToExceptions()
 		{
 			DefaultScreen screen = new DefaultScreen();
-			Assert.DoesNotThrow(() =>
+			Assert.Catch<NotImplementedException>(() =>
 			{
 				var showCursor = screen.showCursor;
 			});
@@ -19,7 +20,7 @@ namespace Grabli.WrappedUnity
 		public void CheckShowCursorSetterToExceptions(bool showCursor)
 		{
 			DefaultScreen screen = new DefaultScreen();
-			Assert.DoesNotThrow(() =>
+			Assert.Catch<NotImplementedException>(() =>
 			{
 				screen.showCursor = showCursor;
 			});

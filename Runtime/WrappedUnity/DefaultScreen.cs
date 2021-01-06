@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UScreen = UnityEngine.Screen;
 
 namespace Grabli.WrappedUnity
 {
@@ -7,57 +8,79 @@ namespace Grabli.WrappedUnity
 	{
 		public FullScreenMode fullScreenMode
 		{
-			get => UnityEngine.Screen.fullScreenMode;
-			set => UnityEngine.Screen.fullScreenMode = value;
+			get => UScreen.fullScreenMode;
+			set => UScreen.fullScreenMode = value;
 		}
 
 		public Resolution[] GetResolution => throw new NotImplementedException();
 
-		public float brightness { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public int sleepTimeout { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public ScreenOrientation orientation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool autorotateToLandscapeRight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool autorotateToLandscapeLeft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool autorotateToPortraitUpsideDown { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool autorotateToPortrait { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public float brightness { get => UScreen.brightness; set => UScreen.brightness = value; }
+		public int sleepTimeout { get => UScreen.sleepTimeout; set => UScreen.sleepTimeout = value; }
+		public ScreenOrientation orientation { get => UScreen.orientation; set => UScreen.orientation = value; }
+		public bool autorotateToLandscapeRight
+		{
+			get => UScreen.autorotateToLandscapeRight;
+			set => UScreen.autorotateToLandscapeRight = value;
+		}
+		public bool autorotateToLandscapeLeft
+		{
+			get => UScreen.autorotateToLandscapeLeft;
+			set => UScreen.autorotateToLandscapeLeft = value;
+		}
+		public bool autorotateToPortraitUpsideDown
+		{
+			get => UScreen.autorotateToPortraitUpsideDown;
+			set => UScreen.autorotateToPortraitUpsideDown = value;
+		}
+		public bool autorotateToPortrait
+		{
+			get => UScreen.autorotateToPortrait;
+			set => UScreen.autorotateToPortrait = value;
+		}
 
-		public Rect[] cutouts => throw new NotImplementedException();
+		public Rect[] cutouts => UScreen.cutouts;
 
-		public Rect safeArea => throw new NotImplementedException();
+		public Rect safeArea => UScreen.safeArea;
 
-		public bool lockCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public bool fullScreen { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+#pragma warning disable CS0618 // Type or member is obsolete
+		public bool lockCursor { get => UScreen.lockCursor; set => UScreen.lockCursor = value; }
+#pragma warning restore CS0618 // Type or member is obsolete
+		public bool fullScreen { get => UScreen.fullScreen; set => UScreen.fullScreen = value; }
 
-		public Resolution[] resolutions => throw new NotImplementedException();
+		public Resolution[] resolutions => UScreen.resolutions;
 
-		public Resolution currentResolution => throw new NotImplementedException();
+		public Resolution currentResolution => UScreen.currentResolution;
 
-		public float dpi => throw new NotImplementedException();
+		public float dpi => UScreen.dpi;
 
-		public int height => throw new NotImplementedException();
+		public int height => UScreen.height;
 
-		public int width => throw new NotImplementedException();
+		public int width => UScreen.width;
 
-		public bool showCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public bool showCursor
+		{
+			get => throw new NotImplementedException();
+			set => throw new NotImplementedException();
+		}
 
 		public void SetResolution(int width, int height, bool fullscreen)
 		{
-			throw new NotImplementedException();
+			UScreen.SetResolution(width, height, fullscreen);
 		}
 
 		public void SetResolution(int width, int height, bool fullscreen, int preferredRefreshRate)
 		{
-			throw new NotImplementedException();
+			UScreen.SetResolution(width, height, fullscreen, preferredRefreshRate);
 		}
 
 		public void SetResolution(int width, int height, FullScreenMode fullscreenMode)
 		{
-			throw new NotImplementedException();
+			UScreen.SetResolution(width, height, fullscreenMode);
 		}
 
 		public void SetResolution(int width, int height, FullScreenMode fullscreenMode, int preferredRefreshRate)
 		{
-			throw new NotImplementedException();
+			UScreen.SetResolution(width, height, fullscreenMode, preferredRefreshRate);
 		}
 	}
 }

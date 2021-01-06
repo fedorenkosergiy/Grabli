@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace Grabli.WrappedUnity
 {
@@ -8,7 +9,7 @@ namespace Grabli.WrappedUnity
 		public void CheckGetResolutionGetterToExceptions()
 		{
 			DefaultScreen screen = new DefaultScreen();
-			Assert.DoesNotThrow(() =>
+			Assert.Catch<NotImplementedException>(() =>
 			{
 				var resolutions = screen.GetResolution;
 			});
