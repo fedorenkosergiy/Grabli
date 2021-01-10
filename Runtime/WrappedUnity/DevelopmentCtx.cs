@@ -1,4 +1,4 @@
-#if (DEVELOPMENT_BUILD || UNITY_EDITOR || DEVELOPMENT_CTX) && !CUSTOM_CTX
+#if (DEVELOPMENT_BUILD || UNITY_EDITOR || DEVELOPMENT_CTX) && !CUSTOM_CTX && !RELEASE_CTX
 namespace Grabli.WrappedUnity
 {
 	public static class Ctx
