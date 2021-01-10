@@ -128,10 +128,12 @@ namespace Grabli.WrappedUnity
 
 		public Touch GetTouch(int index) => UnityEngine.Input.GetTouch(index);
 
+#if UNITY_LINUX
 		public bool IsJoystickPreconfigured(string joystickName)
 		{
 			return UnityEngine.Input.IsJoystickPreconfigured(joystickName);
 		}
+#endif
 
 		public void ResetInputAxes() => UnityEngine.Input.ResetInputAxes();
 	}
