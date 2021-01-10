@@ -59,7 +59,7 @@ namespace Grabli.WrappedUnity
 		///   <para>Resets all input. After ResetInputAxes all axes return to 0 and all buttons return to 0 for one frame.</para>
 		/// </summary>
 		void ResetInputAxes();
-
+#if UNITY_LINUX
 		/// <summary>
 		///   <para>Determine whether a particular joystick model has been preconfigured by Unity. (Linux-only).</para>
 		/// </summary>
@@ -68,6 +68,7 @@ namespace Grabli.WrappedUnity
 		///   <para>True if the joystick layout has been preconfigured; false otherwise.</para>
 		/// </returns>
 		bool IsJoystickPreconfigured(string joystickName);
+#endif
 
 		/// <summary>
 		///   <para>Returns an array of strings describing the connected joysticks.</para>
