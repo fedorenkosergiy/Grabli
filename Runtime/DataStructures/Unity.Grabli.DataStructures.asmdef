@@ -1,6 +1,8 @@
 {
     "name": "Unity.Grabli.DataStructures",
-    "references": [],
+    "references": [
+        "GUID:a34d521b0887da3499d31d8dcea48fc7"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
