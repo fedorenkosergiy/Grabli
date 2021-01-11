@@ -1,0 +1,17 @@
+{
+    "name": "Unity.Grabli.DataStructures.Tests",
+    "references": [
+        "GUID:93a7a5f394bd67f4ab531ca82439a7c7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
