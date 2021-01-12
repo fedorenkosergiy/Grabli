@@ -7,7 +7,9 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfRemoveFirstReturnsFalseWhenChildrenIsEmpty()
 		{
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var success = children.RemoveFirst(new object());
 			Assert.IsFalse(success);
 		}
@@ -15,8 +17,10 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfRemoveFirstReturnsTrueWhenRemovingChild()
 		{
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var item = new object();
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
 			children.Add(item);
 			var success = children.RemoveFirst(item);
 			Assert.IsTrue(success);
@@ -25,8 +29,10 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfRemoveFirstDoesntRemoveSecond()
 		{
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var item = new object();
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
 			children.Add(item);
 			children.Add(item);
 			children.RemoveFirst(item);
@@ -37,7 +43,9 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfRemoveFirstWorksWithNull()
 		{
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			children.Add(default);
 			var success = children.RemoveFirst(default);
 			Assert.IsTrue(success);

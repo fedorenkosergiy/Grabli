@@ -8,8 +8,10 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfAddReturnsNodeWithRightItem()
 		{
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
 			var item = new object();
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var child = children.Add(item);
 			Assert.AreEqual(item, child.Item);
 		}
@@ -17,7 +19,9 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfAddWorksWhenParameterIsNull()
 		{
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var child = children.Add(null);
 			Assert.IsNull(child.Item);
 		}
@@ -25,7 +29,9 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfAddWorksWhenParameterIsDefaultStruct()
 		{
-			var children = new DefaultTreeNodeChildren<DateTime>(CreateFakeFactory<DateTime>());
+			var factory = CreateFakeFactory<DateTime>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<DateTime>(factory, node);
 			var child = children.Add(default);
 			Assert.AreEqual(default(DateTime), child.Item);
 		}
@@ -33,8 +39,10 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfAddWorksTwice()
 		{
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
 			var item = new object();
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var childA = children.Add(item);
 			var childB = children.Add(item);
 			Assert.AreNotEqual(childA, childB);

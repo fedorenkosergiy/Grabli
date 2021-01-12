@@ -5,6 +5,7 @@ namespace Grabli.DataStructures
 	public class DefaultTreeNodeChildren<T> : TreeNodeChildren<T>
 	{
 		private TreeFactory<T> factory;
+		private TreeNode<T> owner;
 		private List<TreeNode<T>> nodes = new List<TreeNode<T>>();
 		private IList<T> items = new List<T>();
 		private Dictionary<T, int> counts = new Dictionary<T, int>();
@@ -12,14 +13,15 @@ namespace Grabli.DataStructures
 
 		public IReadOnlyList<TreeNode<T>> Nodes => nodes;
 
-		public DefaultTreeNodeChildren(TreeFactory<T> factory)
+		public DefaultTreeNodeChildren(TreeFactory<T> factory, TreeNode<T> owner)
 		{
 			this.factory = factory;
+			this.owner = owner;
 		}
 
 		public TreeNode<T> Add(T value)
 		{
-			TreeNode<T> node = factory.CreateNode(value);
+			TreeNode<T> node = factory.CreateRootNode(value);
 			nodes.Add(node);
 			items.Add(value);
 			if (value == null)

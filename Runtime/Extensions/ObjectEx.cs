@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public static class ObjectEx
 {
@@ -28,5 +29,13 @@ public static class ObjectEx
 		string log = string.Format(template, GetValidLog(value));
 		Debug.Log(log);
 		return value;
+	}
+
+	public static void TryThrowArgumentNullException(this object value, string name)
+	{
+		if (value.IsNull())
+		{
+			throw new ArgumentNullException(name);
+		}
 	}
 }

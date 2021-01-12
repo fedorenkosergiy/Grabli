@@ -7,7 +7,7 @@ namespace Grabli.DataStructures
 		private TreeFactory<T> CreateFakeFactory<T>()
 		{
 			Mock<TreeFactory<T>> factoryMock = new Mock<TreeFactory<T>>();
-			factoryMock.Setup(factory => factory.CreateNode(
+			factoryMock.Setup(factory => factory.CreateRootNode(
 				It.IsAny<T>()))
 				.Returns<T>(item =>
 				{

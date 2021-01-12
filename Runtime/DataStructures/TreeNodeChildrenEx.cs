@@ -17,5 +17,10 @@ namespace Grabli.DataStructures
 			}
 			return result;
 		}
+
+		public static void RemoveAll<T>(this TreeNodeChildren<T> value, T item)
+		{
+			while (value.RemoveFirst(item)) ;
+		}
 	}
 }

@@ -1,18 +1,26 @@
-using System;
-
 namespace Grabli.DataStructures
 {
 	public class DefaultTreeNode<T> : TreeNode<T>
 	{
-		public T Item => throw new NotImplementedException();
+		private TreeFactory<T> factory;
 
-		public TreeNodeChildren<T> Children => throw new NotImplementedException();
+		public T Item { get; private set; }
 
-		public TreeNode<T> Parent => throw new NotImplementedException();
+		public TreeNodeChildren<T> Children { get; private set; }
 
-		public DefaultTreeNode(T item)
+		public TreeNode<T> Parent { get; private set; }
+
+		public DefaultTreeNode(TreeFactory<T> factory, TreeNode<T> parent, T item):this(factory, item)
 		{
-			throw new NotImplementedException();
+			Parent = parent;
+		}
+
+		public DefaultTreeNode(TreeFactory<T> factory, T item)
+		{
+			factory.TryThrowArgumentNullException(nameof(factory));
+			this.factory = factory;
+			Item = item;
+			Children = factory.CreateNodeChildren(this);
 		}
 	}
 }

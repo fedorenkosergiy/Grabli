@@ -7,17 +7,20 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfNodesFirstElementIsTheOnlyAddedItem()
 		{
-			var item = new object();
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
-			var node = children.Add(item);
-			Assert.AreEqual(node, children.Nodes[0]);
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
+			var subNode = children.Add(new object());
+			Assert.AreEqual(subNode, children.Nodes[0]);
 		}
 
 		[Test]
 		public void CheckIfNodesContainsTwoDifferentElementsAfterAddedTheSameItemTwice()
 		{
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			var item = new object();
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
 			children.Add(item);
 			children.Add(item);
 			Assert.AreNotEqual(children.Nodes[0], children.Nodes[1]);
@@ -26,14 +29,18 @@ namespace Grabli.DataStructures
 		[Test]
 		public void CheckIfNodesIsNotNullWhenEmpty()
 		{
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			Assert.IsNotNull(children.Nodes);
 		}
 
 		[Test]
 		public void CheckIfNodesHasNoElementsRightAfterCreation()
 		{
-			var children = new DefaultTreeNodeChildren<object>(CreateFakeFactory<object>());
+			var factory = CreateFakeFactory<object>();
+			var node = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, node);
 			Assert.IsEmpty(children.Nodes);
 		}
 	}
