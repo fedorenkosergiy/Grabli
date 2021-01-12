@@ -21,7 +21,7 @@ namespace Grabli.DataStructures
 
 		public TreeNode<T> Add(T value)
 		{
-			TreeNode<T> node = factory.CreateRootNode(value);
+			TreeNode<T> node = factory.CreateNode(value, owner);
 			nodes.Add(node);
 			items.Add(value);
 			if (value == null)
