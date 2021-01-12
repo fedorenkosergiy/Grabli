@@ -48,5 +48,15 @@ namespace Grabli.DataStructures
 			Assert.AreNotEqual(childA, childB);
 			Assert.AreEqual(item, childB.Item);
 		}
+
+		[Test]
+		public void CheckIfAddProvidesNewNodeWithParent()
+		{
+			var factory = CreateFakeFactory<object>();
+			var root = factory.CreateRootNode();
+			var children = new DefaultTreeNodeChildren<object>(factory, root);
+			var node = children.Add(null);
+			Assert.AreSame(node.Parent, root);
+		}
 	}
 }
