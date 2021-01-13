@@ -1,6 +1,6 @@
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public enum Approach
+	public enum Approach : int
 	{
 		ExtractInterfaceForStatic = 1,
 	}
