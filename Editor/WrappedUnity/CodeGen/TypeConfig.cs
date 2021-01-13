@@ -2,7 +2,7 @@ using System;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public interface TypeHandlingConfig : ReadonlyTypeHandlingConfig
+	public interface TypeConfig : ReadonlyTypeConfig
 	{
 		void SetType(Type type);
 		void SetInterfaceName(string interfaceName);
@@ -14,7 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		void ResetPackage();
 		void SetApproach(Approach approach);
 
-		void AddDependency(ReadonlyTypeHandlingConfig config);
+		void AddDependency(ReadonlyTypeConfig config);
 		void RemoveDependency(Type type);
 
 		void ResolveDependencies(DependenciesResolver resolver);

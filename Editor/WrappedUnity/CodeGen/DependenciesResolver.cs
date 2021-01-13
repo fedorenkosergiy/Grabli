@@ -8,6 +8,6 @@ namespace Grabli.WrappedUnity.CodeGen
 {
 	public interface DependenciesResolver
 	{
-		ReadonlyTypeHandlingConfig GetConfig(Guid guid);
+		ReadonlyTypeConfig GetConfig(Guid guid);
 	}
 }

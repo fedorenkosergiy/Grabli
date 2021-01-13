@@ -1,0 +1,17 @@
+{
+    "name": "Unity.Grabli.WrappedUnity.Editor.Tests",
+    "references": [
+        "GUID:74ab77373ef51974ea96998b353a56dc"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public interface RootTypeHandlersConfig
+	public interface RootTypes
 	{
-		ReadonlyTypeHandlingConfig[] Configs { get; }
+		ReadonlyTypeConfig[] Configs { get; }
 	}
 }
