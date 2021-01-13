@@ -1,4 +1,4 @@
-﻿namespace Grabli.WrappedUnity.CodeGen
+﻿namespace Grabli
 {
 	public interface Generator
 	{
