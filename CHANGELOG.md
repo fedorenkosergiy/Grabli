@@ -7,12 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Unity.Grabli.WrappedUnity.Extensions assembly
-- Unity.Grabli.WrappedUnity.Extensions.Tests assembly
+- Unity.Grabli.WrappedUnity.Extensions.Tests assembly 
+- Unity.Grabli.WrappedUnity.Editor assembly
+- Unity.Grabli.WrappedUnity.Editor.Tests assembly
+- Unity.Grabli.DataStructures assembly
+- Unity.Grabli.DataStructures.Tests assembly
+  
+
 - Grabli.WrappedUnity.Ping interface and it's default implementation
 - Grabli.WrappedUnity.WrappersFactory interface + implementation
 - Grabli.WrappedUnity.Screen interface + implementation
 - Development and Release contexts
 - Ability to create a custom context
+- Generic tree data structure
+- Generator of wrappers for UnityEngine types
 
 ## [0.1-alpha] - 2020-01-04
 ### Added
