@@ -11,7 +11,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			{
 				var mock = new Mock<ReadonlyTypeConfig>();
-				mock.Setup(c => c.Approach).Returns(Approach.ExtractInterfaceForStatic);
+				mock.Setup(c => c.Approach).Returns(Approach.EncapsulateStaticType);
 				mock.Setup(c => c.Dependencies).Returns(() => new ReadonlyTypeConfig[] { });
 				mock.Setup(c => c.Guid).Returns(() => Guid.Parse("bbe5884a1b6f4ab396273b7b84302786"));
 				mock.Setup(c => c.Namespace).Returns("Grabli.WrappedUnity");
@@ -22,7 +22,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				mock.Setup(c => c.UnityVersionSpecific).Returns(false);
 
 				var raw = new RawTypeConfig();
-				raw.Approach = Approach.ExtractInterfaceForStatic;
+				raw.Approach = Approach.EncapsulateStaticType;
 				raw.Dependencies = Array.Empty<string>();
 				raw.Namespace = "Grabli.WrappedUnity";
 				raw.ClassName = "DefaultPlayerPrefs";

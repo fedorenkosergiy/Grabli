@@ -2,6 +2,7 @@ namespace Grabli.WrappedUnity.CodeGen
 {
 	public enum Approach : int
 	{
-		ExtractInterfaceForStatic = 1,
+		EncapsulateStaticType = 1,
+		WrapClass = 2,
 	}
 }
