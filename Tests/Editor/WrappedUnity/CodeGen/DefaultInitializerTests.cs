@@ -4,7 +4,7 @@ using Moq;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class DefaultRootTypes_DefaultInitializerTests
+	public partial class DefaultInitializerTests
 	{
 		private const string rootTypeGuidApplication = "78281a11355f4dc2b412c5f2d3279cc6";
 		private const string rootTypeGuidScreen = "c6040b9e044d465eb92aa770aac4db9b";
@@ -87,6 +87,23 @@ namespace Grabli.WrappedUnity.CodeGen
 			Mock<AssetDatabase> mock = new Mock<AssetDatabase>();
 			mock.Setup(file => file.GUIDToAssetPath(It.IsAny<string>())).Returns<string>(guid => files[guid]);
 			return mock.Object;
+		}
+
+		private Factory CreateFakeFactory()
+		{
+			Mock<Factory> mock = new Mock<Factory>();
+			mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<TypeConfigRaw>()))
+				.Returns<ReadonlyTypeConfig>(raw =>
+				{
+					Mock<ReadonlyTypeConfig> typeConfigMock = new Mock<ReadonlyTypeConfig>();
+					return typeConfigMock.Object;
+				});
+			return mock.Object;
+		}
+
+		private void DefaultConfigsSetter(ReadonlyTypeConfig[] configs)
+		{
+
 		}
 	}
 }

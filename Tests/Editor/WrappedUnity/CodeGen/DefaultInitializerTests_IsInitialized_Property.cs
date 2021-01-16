@@ -2,7 +2,7 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class DefaultRootTypes_DefaultInitializerTests
+	public partial class DefaultInitializerTests
 	{
 		[Test]
 		public void CheckIfIsInitializedDoesntThrow()
@@ -12,8 +12,8 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-					var initializer = rootTypes.GetInitializer();
+					var initializer =
+						new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 					var isInitialized = initializer.IsInitialized;
 				}
 			});
@@ -25,8 +25,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-				var initializer = rootTypes.GetInitializer();
+				var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 				var isInitialized = initializer.IsInitialized;
 				Assert.IsFalse(isInitialized);
 			}
@@ -38,8 +37,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-				var initializer = rootTypes.GetInitializer();
+				var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 				initializer.Init();
 				var isInitialized = initializer.IsInitialized;
 				Assert.IsTrue(isInitialized);
@@ -52,8 +50,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-				var initializer = rootTypes.GetInitializer();
+				var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 				initializer.Init();
 				initializer.Deinit();
 				var isInitialized = initializer.IsInitialized;

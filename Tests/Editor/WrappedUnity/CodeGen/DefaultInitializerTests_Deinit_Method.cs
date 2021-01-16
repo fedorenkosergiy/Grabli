@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class DefaultRootTypes_DefaultInitializerTests
+	public partial class DefaultInitializerTests
 	{
 		[Test]
 		public void CheckIfDeinitDoesntThrowAfterInitialized()
@@ -13,8 +13,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-					var initializer = rootTypes.GetInitializer();
+					var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath,DefaultConfigsSetter);
 					initializer.Init();
 					initializer.Deinit();
 				}
@@ -29,8 +28,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-					var initializer = rootTypes.GetInitializer();
+					var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 					initializer.Init();
 					initializer.Deinit();
 					initializer.Deinit();
@@ -46,12 +44,10 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var rootTypes = new DefaultRootTypes(rootTypesFilePath);
-					var initializer = rootTypes.GetInitializer();
+					var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 					initializer.Deinit();
 				}
 			});
 		}
 	}
 }
-
