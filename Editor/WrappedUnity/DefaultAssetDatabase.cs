@@ -4,7 +4,7 @@
 	{
 		public string GUIDToAssetPath(string guid)
 		{
-			throw new System.NotImplementedException();
+			return UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
 		}
 	}
 }

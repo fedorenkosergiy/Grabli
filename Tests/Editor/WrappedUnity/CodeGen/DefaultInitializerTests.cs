@@ -12,8 +12,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
 		private const string rootTypesFileContent = "{" +
 		                                            "\"Guids\":[" +
-		                                            "\"" + rootTypeGuidApplication + "\"" +
-		                                            "," +
+		                                            "\"" + rootTypeGuidApplication + "\"," +
 		                                            "\"" + rootTypeGuidScreen + "\"" +
 		                                            "]}";
 
@@ -23,38 +22,38 @@ namespace Grabli.WrappedUnity.CodeGen
 		public readonly string applicationTypeConfigContent = "{" +
 		                                                      $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
 		                                                      $"\"{typeof(UnityEngine.Application).FullName}\"," +
-		                                                      $"\"{nameof(TypeConfigRaw.Namespace)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
 		                                                      "\"Grabli.WrappedUnity\"," +
-		                                                      $"\"{nameof(TypeConfigRaw.ClassName)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
 		                                                      "\"DefaultApplication\"," +
-		                                                      $"\"{nameof(TypeConfigRaw.InterfaceName)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.InterfaceName)}\":" +
 		                                                      "\"Application\"," +
-		                                                      $"\"{nameof(TypeConfigRaw.UnityVersionSpecific)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.UnityVersionSpecific)}\":" +
 		                                                      "false," +
-		                                                      $"\"{nameof(TypeConfigRaw.PackageId)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.PackageId)}\":" +
 		                                                      "\"\"," +
-		                                                      $"\"{nameof(TypeConfigRaw.Approach)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.Approach)}\":" +
 		                                                      "1," +
-		                                                      $"\"{nameof(TypeConfigRaw.DependencyGuids)}\"" +
+		                                                      $"\"{nameof(TypeConfigRaw.DependencyGuids)}\":" +
 		                                                      "[]" +
 		                                                      "}";
 
 		public readonly string screenTypeConfigContent = "{" +
 		                                                 $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
 		                                                 $"\"{typeof(UnityEngine.Screen).FullName}\"," +
-		                                                 $"\"{nameof(TypeConfigRaw.Namespace)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
 		                                                 "\"Grabli.WrappedUnity\"," +
-		                                                 $"\"{nameof(TypeConfigRaw.ClassName)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
 		                                                 "\"DefaultScreen\"," +
-		                                                 $"\"{nameof(TypeConfigRaw.InterfaceName)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.InterfaceName)}\":" +
 		                                                 "\"Screen\"," +
-		                                                 $"\"{nameof(TypeConfigRaw.UnityVersionSpecific)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.UnityVersionSpecific)}\":" +
 		                                                 "false," +
-		                                                 $"\"{nameof(TypeConfigRaw.PackageId)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.PackageId)}\":" +
 		                                                 "\"\"," +
-		                                                 $"\"{nameof(TypeConfigRaw.Approach)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.Approach)}\":" +
 		                                                 "1," +
-		                                                 $"\"{nameof(TypeConfigRaw.DependencyGuids)}\"" +
+		                                                 $"\"{nameof(TypeConfigRaw.DependencyGuids)}\":" +
 		                                                 "[]" +
 		                                                 "}";
 
@@ -92,12 +91,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		private Factory CreateFakeFactory()
 		{
 			Mock<Factory> mock = new Mock<Factory>();
-			mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<TypeConfigRaw>()))
-				.Returns<ReadonlyTypeConfig>(raw =>
-				{
-					Mock<ReadonlyTypeConfig> typeConfigMock = new Mock<ReadonlyTypeConfig>();
-					return typeConfigMock.Object;
-				});
+			mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<TypeConfigRaw>()));
 			return mock.Object;
 		}
 

@@ -20,7 +20,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		}
 
 		[Test]
-		public void CheckIfInitThrowsTheSecontTime()
+		public void CheckIfInitThrowsTheSecondTime()
 		{
 			Assert.Catch<InvalidOperationException>(() =>
 			{
@@ -28,6 +28,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
 					var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+					initializer.Init();
 					initializer.Init();
 				}
 			});

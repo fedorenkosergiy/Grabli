@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultInitializer : Initializer
+	public class DefaultInitializer : EmptyInitializer
 	{
 		private Factory factory;
 		private string filePath;
 		private ReadonlyTypeConfigsSetter setter;
-
-		public bool IsInitialized { get; private set; }
 
 		public DefaultInitializer(Factory factory, string filePath, ReadonlyTypeConfigsSetter setter)
 		{
@@ -17,12 +16,12 @@ namespace Grabli.WrappedUnity.CodeGen
 			this.setter = setter;
 		}
 
-		public void Init()
+		protected override void RunInitActions()
 		{
+			base.RunInitActions();
 			RootTypesRaw types = ReadTypesFromFile();
 			ReadonlyTypeConfig[] configs = CreateConfigs(types);
 			setter.Invoke(configs);
-			IsInitialized = true;
 		}
 
 		private RootTypesRaw ReadTypesFromFile()
@@ -48,10 +47,10 @@ namespace Grabli.WrappedUnity.CodeGen
 			return configs;
 		}
 
-		public void Deinit()
+		protected override void RunDeinitActions()
 		{
+			base.RunDeinitActions();
 			setter.Invoke(null);
-			IsInitialized = true;
 		}
 	}
 }
