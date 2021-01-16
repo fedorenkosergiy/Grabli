@@ -21,9 +21,9 @@ namespace Grabli.WrappedUnity.CodeGen
 				mock.Setup(c => c.PackageId).Returns(string.Empty);
 				mock.Setup(c => c.UnityVersionSpecific).Returns(false);
 
-				var raw = new RawTypeConfig();
+				var raw = new TypeConfigRaw();
 				raw.Approach = Approach.EncapsulateStaticType;
-				raw.Dependencies = Array.Empty<string>();
+				raw.DependencyGuids = Array.Empty<string>();
 				raw.Namespace = "Grabli.WrappedUnity";
 				raw.ClassName = "DefaultPlayerPrefs";
 				raw.InterfaceName = "PlayerPrefs";
@@ -35,7 +35,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		}
 
 		[TestCaseSource(nameof(CheckIfToRawWorksWellCases))]
-		public void CheckIfToRawWorksWell(ReadonlyTypeConfig config, RawTypeConfig expected)
+		public void CheckIfToRawWorksWell(ReadonlyTypeConfig config, TypeConfigRaw expected)
 		{
 			var actual = config.ToRaw();
 			Assert.AreEqual(expected, actual);

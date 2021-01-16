@@ -6,7 +6,7 @@ using Grabli.Pools;
 namespace Grabli.WrappedUnity.CodeGen
 {
 	[Serializable]
-	public struct RawTypeConfig
+	public struct TypeConfigRaw
 	{
 		public string FullTypeName;
 		public string Namespace;
@@ -15,24 +15,24 @@ namespace Grabli.WrappedUnity.CodeGen
 		public bool UnityVersionSpecific;
 		public string PackageId;
 		public Approach Approach;
-		public string[] Dependencies;
+		public string[] DependencyGuids;
 
-		public override bool Equals(object obj) => obj != null && Equals((RawTypeConfig) obj);
+		public override bool Equals(object obj) => obj != null && Equals((TypeConfigRaw) obj);
 
-		public bool Equals(RawTypeConfig other)
+		public bool Equals(TypeConfigRaw other)
 		{
-			if (Dependencies.Is() != other.Dependencies.Is())
+			if (DependencyGuids.Is() != other.DependencyGuids.Is())
 			{
 				return false;
 			}
-			if (Dependencies.Length != other.Dependencies.Length)
+			if (DependencyGuids.Length != other.DependencyGuids.Length)
 			{
 				return false;
 			}
 
-			for (int i = 0; i < Dependencies.Length; ++i)
+			for (int i = 0; i < DependencyGuids.Length; ++i)
 			{
-				if (Dependencies[i] != other.Dependencies[i])
+				if (DependencyGuids[i] != other.DependencyGuids[i])
 				{
 					return false;
 				}
@@ -59,7 +59,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				hashCode = (hashCode * 397) ^ UnityVersionSpecific.GetHashCode();
 				hashCode = (hashCode * 397) ^ (PackageId != null ? PackageId.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (int) Approach;
-				hashCode = (hashCode * 397) ^ (Dependencies != null ? Dependencies.GetHashCode() : 0);
+				hashCode = (hashCode * 397) ^ (DependencyGuids != null ? DependencyGuids.GetHashCode() : 0);
 				return hashCode;
 			}
 		}
@@ -76,7 +76,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			AppendValueTypeField(builder, nameof(UnityVersionSpecific), UnityVersionSpecific);
 			AppendStringField(builder, nameof(PackageId), PackageId);
 			AppendValueTypeField(builder, nameof(Approach), Approach);
-			AppendEnumerableField(builder, nameof(Dependencies), Dependencies);
+			AppendEnumerableField(builder, nameof(DependencyGuids), DependencyGuids);
 			builder.Append('}');
 			return StringBuilderPool.GetValueAndRelease(builder);
 		}

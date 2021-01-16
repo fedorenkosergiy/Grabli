@@ -7,18 +7,18 @@ namespace Grabli.WrappedUnity.CodeGen
 			return config.PackageId.IsSmth();
 		}
 
-		public static RawTypeConfig ToRaw(this ReadonlyTypeConfig config)
+		public static TypeConfigRaw ToRaw(this ReadonlyTypeConfig config)
 		{
-			RawTypeConfig raw = default;
-			raw.FullTypeName = config.Type.FullName;
-			raw.Namespace = config.Namespace;
-			raw.InterfaceName = config.InterfaceName;
-			raw.ClassName = config.ClassName;
-			raw.UnityVersionSpecific = config.UnityVersionSpecific;
-			raw.PackageId = config.PackageId;
-			raw.Approach = config.Approach;
-			raw.Dependencies = GenerateDependencies(config.Dependencies);
-			return raw;
+			TypeConfigRaw typeConfigRaw = default;
+			typeConfigRaw.FullTypeName = config.Type.FullName;
+			typeConfigRaw.Namespace = config.Namespace;
+			typeConfigRaw.InterfaceName = config.InterfaceName;
+			typeConfigRaw.ClassName = config.ClassName;
+			typeConfigRaw.UnityVersionSpecific = config.UnityVersionSpecific;
+			typeConfigRaw.PackageId = config.PackageId;
+			typeConfigRaw.Approach = config.Approach;
+			typeConfigRaw.DependencyGuids = GenerateDependencies(config.Dependencies);
+			return typeConfigRaw;
 		}
 
 		private static string[] GenerateDependencies(ReadonlyTypeConfig[] dependencies)

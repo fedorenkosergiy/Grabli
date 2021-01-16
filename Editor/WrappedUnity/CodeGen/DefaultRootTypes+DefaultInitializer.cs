@@ -2,17 +2,21 @@
 {
 	public partial class DefaultRootTypes
 	{
-		public Initializer GetInitializer()
-		{
-			throw new System.NotImplementedException();
-		}
-
 		private class DefaultInitializer : Initializer
 		{
+			private DefaultRootTypes host;
+
 			public bool IsInitialized { get; }
-			
+
+			public DefaultInitializer(DefaultRootTypes host)
+			{
+				this.host = host;
+			}
+
 			public void Init()
 			{
+				string text = FileContext.Instance.ReadAllText(host.filePath);
+
 				throw new System.NotImplementedException();
 			}
 

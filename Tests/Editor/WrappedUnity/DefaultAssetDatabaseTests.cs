@@ -1,7 +1,7 @@
-﻿namespace Grabli.Tests.Editor.WrappedUnity
+﻿namespace Grabli.WrappedUnity
 {
-	public class DefaultAssetDatabaseTests
+	public partial class DefaultAssetDatabaseTests
 	{
-		
+
 	}
 }

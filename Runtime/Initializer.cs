@@ -1,4 +1,9 @@
-﻿$HEADER$namespace $NAMESPACE$
+﻿namespace Grabli
 {
-  public interface $INTERFACE$ {$END$}
+	public interface Initializer
+	{
+		bool IsInitialized { get; }
+		void Init();
+		void Deinit();
+	}
 }

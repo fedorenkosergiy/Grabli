@@ -1,7 +1,10 @@
 {
     "name": "Unity.Grabli.WrappedUnity.Editor.Tests",
     "references": [
-        "GUID:74ab77373ef51974ea96998b353a56dc"
+        "GUID:74ab77373ef51974ea96998b353a56dc",
+        "GUID:90d92a6c8ed6d22438b6ec90633cd9cb",
+        "GUID:ec3d4e6b44bcb5444917c098834e158f",
+        "GUID:41a3881af0056d5498eb40797c5a5c4f"
     ],
     "includePlatforms": [
         "Editor"
