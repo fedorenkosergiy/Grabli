@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using UnityEditor;
 
 namespace Grabli.WrappedUnity
 {
