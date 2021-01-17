@@ -1,6 +1,6 @@
 ﻿namespace Grabli.WrappedUnity.CodeGen
 {
-	public interface TypesReader
+	public interface TypeReader
 	{
 		ReadonlyTypeConfig Read(string guid);
 	}

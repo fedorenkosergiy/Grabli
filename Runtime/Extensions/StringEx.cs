@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public static class StringEx
@@ -21,6 +22,7 @@ public static class StringEx
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -38,6 +40,7 @@ public static class StringEx
 				result = CultureInfo.DefaultThreadCurrentCulture;
 			}
 		}
+
 		return result;
 	}
 
@@ -54,5 +57,10 @@ public static class StringEx
 	public static bool IsSmth(this string text)
 	{
 		return !IsNullOrEmpty(text);
+	}
+
+	public static bool IsEmpty(this string text)
+	{
+		return text.Is() && text.Length == 0;
 	}
 }

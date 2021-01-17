@@ -33,7 +33,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			int count = types.Guids.Length;
 			ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[count];
-			TypesReader reader = factory.GetReader();
+			TypeReader reader = factory.GetReader();
 			for (int i = 0; i < count; ++i)
 			{
 				configs[i] = reader.Read(types.Guids[i]);

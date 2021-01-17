@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using static Grabli.WrappedUnity.CodeGen.FakeSerializedTypes;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
@@ -13,7 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
 					var initializer =
-						new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+						new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath, DefaultConfigsSetter);
 					var isInitialized = initializer.IsInitialized;
 				}
 			});
@@ -25,7 +26,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+				var initializer = new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath, DefaultConfigsSetter);
 				var isInitialized = initializer.IsInitialized;
 				Assert.IsFalse(isInitialized);
 			}
@@ -37,7 +38,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+				var initializer = new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath, DefaultConfigsSetter);
 				initializer.Init();
 				var isInitialized = initializer.IsInitialized;
 				Assert.IsTrue(isInitialized);
@@ -50,7 +51,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+				var initializer = new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath, DefaultConfigsSetter);
 				initializer.Init();
 				initializer.Deinit();
 				var isInitialized = initializer.IsInitialized;

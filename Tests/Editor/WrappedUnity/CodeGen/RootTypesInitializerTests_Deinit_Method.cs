@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using static Grabli.WrappedUnity.CodeGen.FakeSerializedTypes;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
@@ -13,7 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath,DefaultConfigsSetter);
+					var initializer = new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath,DefaultConfigsSetter);
 					initializer.Init();
 					initializer.Deinit();
 				}
@@ -28,7 +29,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+					var initializer = new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath, DefaultConfigsSetter);
 					initializer.Init();
 					initializer.Deinit();
 					initializer.Deinit();
@@ -44,7 +45,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new FileContext(CreateFakeIOFile()))
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
-					var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+					var initializer = new RootTypesInitializer(CreateFakeFactory(), RootTypesFilePath, DefaultConfigsSetter);
 					initializer.Deinit();
 				}
 			});

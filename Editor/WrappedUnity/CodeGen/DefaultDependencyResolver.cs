@@ -15,7 +15,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		public ReadonlyTypeConfig[] Resolve(string[] dependencyGuids)
 		{
 			ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[dependencyGuids.Length];
-			TypesReader reader = factory.GetReader();
+			TypeReader reader = factory.GetReader();
 			for (int i = 0; i < dependencyGuids.Length; ++i)
 			{
 				if (!readTypes.TryGetValue(dependencyGuids[i], out ReadonlyTypeConfig config))
