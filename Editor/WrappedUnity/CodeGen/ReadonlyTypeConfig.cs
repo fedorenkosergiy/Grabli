@@ -13,5 +13,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		string PackageId { get; }
 		Approach Approach { get; }
 		ReadonlyTypeConfig[] Dependencies { get; }
+
+		void ResolveDependencies(DependenciesResolver resolver);
 	}
 }
