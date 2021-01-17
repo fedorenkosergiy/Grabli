@@ -1,15 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultInitializer : EmptyInitializer
+	public class RootTypesInitializer : EmptyInitializer
 	{
 		private Factory factory;
 		private string filePath;
 		private ReadonlyTypeConfigsSetter setter;
 
-		public DefaultInitializer(Factory factory, string filePath, ReadonlyTypeConfigsSetter setter)
+		public RootTypesInitializer(Factory factory, string filePath, ReadonlyTypeConfigsSetter setter)
 		{
 			this.factory = factory;
 			this.filePath = filePath;
@@ -18,7 +17,6 @@ namespace Grabli.WrappedUnity.CodeGen
 
 		protected override void RunInitActions()
 		{
-			base.RunInitActions();
 			RootTypesRaw types = ReadTypesFromFile();
 			ReadonlyTypeConfig[] configs = CreateConfigs(types);
 			setter.Invoke(configs);
@@ -35,22 +33,15 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			int count = types.Guids.Length;
 			ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[count];
+			TypesReader reader = factory.GetReader();
 			for (int i = 0; i < count; ++i)
 			{
-				string path = AssetDatabaseContext.Instance.GUIDToAssetPath(types.Guids[i]);
-				string content = FileContext.Instance.ReadAllText(path);
-				TypeConfigRaw type = JsonUtility.FromJson<TypeConfigRaw>(content);
-				ReadonlyTypeConfig config = factory.CreateTypeConfig<ReadonlyTypeConfig>(type);
-				configs[i] = config;
+				configs[i] = reader.Read(types.Guids[i]);
 			}
 
 			return configs;
 		}
 
-		protected override void RunDeinitActions()
-		{
-			base.RunDeinitActions();
-			setter.Invoke(null);
-		}
+		protected override void RunDeinitActions() => setter.Invoke(null);
 	}
 }

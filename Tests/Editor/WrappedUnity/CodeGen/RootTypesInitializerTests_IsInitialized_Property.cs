@@ -2,7 +2,7 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class DefaultInitializerTests
+	public partial class RootTypesInitializerTests
 	{
 		[Test]
 		public void CheckIfIsInitializedDoesntThrow()
@@ -13,7 +13,7 @@ namespace Grabli.WrappedUnity.CodeGen
 				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 				{
 					var initializer =
-						new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+						new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 					var isInitialized = initializer.IsInitialized;
 				}
 			});
@@ -25,7 +25,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+				var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 				var isInitialized = initializer.IsInitialized;
 				Assert.IsFalse(isInitialized);
 			}
@@ -37,7 +37,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+				var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 				initializer.Init();
 				var isInitialized = initializer.IsInitialized;
 				Assert.IsTrue(isInitialized);
@@ -50,7 +50,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var initializer = new DefaultInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
+				var initializer = new RootTypesInitializer(CreateFakeFactory(), rootTypesFilePath, DefaultConfigsSetter);
 				initializer.Init();
 				initializer.Deinit();
 				var isInitialized = initializer.IsInitialized;

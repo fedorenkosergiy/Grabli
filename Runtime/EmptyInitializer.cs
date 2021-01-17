@@ -2,7 +2,7 @@
 
 namespace Grabli
 {
-	public class EmptyInitializer : Initializer
+	public abstract class EmptyInitializer : Initializer
 	{
 		public bool IsInitialized { get; protected set; }
 
@@ -21,10 +21,7 @@ namespace Grabli
 			}
 		}
 
-		protected virtual void RunInitActions()
-		{
-
-		}
+		protected abstract void RunInitActions();
 
 		public void Deinit()
 		{
@@ -35,15 +32,12 @@ namespace Grabli
 
 		private void CheckIfCanDeinit()
 		{
-
-		}
-
-		protected virtual void RunDeinitActions()
-		{
 			if (!IsInitialized)
 			{
 				throw new InvalidOperationException("To call Deinit() object should be initialized first");
 			}
 		}
+
+		protected abstract void RunDeinitActions();
 	}
 }

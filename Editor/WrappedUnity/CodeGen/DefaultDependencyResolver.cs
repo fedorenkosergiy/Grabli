@@ -1,17 +1,32 @@
-﻿namespace Grabli.WrappedUnity.CodeGen
+﻿using System.Collections.Generic;
+
+namespace Grabli.WrappedUnity.CodeGen
 {
 	public class DefaultDependencyResolver : DependenciesResolver
 	{
 		private Factory factory;
+		private IDictionary<string, ReadonlyTypeConfig> readTypes = new Dictionary<string, ReadonlyTypeConfig>();
 
 		public DefaultDependencyResolver(Factory factory)
 		{
 			this.factory = factory;
 		}
 
-		public void Resolve(string[] dependencyGuids, ReadonlyTypeConfigsSetter dependenciesSetter)
+		public ReadonlyTypeConfig[] Resolve(string[] dependencyGuids)
 		{
-			throw new System.NotImplementedException();
+			ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[dependencyGuids.Length];
+			TypesReader reader = factory.GetReader();
+			for (int i = 0; i < dependencyGuids.Length; ++i)
+			{
+				if (!readTypes.TryGetValue(dependencyGuids[i], out ReadonlyTypeConfig config))
+				{
+					config = reader.Read(dependencyGuids[i]);
+					readTypes.Add(dependencyGuids[i], config);
+				}
+
+				configs[i] = config;
+			}
+			return configs;
 		}
 	}
 }

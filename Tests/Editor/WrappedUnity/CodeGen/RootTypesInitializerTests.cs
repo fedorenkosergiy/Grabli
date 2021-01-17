@@ -4,7 +4,7 @@ using Moq;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class DefaultInitializerTests
+	public partial class RootTypesInitializerTests
 	{
 		private const string rootTypeGuidApplication = "78281a11355f4dc2b412c5f2d3279cc6";
 		private const string rootTypeGuidScreen = "c6040b9e044d465eb92aa770aac4db9b";
@@ -92,12 +92,12 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			Mock<Factory> mock = new Mock<Factory>();
 			mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<TypeConfigRaw>()));
+			mock.Setup(factory => factory.GetReader()).Returns(new DefaultTypesReader(mock.Object));
 			return mock.Object;
 		}
 
 		private void DefaultConfigsSetter(ReadonlyTypeConfig[] configs)
 		{
-
 		}
 	}
 }

@@ -5,6 +5,7 @@ namespace Grabli.WrappedUnity.CodeGen
 	public class DefaultFactory : Factory
 	{
 		private DependenciesResolver resolver;
+		private TypesReader reader;
 
 		public T CreateTypeConfig<T>(TypeConfigRaw raw) where T : ReadonlyTypeConfig
 		{
@@ -16,12 +17,17 @@ namespace Grabli.WrappedUnity.CodeGen
 
 		public Initializer CreateInitializer(string filePath, ReadonlyTypeConfigsSetter setter)
 		{
-			return new DefaultInitializer(this, filePath, setter);
+			return new RootTypesInitializer(this, filePath, setter);
 		}
 
 		public DependenciesResolver GetResolver()
 		{
 			return resolver ?? (resolver = new DefaultDependencyResolver(this));
+		}
+
+		public TypesReader GetReader()
+		{
+			return reader ?? (reader = new DefaultTypesReader(this));
 		}
 	}
 }
