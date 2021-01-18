@@ -23,7 +23,7 @@ namespace Grabli.Utils
 			new object[]{"Слова з апострофом: здоров'я, сім'я", Real, false, new string[] {"Слова", "з", "апострофом", "здоров'я", "сім'я"}},
 		};
 
-		[TestCaseSource("checkIfGetWordsWorksWellSource")]
+		[TestCaseSource(nameof(checkIfGetWordsWorksWellSource))]
 		public void CheckIfGetWordsWorksWell(string text, WordType target, bool ignoreCase, string[] expected)
 		{
 			DefaultAbcWordUtil util = new DefaultAbcWordUtil(target, ignoreCase);

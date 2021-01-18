@@ -9,11 +9,15 @@ namespace Grabli.WrappedUnity.CodeGen
 	{
 		private static IEnumerable<object[]> CheckIfToRawWorksWellCases()
 		{
+			const string devendencyGuid = "94adff62137b4f87ae41bc0e3b48b1e5";
+			var dependencyMock = new Mock<ReadonlyTypeConfig>();
+			dependencyMock.Setup(c => c.Guid).Returns(devendencyGuid);
+
 			{
 				var mock = new Mock<ReadonlyTypeConfig>();
 				mock.Setup(c => c.Approach).Returns(Approach.EncapsulateStaticType);
-				mock.Setup(c => c.Dependencies).Returns(() => new ReadonlyTypeConfig[] { });
-				mock.Setup(c => c.Guid).Returns(() => Guid.Parse("bbe5884a1b6f4ab396273b7b84302786"));
+				mock.Setup(c => c.Dependencies).Returns(() => new[] {dependencyMock.Object});
+				mock.Setup(c => c.Guid).Returns("bbe5884a1b6f4ab396273b7b84302786");
 				mock.Setup(c => c.Namespace).Returns("Grabli.WrappedUnity");
 				mock.Setup(c => c.Type).Returns(typeof(UnityEngine.PlayerPrefs));
 				mock.Setup(c => c.ClassName).Returns("DefaultPlayerPrefs");
@@ -23,7 +27,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
 				var raw = new TypeConfigRaw();
 				raw.Approach = Approach.EncapsulateStaticType;
-				raw.DependencyGuids = Array.Empty<string>();
+				raw.DependencyGuids = new[] {devendencyGuid};
 				raw.Namespace = "Grabli.WrappedUnity";
 				raw.ClassName = "DefaultPlayerPrefs";
 				raw.InterfaceName = "PlayerPrefs";

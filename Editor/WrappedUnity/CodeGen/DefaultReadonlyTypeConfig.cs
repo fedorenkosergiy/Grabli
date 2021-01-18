@@ -4,7 +4,7 @@ namespace Grabli.WrappedUnity.CodeGen
 {
 	public class DefaultReadonlyTypeConfig : ReadonlyTypeConfig
 	{
-		public Guid Guid { get; }
+		public string Guid { get; }
 		public Type Type { get; }
 		public string Namespace { get; }
 		public string InterfaceName { get; }

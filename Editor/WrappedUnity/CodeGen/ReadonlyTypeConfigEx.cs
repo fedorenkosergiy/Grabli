@@ -26,7 +26,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			string[] result = new string[dependencies.Length];
 			for (int i = 0; i < dependencies.Length; ++i)
 			{
-				result[i] = dependencies[i].Guid.ToString("N");
+				result[i] = dependencies[i].Guid;
 			}
 			return result;
 		}

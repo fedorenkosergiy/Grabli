@@ -60,5 +60,19 @@ namespace Grabli.WrappedUnity.CodeGen
 				}
 			});
 		}
+
+		[Test]
+		public void CheckIfReadThrowsWhenGuidIsEmpty()
+		{
+			Assert.Throws<ArgumentException>(() =>
+			{
+				using (new FileContext(CreateFakeIOFile()))
+				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
+				{
+					var reader = new DefaultTypeReader(CreateFakeFactory());
+					reader.Read(string.Empty);
+				}
+			});
+		}
 	}
 }

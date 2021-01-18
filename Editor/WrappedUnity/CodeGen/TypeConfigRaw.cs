@@ -103,6 +103,11 @@ namespace Grabli.WrappedUnity.CodeGen
 
 		private void AppendEnumerableField(StringBuilder builder, string name, IEnumerable value)
 		{
+			if (value.IsNull())
+			{
+				AppendField(builder, name, "NULL");
+				return;
+			}
 			StringBuilder arrayBuilder = StringBuilderPool.Get();
 			arrayBuilder.Append('[');
 			arrayBuilder.Append('\n');
