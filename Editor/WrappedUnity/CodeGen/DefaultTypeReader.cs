@@ -16,7 +16,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			string content = ReadFile(guid);
 			TypeConfigRaw type = JsonUtility.FromJson<TypeConfigRaw>(content);
-			return factory.CreateTypeConfig<ReadonlyTypeConfig>(type);
+			return factory.CreateTypeConfig<ReadonlyTypeConfig>(type, guid);
 		}
 
 		private static string ReadFile(string guid)

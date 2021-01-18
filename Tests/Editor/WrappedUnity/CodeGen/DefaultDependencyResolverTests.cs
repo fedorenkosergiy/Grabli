@@ -1,8 +1,11 @@
-﻿using Moq;
+﻿using System;
+using System.Collections.Generic;
+using Moq;
+using static Grabli.WrappedUnity.CodeGen.FakeSerializedTypes;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class RootTypesInitializerTests
+	public partial class DefaultDependencyResolverTests
 	{
 		private Factory CreateFakeFactory()
 		{
@@ -19,8 +22,12 @@ namespace Grabli.WrappedUnity.CodeGen
 			return mock.Object;
 		}
 
-		private void DefaultConfigsSetter(ReadonlyTypeConfig[] configs)
+		private static IEnumerable<object[]> GetValidGuidArrays()
 		{
+			yield return new object[] {new[] {RootTypeGuidApplication}};
+			yield return new object[] {new[] {RootTypeGuidApplication, RootTypeGuidScreen}};
+			yield return new object[] {new[] {RootTypeGuidScreen}};
+			yield return new object[] {Array.Empty<string>()};
 		}
 	}
 }

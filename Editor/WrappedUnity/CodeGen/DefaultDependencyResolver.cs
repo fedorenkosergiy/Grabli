@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
@@ -14,6 +15,11 @@ namespace Grabli.WrappedUnity.CodeGen
 
 		public ReadonlyTypeConfig[] Resolve(string[] dependencyGuids)
 		{
+			if (dependencyGuids.IsNull())
+			{
+				throw new ArgumentNullException(nameof(dependencyGuids));
+			}
+
 			ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[dependencyGuids.Length];
 			TypeReader reader = factory.GetReader();
 			for (int i = 0; i < dependencyGuids.Length; ++i)
@@ -26,6 +32,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
 				configs[i] = config;
 			}
+
 			return configs;
 		}
 	}

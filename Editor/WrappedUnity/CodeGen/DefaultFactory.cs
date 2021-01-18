@@ -7,11 +7,11 @@ namespace Grabli.WrappedUnity.CodeGen
 		private DependenciesResolver resolver;
 		private TypeReader reader;
 
-		public T CreateTypeConfig<T>(TypeConfigRaw raw) where T : ReadonlyTypeConfig
+		public T CreateTypeConfig<T>(TypeConfigRaw raw, string guid) where T : ReadonlyTypeConfig
 		{
 			Type type = typeof(T);
-			if (type == typeof(ReadonlyTypeConfig)) return (T)(ReadonlyTypeConfig)(new DefaultReadonlyTypeConfig());
-			if (type == typeof(TypeConfig)) return (T)(TypeConfig)(new DefaultTypeConfig());
+			if (type == typeof(ReadonlyTypeConfig)) return (T)(ReadonlyTypeConfig)(new DefaultReadonlyTypeConfig(guid));
+			if (type == typeof(TypeConfig)) return (T)(TypeConfig)(new DefaultTypeConfig(guid));
 			throw new InvalidOperationException($"Type {type.FullName} is not supported");
 		}
 

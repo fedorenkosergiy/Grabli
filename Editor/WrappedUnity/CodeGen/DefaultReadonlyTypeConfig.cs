@@ -14,6 +14,11 @@ namespace Grabli.WrappedUnity.CodeGen
 		public Approach Approach { get; }
 		public ReadonlyTypeConfig[] Dependencies { get; }
 
+		public DefaultReadonlyTypeConfig(string guid)
+		{
+			Guid = guid;
+		}
+
 		public void ResolveDependencies(DependenciesResolver resolver)
 		{
 

@@ -4,6 +4,10 @@ namespace Grabli.WrappedUnity.CodeGen
 {
 	public class DefaultTypeConfig : DefaultReadonlyTypeConfig, TypeConfig
 	{
+		public DefaultTypeConfig(string guid) : base(guid)
+		{
+		}
+
 		public void SetType(Type type)
 		{
 			throw new NotImplementedException();
