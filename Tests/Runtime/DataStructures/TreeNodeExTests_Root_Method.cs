@@ -10,7 +10,7 @@ namespace Grabli.DataStructures
 		{
 			Mock<TreeNode<int>> mock = new Mock<TreeNode<int>>();
 			mock.Setup(node => node.Parent).Returns(() => null);
-			var root = mock.Object.Root();
+			TreeNode<int> root = mock.Object.Root();
 			Assert.AreSame(root, mock.Object);
 		}
 
@@ -20,7 +20,7 @@ namespace Grabli.DataStructures
 			Mock<TreeNode<int>> parent = new Mock<TreeNode<int>>();
 			Mock<TreeNode<int>> mock = new Mock<TreeNode<int>>();
 			mock.Setup(node => node.Parent).Returns(() => parent.Object);
-			var root = mock.Object.Root();
+			TreeNode<int> root = mock.Object.Root();
 			Assert.AreSame(root, parent.Object);
 		}
 	}

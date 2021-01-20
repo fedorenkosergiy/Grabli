@@ -9,9 +9,9 @@ namespace Grabli.DataStructures
 			return new DefaultTreeNodeChildren<T>(this, owner);
 		}
 
-		public TreeNode<T> CreateNode(T item, TreeNode<T> parrent)
+		public TreeNode<T> CreateNode(T item, TreeNode<T> parent)
 		{
-			return new DefaultTreeNode<T>(this, parrent, item);
+			return new DefaultTreeNode<T>(this, parent, item);
 		}
 	}
 }

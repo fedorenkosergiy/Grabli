@@ -5,7 +5,7 @@ namespace Grabli.DataStructures
 {
 	public class PostOrderTraversal<T> : IEnumerable<T>
 	{
-		private TreeNode<T> localRoot;
+		private readonly TreeNode<T> localRoot;
 
 		public PostOrderTraversal(TreeNode<T> localRoot)
 		{
@@ -20,7 +20,7 @@ namespace Grabli.DataStructures
 			return list.GetEnumerator();
 		}
 
-		private void PopulateCollectionWithItems(ICollection<T> list, TreeNode<T> node)
+		private static void PopulateCollectionWithItems(ICollection<T> list, TreeNode<T> node)
 		{
 			for (int i = 0; i < node.Children.Nodes.Count; ++i)
 			{

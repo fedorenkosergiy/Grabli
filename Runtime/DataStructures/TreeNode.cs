@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Grabli.DataStructures
 {
 	public interface TreeNode<T>
