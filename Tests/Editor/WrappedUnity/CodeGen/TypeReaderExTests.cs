@@ -7,8 +7,8 @@ namespace Grabli.WrappedUnity.CodeGen
         private Factory CreateFakeFactory()
         {
             Mock<Factory> mock = new Mock<Factory>();
-            mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<TypeConfigRaw>(),It.IsAny<string>())).Returns<TypeConfigRaw, string>(
-                (raw, guid) =>
+            mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<string>())).Returns<string>(
+                (guid) =>
                 {
                     Mock<ReadonlyTypeConfig> configMock = new Mock<ReadonlyTypeConfig>();
                     configMock.Setup(config => config.Guid).Returns(guid);

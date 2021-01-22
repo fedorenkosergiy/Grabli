@@ -2,7 +2,7 @@ using System;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public interface ReadonlyTypeConfig
+	public interface ReadonlyTypeConfig : Initializable
 	{
 		string Guid { get; }
 		Type Type { get; }

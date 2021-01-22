@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultDependencyResolver : DependenciesResolver
+	public class DefaultDependenciesResolver : DependenciesResolver
 	{
-		private Factory factory;
-		private IDictionary<string, ReadonlyTypeConfig> readTypes = new Dictionary<string, ReadonlyTypeConfig>();
+		private readonly Factory factory;
+		private readonly IDictionary<string, ReadonlyTypeConfig> readTypes = new Dictionary<string, ReadonlyTypeConfig>();
 
-		public DefaultDependencyResolver(Factory factory)
+		public DefaultDependenciesResolver(Factory factory)
 		{
 			this.factory = factory;
 		}

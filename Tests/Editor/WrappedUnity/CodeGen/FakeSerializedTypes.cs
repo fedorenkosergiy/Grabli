@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using SystemInterface.IO;
-using Castle.Core.Internal;
 using Moq;
 
 namespace Grabli.WrappedUnity.CodeGen

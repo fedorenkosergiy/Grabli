@@ -12,7 +12,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var resolver = new DefaultDependencyResolver(CreateFakeFactory());
+				var resolver = new DefaultDependenciesResolver(CreateFakeFactory());
 				var configs = resolver.Resolve(guids);
 				for (int i = 0; i < guids.Length; ++i)
 				{
@@ -27,7 +27,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			using (new FileContext(CreateFakeIOFile()))
 			using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
 			{
-				var resolver = new DefaultDependencyResolver(CreateFakeFactory());
+				var resolver = new DefaultDependenciesResolver(CreateFakeFactory());
 				Assert.Throws<ArgumentNullException>(() => { resolver.Resolve(null); });
 			}
 		}

@@ -2,26 +2,23 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultReadonlyTypeConfig : ReadonlyTypeConfig
-	{
-		public string Guid { get; }
-		public Type Type { get; }
-		public string Namespace { get; }
-		public string InterfaceName { get; }
-		public string ClassName { get; }
-		public bool UnityVersionSpecific { get; }
-		public string PackageId { get; }
-		public Approach Approach { get; }
-		public ReadonlyTypeConfig[] Dependencies { get; }
+    public class DefaultReadonlyTypeConfig : DummyReadonlyTypeConfig
+    {
+        public DefaultReadonlyTypeConfig(string guid) : base(guid) { }
 
-		public DefaultReadonlyTypeConfig(string guid)
-		{
-			Guid = guid;
-		}
+        public override void ResolveDependencies(DependenciesResolver resolver)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ResolveDependencies(DependenciesResolver resolver)
-		{
+        public override Initializer GetInitializer()
+        {
+            throw new NotImplementedException();
+        }
 
-		}
-	}
+        private void SetRaw(TypeConfigRaw raw)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

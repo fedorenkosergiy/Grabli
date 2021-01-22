@@ -7,12 +7,20 @@ namespace Grabli.WrappedUnity.CodeGen
 		private DependenciesResolver resolver;
 		private TypeReader reader;
 
-		public T CreateTypeConfig<T>(TypeConfigRaw raw, string guid) where T : ReadonlyTypeConfig
+		public T CreateTypeConfig<T>(string guid) where T : ReadonlyTypeConfig
 		{
 			Type type = typeof(T);
-			if (type == typeof(ReadonlyTypeConfig)) return (T)(ReadonlyTypeConfig)(new DefaultReadonlyTypeConfig(guid));
-			if (type == typeof(TypeConfig)) return (T)(TypeConfig)(new DefaultTypeConfig(guid));
-			throw new InvalidOperationException($"Type {type.FullName} is not supported");
+			if (type == typeof(ReadonlyTypeConfig))
+            {
+                return (T)(ReadonlyTypeConfig)(new DefaultReadonlyTypeConfig(guid));
+            }
+
+            if (type == typeof(TypeConfig))
+            {
+                return (T)(TypeConfig)(new DefaultTypeConfig(guid));
+            }
+
+            throw new InvalidOperationException($"Type {type.FullName} is not supported");
 		}
 
 		public Initializer CreateInitializer(string filePath, ReadonlyTypeConfigsSetter setter)
@@ -20,9 +28,14 @@ namespace Grabli.WrappedUnity.CodeGen
 			return new RootTypesInitializer(this, filePath, setter);
 		}
 
-		public DependenciesResolver GetResolver()
+        public Initializer CreateInitializer(string guid, TypeConfigRawSetter setter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DependenciesResolver GetResolver()
 		{
-			return resolver ?? (resolver = new DefaultDependencyResolver(this));
+			return resolver ?? (resolver = new DefaultDependenciesResolver(this));
 		}
 
 		public TypeReader GetReader()
