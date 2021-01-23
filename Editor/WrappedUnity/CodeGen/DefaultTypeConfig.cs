@@ -4,7 +4,7 @@ namespace Grabli.WrappedUnity.CodeGen
 {
 	public class DefaultTypeConfig : DefaultReadonlyTypeConfig, TypeConfig
 	{
-		public DefaultTypeConfig(string guid) : base(guid)
+		public DefaultTypeConfig(Factory factory, string guid) : base(factory, guid)
 		{
 		}
 

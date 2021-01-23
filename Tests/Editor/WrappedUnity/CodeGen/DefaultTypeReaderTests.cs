@@ -12,6 +12,9 @@ namespace Grabli.WrappedUnity.CodeGen
                 {
                     Mock<ReadonlyTypeConfig> configMock = new Mock<ReadonlyTypeConfig>();
                     configMock.Setup(config => config.Guid).Returns(guid);
+
+                    Mock<Initializer> configInitializerMock = new Mock<Initializer>();
+                    configMock.Setup(config => config.GetInitializer()).Returns(configInitializerMock.Object);
                     return configMock.Object;
                 }
             );

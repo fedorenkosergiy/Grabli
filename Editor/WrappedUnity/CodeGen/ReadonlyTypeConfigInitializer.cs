@@ -6,34 +6,21 @@ namespace Grabli.WrappedUnity.CodeGen
 {
     public class ReadonlyTypeConfigInitializer : EmptyInitializer
     {
-        private string guid;
-        private TypeConfigRawSetter setter;
+        private readonly Factory factory;
+        private readonly string guid;
+        private readonly TypeConfigRawSetter setter;
 
-        public ReadonlyTypeConfigInitializer(string guid, TypeConfigRawSetter setter)
+        public ReadonlyTypeConfigInitializer(Factory factory, string guid, TypeConfigRawSetter setter)
         {
+            this.factory = factory;
             this.guid = guid; 
             this.setter = setter;
         }
         
         protected override void RunInitActions()
         {
-            throw new NotImplementedException();
-            
-            string content = ReadFile();
-            TypeConfigRaw raw = JsonUtility.FromJson<TypeConfigRaw>(content);
-            setter.Invoke(raw);
-        }
-        
-
-        private string ReadFile()
-        {
-            string path = AssetDatabaseContext.Instance.GUIDToAssetPath(guid);
-            if (path.IsNull() || !FileContext.Instance.Exists(path))
-            {
-                throw new FileNotFoundException("File not found", path);
-            }
-
-            return FileContext.Instance.ReadAllText(path);
+            TypeReader reader = factory.GetReader();
+            setter.Invoke(reader.Read(guid));
         }
 
         protected override void RunDeinitActions()

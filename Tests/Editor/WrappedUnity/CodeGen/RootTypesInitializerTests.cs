@@ -4,20 +4,15 @@ namespace Grabli.WrappedUnity.CodeGen
 {
     public partial class RootTypesInitializerTests
     {
-        private Factory CreateFakeFactory()
+        private class FakeFactory : DefaultFactory
         {
-            Mock<Factory> mock = new Mock<Factory>();
-            mock.Setup(factory => factory.CreateTypeConfig<ReadonlyTypeConfig>(It.IsAny<string>())).Returns<string>(
-                (guid) =>
-                {
-                    Mock<ReadonlyTypeConfig> configMock = new Mock<ReadonlyTypeConfig>();
-                    configMock.Setup(config => config.Guid).Returns(guid);
-                    return configMock.Object;
-                }
-            );
-            mock.Setup(factory => factory.GetReader()).Returns(new DefaultTypeReader(mock.Object));
-            return mock.Object;
+            public override Initializer CreateInitializer(string filePath, ReadonlyTypeConfigsSetter setter)
+            {
+                return new RootTypesInitializer(this, filePath, setter);
+            }
         }
+
+        private Factory CreateFakeFactory() => new FakeFactory();
 
         private void DefaultConfigsSetter(ReadonlyTypeConfig[] configs) { }
     }

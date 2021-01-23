@@ -2,6 +2,6 @@
 {
 	public interface TypeReader
 	{
-		ReadonlyTypeConfig Read(string guid);
+        TypeConfigRaw Read(string guid);
 	}
 }

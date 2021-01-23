@@ -1,4 +1,7 @@
-﻿namespace Grabli.WrappedUnity.CodeGen
+﻿using System.IO;
+using UnityEngine;
+
+namespace Grabli.WrappedUnity.CodeGen
 {
     public class DefaultTypeReader : DummyTypeReader
     {
@@ -9,12 +12,21 @@
             this.factory = factory;
         }
 
-        protected override ReadonlyTypeConfig DoRead(string guid)
+        protected override TypeConfigRaw DoRead(string guid)
         {
-            ReadonlyTypeConfig config = factory.CreateTypeConfig<ReadonlyTypeConfig>(guid);
-            Initializer initializer = config.GetInitializer();
-            initializer.Init();
-            return config;
+            string content = ReadFile(guid);
+            return JsonUtility.FromJson<TypeConfigRaw>(content);
+        }
+
+        private static string ReadFile(string guid)
+        {
+            string path = AssetDatabaseContext.Instance.GUIDToAssetPath(guid);
+            if (path.IsNull() || !FileContext.Instance.Exists(path))
+            {
+                throw new FileNotFoundException("File not found", path);
+            }
+
+            return FileContext.Instance.ReadAllText(path);
         }
     }
 }

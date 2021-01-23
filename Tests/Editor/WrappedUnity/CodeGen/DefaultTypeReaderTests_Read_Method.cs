@@ -21,19 +21,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			});
 		}
 
-		[Test]
-		public void CheckIfReadThrowsWhenGuidDoesntMatchAnyFile()
-		{
-			Assert.Throws<FileNotFoundException>(() =>
-			{
-				using (new FileContext(CreateFakeIOFile()))
-				using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
-				{
-					var reader = new DefaultTypeReader(CreateFakeFactory());
-					reader.Read(Guid.NewGuid().ToString("N"));
-				}
-			});
-		}
+		
 
 		[Test]
 		public void CheckIfReadWorks()

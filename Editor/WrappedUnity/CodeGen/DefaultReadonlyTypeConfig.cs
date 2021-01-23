@@ -1,24 +1,36 @@
-﻿using System;
-
-namespace Grabli.WrappedUnity.CodeGen
+﻿namespace Grabli.WrappedUnity.CodeGen
 {
     public class DefaultReadonlyTypeConfig : DummyReadonlyTypeConfig
     {
-        public DefaultReadonlyTypeConfig(string guid) : base(guid) { }
+        private readonly Factory factory;
+        private Initializer initializer;
+        private string[] dependencyGuids;
+
+        public DefaultReadonlyTypeConfig(Factory factory, string guid) : base(guid)
+        {
+            this.factory = factory;
+        }
 
         public override void ResolveDependencies(DependenciesResolver resolver)
         {
-            throw new NotImplementedException();
+            base.ResolveDependencies(resolver);
+            Dependencies = resolver.Resolve(dependencyGuids);
         }
 
         public override Initializer GetInitializer()
         {
-            throw new NotImplementedException();
+            return initializer ?? (initializer = factory.CreateInitializer(guid, SetRaw));
         }
 
         private void SetRaw(TypeConfigRaw raw)
         {
-            throw new NotImplementedException();
+            Namespace = raw.Namespace;
+            InterfaceName = raw.InterfaceName;
+            ClassName = raw.ClassName;
+            UnityVersionSpecific = raw.UnityVersionSpecific;
+            PackageId = raw.PackageId;
+            Approach = raw.Approach;
+            dependencyGuids = raw.DependencyGuids;
         }
     }
 }

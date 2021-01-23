@@ -1,5 +1,4 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using static Grabli.WrappedUnity.CodeGen.FakeSerializedTypes;
 
@@ -13,9 +12,9 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             Assert.Throws<InvalidOperationException>(() =>
             {
-                DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(guid);
-                Mock<Factory> factoryMock = new Mock<Factory>();
-                DependenciesResolver resolver = new DefaultDependenciesResolver(factoryMock.Object);
+                Factory factory = CreateFakeFactory();
+                DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
+                DependenciesResolver resolver = new DefaultDependenciesResolver(factory);
                 config.ResolveDependencies(resolver);
             });
         }

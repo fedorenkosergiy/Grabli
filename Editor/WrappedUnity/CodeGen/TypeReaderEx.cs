@@ -1,10 +1,8 @@
-﻿using System.IO;
-
-namespace Grabli.WrappedUnity.CodeGen
+﻿namespace Grabli.WrappedUnity.CodeGen
 {
 	public static class TypeReaderEx
 	{
-		public static bool TryRead(this TypeReader reader, string guid, out ReadonlyTypeConfig config)
+		public static bool TryRead(this TypeReader reader, string guid, out TypeConfigRaw config)
 		{
 			try
 			{
@@ -13,7 +11,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			}
 			catch
 			{
-				config = null;
+				config = default;
 				return false;
 			}
 		}

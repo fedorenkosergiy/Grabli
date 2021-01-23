@@ -4,7 +4,7 @@ namespace Grabli.WrappedUnity.CodeGen
 {
 	public abstract class DummyTypeReader : TypeReader
 	{
-		public ReadonlyTypeConfig Read(string guid)
+		public TypeConfigRaw Read(string guid)
 		{
 			if (guid.IsNull())
 			{
@@ -20,6 +20,6 @@ namespace Grabli.WrappedUnity.CodeGen
 			return DoRead(guid);
 		}
 
-		protected abstract ReadonlyTypeConfig DoRead(string guid);
+		protected abstract TypeConfigRaw DoRead(string guid);
 	}
 }

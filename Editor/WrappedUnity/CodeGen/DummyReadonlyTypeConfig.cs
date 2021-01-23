@@ -4,7 +4,7 @@ namespace Grabli.WrappedUnity.CodeGen
 {
     public abstract class DummyReadonlyTypeConfig : ReadonlyTypeConfig
     {
-        private string guid;
+        protected string guid;
         private Type type;
         private string nameSpace;
         private string interfaceName;
@@ -117,14 +117,23 @@ namespace Grabli.WrappedUnity.CodeGen
                 return;
             }
 
-            const string message = "Object is not initialized";
+            const string message = "Object is not initialized. The only method you can call is GetInitializer()";
             throw new InvalidOperationException(message);
         }
 
         public virtual void ResolveDependencies(DependenciesResolver resolver)
         {
             ThrowIfNotInitialized();
-            throw new NotImplementedException();
+            ThrowIfDependenciesResolved();
+        }
+
+        private void ThrowIfDependenciesResolved()
+        {
+            if (dependencies.Is())
+            {
+                const string message = "Dependencies already resolved";
+                throw new InvalidOperationException(message);
+            }
         }
 
         public abstract Initializer GetInitializer();

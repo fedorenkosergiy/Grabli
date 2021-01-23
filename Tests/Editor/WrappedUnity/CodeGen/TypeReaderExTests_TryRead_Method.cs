@@ -15,7 +15,7 @@ namespace Grabli.WrappedUnity.CodeGen
             using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
             {
                 var reader = new DefaultTypeReader(CreateFakeFactory());
-                bool actual = reader.TryRead(guid, out ReadonlyTypeConfig config);
+                bool actual = reader.TryRead(guid, out TypeConfigRaw config);
                 Assert.AreEqual(expectedResult, actual);
             }
         }

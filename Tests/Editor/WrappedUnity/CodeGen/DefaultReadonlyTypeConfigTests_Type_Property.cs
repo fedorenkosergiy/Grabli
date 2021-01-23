@@ -13,7 +13,8 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             Assert.Throws<InvalidOperationException>(() =>
             {
-                DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(guid);
+                Factory factory = CreateFakeFactory();
+                DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
                 Type unused = config.Type;
             });
         }
