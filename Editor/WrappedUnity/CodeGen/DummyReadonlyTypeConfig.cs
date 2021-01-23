@@ -4,7 +4,6 @@ namespace Grabli.WrappedUnity.CodeGen
 {
     public abstract class DummyReadonlyTypeConfig : ReadonlyTypeConfig
     {
-        protected string guid;
         private Type type;
         private string nameSpace;
         private string interfaceName;
@@ -14,15 +13,7 @@ namespace Grabli.WrappedUnity.CodeGen
         private Approach approach;
         private ReadonlyTypeConfig[] dependencies;
 
-        public virtual string Guid
-        {
-            get
-            {
-                ThrowIfNotInitialized();
-                return guid;
-            }
-            protected set => guid = value;
-        }
+        public string Guid { get; protected set; }
 
         public virtual Type Type
         {
@@ -106,7 +97,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         protected DummyReadonlyTypeConfig(string guid)
         {
-            this.guid = guid;
+            Guid = guid;
         }
 
         protected void ThrowIfNotInitialized()

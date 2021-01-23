@@ -18,5 +18,21 @@ namespace Grabli.WrappedUnity.CodeGen
                 bool unused = config.UnityVersionSpecific;
             });
         }
+        
+        [TestCase(RootTypeGuidApplication, false)]
+        [TestCase(RootTypeGuidScreen, false)]
+        public void CheckUnityVersionSpecificIfWorks(string guid, bool expected)
+        {
+            using (new FileContext(CreateFakeIOFile()))
+            using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
+            {
+                Factory factory = CreateFakeFactory();
+                DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
+                Initializer initializer = config.GetInitializer();
+                initializer.Init();
+                bool actual = config.UnityVersionSpecific;
+                Assert.AreEqual(expected, actual);
+            }
+        }
     }
 }

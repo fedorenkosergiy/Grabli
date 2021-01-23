@@ -9,9 +9,9 @@ namespace Grabli.WrappedUnity.CodeGen
     {
         [TestCase(RootTypeGuidApplication)]
         [TestCase(RootTypeGuidScreen)]
-        public void CheckGuidIfThrowsWhenNotInitialized(string guid)
+        public void CheckGuidIfDoesntThrowWhenNotInitialized(string guid)
         {
-            Assert.Throws<InvalidOperationException>(() =>
+            Assert.DoesNotThrow(() =>
             {
                 Factory factory = CreateFakeFactory();
                 DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);

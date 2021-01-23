@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Grabli.WrappedUnity.CodeGen
 {
 	public static class ReadonlyTypeConfigEx
@@ -30,5 +32,11 @@ namespace Grabli.WrappedUnity.CodeGen
 			}
 			return result;
 		}
+
+        private static bool IsDependenciesInitialized(this ReadonlyTypeConfig config)
+        {
+            Initializer initializer = config.GetInitializer();
+            return initializer.IsInitialized && config.Dependencies.Is();
+        }
 	}
 }

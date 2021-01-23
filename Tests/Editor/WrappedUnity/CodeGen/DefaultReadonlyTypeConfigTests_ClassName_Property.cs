@@ -17,5 +17,21 @@ namespace Grabli.WrappedUnity.CodeGen
                 string unused = config.ClassName;
             });
         }
+        
+        [TestCase(RootTypeGuidApplication, "DefaultApplication")]
+        [TestCase(RootTypeGuidScreen, "DefaultScreen")]
+        public void CheckClassNameIfWorks(string guid, string expected)
+        {
+            using (new FileContext(CreateFakeIOFile()))
+            using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
+            {
+                Factory factory = CreateFakeFactory();
+                DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
+                Initializer initializer = config.GetInitializer();
+                initializer.Init();
+                string actual = config.ClassName;
+                Assert.AreEqual(expected, actual);
+            }
+        }
     }
 }

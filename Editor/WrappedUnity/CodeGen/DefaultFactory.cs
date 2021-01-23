@@ -36,7 +36,7 @@ namespace Grabli.WrappedUnity.CodeGen
             return new RootTypesInitializer(this, filePath, setter);
         }
 
-        public Initializer CreateInitializer(string guid, TypeConfigRawSetter setter)
+        public virtual Initializer CreateInitializer(string guid, TypeConfigRawSetter setter)
         {
             return new ReadonlyTypeConfigInitializer(this, guid, setter);
         }
