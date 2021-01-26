@@ -10,13 +10,22 @@ namespace System.Reflection
         {
             try
             {
-                if (assembly.IsDynamic) return false;
+                if (assembly.IsDynamic)
+                {
+                    return false;
+                }
 
                 FileInfo fileInfo = new FileInfo(assembly.Location);
-                if (fileInfo.Directory.Name != ApplicationEx.ScriptAssembliesDirName) return false;
+                if (fileInfo.Directory.Name != ApplicationEx.ScriptAssembliesDirName)
+                {
+                    return false;
+                }
 
                 DirectoryInfo library = fileInfo.Directory.Parent;
-                if (library.Name != ApplicationEx.LibraryDirName) return false;
+                if (library.Name != ApplicationEx.LibraryDirName)
+                {
+                    return false;
+                }
 
                 string dataPath = ApplicationEx.ProjectPath
                     .Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
