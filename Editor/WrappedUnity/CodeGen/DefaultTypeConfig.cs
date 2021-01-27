@@ -12,13 +12,33 @@ namespace Grabli.WrappedUnity.CodeGen
         public virtual bool UnityVersionSpecific { get; protected set; }
         public virtual string PackageId { get; protected set; }
         public virtual Approach Approach { get; protected set; }
-        public virtual ReadonlyTypeConfig[] Dependencies { get; protected set; }
+        public virtual ReadonlyTypeConfig[] Dependencies { get; private set; }
 
         protected DefaultTypeConfig(string guid)
         {
             Guid = guid;
         }
 
-        public abstract void ResolveDependencies(DependenciesResolver resolver);
+        public virtual void ResolveDependencies(DependenciesResolver resolver)
+        {
+            ThrowIfDependenciesResolved();
+            Dependencies = resolver.Resolve(GetDependenciesGuids());
+        }
+
+        private void ThrowIfDependenciesResolved()
+        {
+            if (Dependencies.Is())
+            {
+                const string message = "Dependencies already resolved";
+                throw new InvalidOperationException(message);
+            }
+        }
+
+        protected abstract string[] GetDependenciesGuids();
+
+        protected void ResetDependencies()
+        {
+            Dependencies = default;
+        }
     }
 }

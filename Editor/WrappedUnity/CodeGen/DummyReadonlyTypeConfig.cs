@@ -93,16 +93,7 @@ namespace Grabli.WrappedUnity.CodeGen
         public override void ResolveDependencies(DependenciesResolver resolver)
         {
             ThrowIfNotInitialized();
-            ThrowIfDependenciesResolved();
-        }
-
-        private void ThrowIfDependenciesResolved()
-        {
-            if (Dependencies.Is())
-            {
-                const string message = "Dependencies already resolved";
-                throw new InvalidOperationException(message);
-            }
+            base.ResolveDependencies(resolver);
         }
 
         public abstract Initializer GetInitializer();

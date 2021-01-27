@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class ReadonlyTypeConfigExTests
+	public partial class TypeConfigExTests
 	{
 		private static IEnumerable<object[]> CheckIfToRawWorksWellCases()
 		{

@@ -2,9 +2,9 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultWritableTypeConfig : DefaultReadonlyTypeConfig, TypeConfig
+	public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig
 	{
-		public DefaultWritableTypeConfig(Factory factory, string guid) : base(factory, guid)
+        public DefaultWritableTypeConfig(Factory factory, string guid) : base(guid)
 		{
 		}
 
@@ -53,7 +53,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			throw new NotImplementedException();
 		}
 
-		public void RemoveDependency(Type type)
+		public void RemoveDependency(ReadonlyTypeConfig type)
 		{
 			throw new NotImplementedException();
 		}
@@ -62,5 +62,10 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			throw new NotImplementedException();
 		}
-	}
+
+        protected override string[] GetDependenciesGuids()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

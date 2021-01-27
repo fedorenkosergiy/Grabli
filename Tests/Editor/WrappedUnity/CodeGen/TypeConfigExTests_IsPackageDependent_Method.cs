@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public partial class ReadonlyTypeConfigExTests
+	public partial class TypeConfigExTests
 	{
 		[TestCase("com.unity.ext.nunit", true)]
 		[TestCase("", false)]

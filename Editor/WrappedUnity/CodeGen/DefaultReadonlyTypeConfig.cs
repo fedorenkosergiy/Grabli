@@ -13,15 +13,14 @@ namespace Grabli.WrappedUnity.CodeGen
             this.factory = factory;
         }
 
-        public override void ResolveDependencies(DependenciesResolver resolver)
-        {
-            base.ResolveDependencies(resolver);
-            Dependencies = resolver.Resolve(dependencyGuids);
-        }
-
         public override Initializer GetInitializer()
         {
             return initializer ?? (initializer = factory.CreateInitializer(Guid, SetRaw));
+        }
+
+        protected override string[] GetDependenciesGuids()
+        {
+            return dependencyGuids;
         }
 
         private void SetRaw(TypeConfigRaw? rawObject)

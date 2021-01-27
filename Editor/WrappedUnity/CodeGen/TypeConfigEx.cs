@@ -2,12 +2,12 @@ namespace Grabli.WrappedUnity.CodeGen
 {
     public static class ReadonlyTypeConfigEx
     {
-        public static bool IsPackageDependent(this ReadonlyTypeConfig config)
+        public static bool IsPackageDependent(this TypeConfig config)
         {
             return config.PackageId.IsSmth();
         }
 
-        public static TypeConfigRaw ToRaw(this ReadonlyTypeConfig config)
+        public static TypeConfigRaw ToRaw(this TypeConfig config)
         {
             TypeConfigRaw typeConfigRaw = default;
             typeConfigRaw.FullTypeName = config.Type.FullName;
@@ -32,10 +32,18 @@ namespace Grabli.WrappedUnity.CodeGen
             return result;
         }
 
-        public static bool IsDependenciesResolved(this ReadonlyTypeConfig config)
+        public static bool IsDependenciesResolved(this TypeConfig config)
         {
-            Initializer initializer = config.GetInitializer();
-            return initializer.IsInitialized && config.Dependencies.Is();
+            if (config is Initializable initializable)
+            {
+                Initializer initializer = initializable.GetInitializer();
+                if (!initializer.IsInitialized)
+                {
+                    return false;
+                }
+            }
+
+            return config.Dependencies.Is();
         }
     }
 }

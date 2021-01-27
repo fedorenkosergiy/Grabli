@@ -1,6 +1,6 @@
 namespace Grabli.WrappedUnity.CodeGen
 {
-    public partial class ReadonlyTypeConfigExTests
+    public partial class TypeConfigExTests
     {
         private class FakeFactory : DefaultFactory
         {

@@ -3,7 +3,7 @@ using static Grabli.WrappedUnity.CodeGen.FakeSerializedTypes;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-    public partial class ReadonlyTypeConfigExTests
+    public partial class TypeConfigExTests
     {
         [TestCase(RootTypeGuidApplication)]
         [TestCase(RootTypeGuidScreen)]
