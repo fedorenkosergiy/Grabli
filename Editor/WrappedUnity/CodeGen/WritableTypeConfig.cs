@@ -2,7 +2,7 @@ using System;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public interface EditableTypeConfig : TypeConfig
+	public interface WritableTypeConfig : TypeConfig
 	{
 		void SetType(Type type);
 		void SetInterfaceName(string interfaceName);

@@ -2,9 +2,9 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultTypeConfig : DefaultReadonlyTypeConfig, TypeConfig
+	public class DefaultWritableTypeConfig : DefaultReadonlyTypeConfig, TypeConfig
 	{
-		public DefaultTypeConfig(Factory factory, string guid) : base(factory, guid)
+		public DefaultWritableTypeConfig(Factory factory, string guid) : base(factory, guid)
 		{
 		}
 

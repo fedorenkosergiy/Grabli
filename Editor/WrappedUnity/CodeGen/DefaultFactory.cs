@@ -25,7 +25,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
             if (type == typeof(TypeConfig))
             {
-                return (T) (TypeConfig) (new DefaultTypeConfig(this, guid));
+                return (T) (TypeConfig) (new DefaultWritableTypeConfig(this, guid));
             }
 
             throw new InvalidOperationException($"Type {type.FullName} is not supported");
