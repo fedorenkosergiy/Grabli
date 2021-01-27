@@ -2,105 +2,83 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-    public abstract class DummyReadonlyTypeConfig : ReadonlyTypeConfig
+    public abstract class DummyReadonlyTypeConfig : DefaultTypeConfig, ReadonlyTypeConfig
     {
-        private Type type;
-        private string nameSpace;
-        private string interfaceName;
-        private string className;
-        private bool unityVersionSpecific;
-        private string packageId;
-        private Approach approach;
-        private ReadonlyTypeConfig[] dependencies;
-
-        public string Guid { get; protected set; }
-
-        public virtual Type Type
+        public override Type Type
         {
             get
             {
                 ThrowIfNotInitialized();
-                return type;
+                return base.Type;
             }
-            protected set => type = value;
         }
 
-        public virtual string Namespace
+        public override string Namespace
         {
             get
             {
                 ThrowIfNotInitialized();
-                return nameSpace;
+                return base.Namespace;
             }
-            protected set => nameSpace = value;
         }
 
-        public virtual string InterfaceName
+        public override string InterfaceName
         {
             get
             {
                 ThrowIfNotInitialized();
-                return interfaceName;
+                return base.InterfaceName;
             }
-            protected set => interfaceName = value;
         }
 
-        public virtual string ClassName
+        public override string ClassName
         {
             get
             {
                 ThrowIfNotInitialized();
-                return className;
+                return base.ClassName;
             }
-            protected set => className = value;
         }
 
-        public virtual bool UnityVersionSpecific
+        public override bool UnityVersionSpecific
         {
             get
             {
                 ThrowIfNotInitialized();
-                return unityVersionSpecific;
+                return base.UnityVersionSpecific;
             }
-            protected set => unityVersionSpecific = value;
         }
 
-        public virtual string PackageId
+        public override string PackageId
         {
             get
             {
                 ThrowIfNotInitialized();
-                return packageId;
+                return base.PackageId;
             }
-            protected set => packageId = value;
         }
 
-        public virtual Approach Approach
+        public override Approach Approach
         {
             get
             {
                 ThrowIfNotInitialized();
-                return approach;
+                return base.Approach;
             }
-            protected set => approach = value;
         }
 
-        public virtual ReadonlyTypeConfig[] Dependencies
+        public override ReadonlyTypeConfig[] Dependencies
         {
             get
             {
                 ThrowIfNotInitialized();
-                return dependencies;
+                return base.Dependencies;
             }
-            protected set => dependencies = value;
         }
 
-        protected DummyReadonlyTypeConfig(string guid)
-        {
-            Guid = guid;
-        }
+        protected DummyReadonlyTypeConfig(string guid) : base(guid) { }
 
-        protected void ThrowIfNotInitialized()
+        private void ThrowIfNotInitialized()
         {
             Initializer initializer = GetInitializer();
             if (initializer.IsInitialized)
@@ -112,7 +90,7 @@ namespace Grabli.WrappedUnity.CodeGen
             throw new InvalidOperationException(message);
         }
 
-        public virtual void ResolveDependencies(DependenciesResolver resolver)
+        public override void ResolveDependencies(DependenciesResolver resolver)
         {
             ThrowIfNotInitialized();
             ThrowIfDependenciesResolved();
@@ -120,7 +98,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         private void ThrowIfDependenciesResolved()
         {
-            if (dependencies.Is())
+            if (Dependencies.Is())
             {
                 const string message = "Dependencies already resolved";
                 throw new InvalidOperationException(message);
