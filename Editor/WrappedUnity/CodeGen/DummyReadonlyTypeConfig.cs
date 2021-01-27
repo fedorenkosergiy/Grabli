@@ -67,7 +67,7 @@ namespace Grabli.WrappedUnity.CodeGen
             }
         }
 
-        public override ReadonlyTypeConfig[] Dependencies
+        public override TypeConfig[] Dependencies
         {
             get
             {

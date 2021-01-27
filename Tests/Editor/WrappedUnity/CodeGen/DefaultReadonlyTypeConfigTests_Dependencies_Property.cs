@@ -14,7 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
             {
                 Factory factory = CreateFakeFactory();
                 DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
-                ReadonlyTypeConfig[] unused = config.Dependencies;
+                TypeConfig[] unused = config.Dependencies;
             });
         }
     }

@@ -48,12 +48,12 @@ namespace Grabli.WrappedUnity.CodeGen
 			throw new NotImplementedException();
 		}
 
-		public void AddDependency(ReadonlyTypeConfig config)
+		public void AddDependency(TypeConfig config)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void RemoveDependency(ReadonlyTypeConfig type)
+		public void RemoveDependency(TypeConfig config)
 		{
 			throw new NotImplementedException();
 		}

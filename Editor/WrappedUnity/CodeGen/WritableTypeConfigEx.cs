@@ -8,7 +8,7 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             if (config.IsDependenciesResolved())
             {
-                ReadonlyTypeConfig[] dependencies = config.Dependencies;
+                TypeConfig[] dependencies = config.Dependencies;
                 for (int i = 0; i < dependencies.Length; ++i)
                 {
                     if (dependencies[i].Type == type)

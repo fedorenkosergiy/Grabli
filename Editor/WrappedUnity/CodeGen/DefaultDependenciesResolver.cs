@@ -7,15 +7,14 @@ namespace Grabli.WrappedUnity.CodeGen
     {
         private readonly Factory factory;
 
-        private readonly IDictionary<string, ReadonlyTypeConfig> readTypes =
-            new Dictionary<string, ReadonlyTypeConfig>();
+        private readonly IDictionary<string, TypeConfig> readTypes = new Dictionary<string, TypeConfig>();
 
         public DefaultDependenciesResolver(Factory factory)
         {
             this.factory = factory;
         }
 
-        public ReadonlyTypeConfig[] Resolve(string[] dependencyGuids)
+        public TypeConfig[] Resolve(string[] dependencyGuids)
         {
             if (dependencyGuids.IsNull())
             {
@@ -24,13 +23,13 @@ namespace Grabli.WrappedUnity.CodeGen
 
             if (dependencyGuids.IsEmpty())
             {
-                return Array.Empty<ReadonlyTypeConfig>();
+                return Array.Empty<TypeConfig>();
             }
 
-            ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[dependencyGuids.Length];
+            TypeConfig[] configs = new TypeConfig[dependencyGuids.Length];
             for (int i = 0; i < dependencyGuids.Length; ++i)
             {
-                if (!readTypes.TryGetValue(dependencyGuids[i], out ReadonlyTypeConfig config))
+                if (!readTypes.TryGetValue(dependencyGuids[i], out TypeConfig config))
                 {
                     config = factory.CreateTypeConfigInitialized<ReadonlyTypeConfig>(dependencyGuids[i]);
                     readTypes.Add(dependencyGuids[i], config);

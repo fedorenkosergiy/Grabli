@@ -21,7 +21,7 @@ namespace Grabli.WrappedUnity.CodeGen
             return typeConfigRaw;
         }
 
-        private static string[] GenerateDependencies(ReadonlyTypeConfig[] dependencies)
+        private static string[] GenerateDependencies(TypeConfig[] dependencies)
         {
             string[] result = new string[dependencies.Length];
             for (int i = 0; i < dependencies.Length; ++i)

@@ -14,7 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		void ResetPackage();
 		void SetApproach(Approach approach);
 
-		void AddDependency(ReadonlyTypeConfig config);
-		void RemoveDependency(ReadonlyTypeConfig type);
+		void AddDependency(TypeConfig config);
+		void RemoveDependency(TypeConfig config);
     }
 }

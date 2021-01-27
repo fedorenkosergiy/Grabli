@@ -12,7 +12,7 @@ namespace Grabli.WrappedUnity.CodeGen
         public virtual bool UnityVersionSpecific { get; protected set; }
         public virtual string PackageId { get; protected set; }
         public virtual Approach Approach { get; protected set; }
-        public virtual ReadonlyTypeConfig[] Dependencies { get; private set; }
+        public virtual TypeConfig[] Dependencies { get; private set; }
 
         protected DefaultTypeConfig(string guid)
         {
