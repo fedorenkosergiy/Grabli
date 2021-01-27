@@ -7,7 +7,7 @@ namespace Grabli.WrappedUnity.CodeGen
         private DependenciesResolver resolver;
         private TypeReader reader;
 
-        public T CreateTypeConfigInitialized<T>(string guid) where T : ReadonlyTypeConfig
+        public T CreateTypeConfigInitialized<T>(string guid) where T : TypeConfig, Initializable
         {
             T config = CreateTypeConfig<T>(guid);
             Initializer initializer = config.GetInitializer();
@@ -15,7 +15,7 @@ namespace Grabli.WrappedUnity.CodeGen
             return config;
         }
 
-        public virtual T CreateTypeConfig<T>(string guid) where T : ReadonlyTypeConfig
+        public virtual T CreateTypeConfig<T>(string guid) where T : TypeConfig
         {
             Type type = typeof(T);
             if (type == typeof(ReadonlyTypeConfig))
@@ -23,9 +23,9 @@ namespace Grabli.WrappedUnity.CodeGen
                 return (T) (ReadonlyTypeConfig) (new DefaultReadonlyTypeConfig(this, guid));
             }
 
-            if (type == typeof(TypeConfig))
+            if (type == typeof(WritableTypeConfig))
             {
-                return (T) (TypeConfig) (new DefaultWritableTypeConfig(this, guid));
+                return (T) (WritableTypeConfig) (new DefaultWritableTypeConfig(this, guid));
             }
 
             throw new InvalidOperationException($"Type {type.FullName} is not supported");
