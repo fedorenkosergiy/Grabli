@@ -3,37 +3,43 @@ using System.Collections.Generic;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public class DefaultDependenciesResolver : DependenciesResolver
-	{
-		private readonly Factory factory;
-		private readonly IDictionary<string, ReadonlyTypeConfig> readTypes = new Dictionary<string, ReadonlyTypeConfig>();
+    public class DefaultDependenciesResolver : DependenciesResolver
+    {
+        private readonly Factory factory;
 
-		public DefaultDependenciesResolver(Factory factory)
-		{
-			this.factory = factory;
-		}
+        private readonly IDictionary<string, ReadonlyTypeConfig> readTypes =
+            new Dictionary<string, ReadonlyTypeConfig>();
 
-		public ReadonlyTypeConfig[] Resolve(string[] dependencyGuids)
-		{
-			if (dependencyGuids.IsNull())
-			{
-				throw new ArgumentNullException(nameof(dependencyGuids));
-			}
+        public DefaultDependenciesResolver(Factory factory)
+        {
+            this.factory = factory;
+        }
 
-			ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[dependencyGuids.Length];
-			TypeReader reader = factory.GetReader();
-			for (int i = 0; i < dependencyGuids.Length; ++i)
-			{
-				if (!readTypes.TryGetValue(dependencyGuids[i], out ReadonlyTypeConfig config))
+        public ReadonlyTypeConfig[] Resolve(string[] dependencyGuids)
+        {
+            if (dependencyGuids.IsNull())
+            {
+                throw new ArgumentNullException(nameof(dependencyGuids));
+            }
+
+            if (dependencyGuids.IsEmpty())
+            {
+                return Array.Empty<ReadonlyTypeConfig>();
+            }
+
+            ReadonlyTypeConfig[] configs = new ReadonlyTypeConfig[dependencyGuids.Length];
+            for (int i = 0; i < dependencyGuids.Length; ++i)
+            {
+                if (!readTypes.TryGetValue(dependencyGuids[i], out ReadonlyTypeConfig config))
                 {
                     config = factory.CreateTypeConfigInitialized<ReadonlyTypeConfig>(dependencyGuids[i]);
-					readTypes.Add(dependencyGuids[i], config);
-				}
+                    readTypes.Add(dependencyGuids[i], config);
+                }
 
-				configs[i] = config;
-			}
+                configs[i] = config;
+            }
 
-			return configs;
-		}
-	}
+            return configs;
+        }
+    }
 }
