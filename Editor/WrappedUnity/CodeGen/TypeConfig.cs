@@ -1,22 +1,19 @@
-using System;
+﻿using System;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public interface TypeConfig : ReadonlyTypeConfig
-	{
-		void SetType(Type type);
-		void SetInterfaceName(string interfaceName);
-		void SetClassName(string className);
-		void SetUnityVersionSpecific();
-		void ResetUnityVersionSpecific();
+    public interface TypeConfig
+    {
+        string Guid { get; }
+        Type Type { get; }
+        string Namespace { get; }
+        string InterfaceName { get; }
+        string ClassName { get; }
+        bool UnityVersionSpecific { get; }
+        string PackageId { get; }
+        Approach Approach { get; }
+        ReadonlyTypeConfig[] Dependencies { get; }
 
-		void SetPackage(string packageId);
-		void ResetPackage();
-		void SetApproach(Approach approach);
-
-		void AddDependency(ReadonlyTypeConfig config);
-		void RemoveDependency(Type type);
-
-		void ResolveDependencies(DependenciesResolver resolver);
-	}
+        void ResolveDependencies(DependenciesResolver resolver);
+    }
 }
