@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Grabli.WrappedUnity.CodeGen
+﻿namespace Grabli.WrappedUnity.CodeGen
 {
     public class ReadonlyTypeConfigInitializer : EmptyInitializer
     {
@@ -23,8 +21,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         protected override void RunDeinitActions()
         {
-            throw new NotImplementedException();
+            setter.Invoke(default);
         }
-        
     }
 }

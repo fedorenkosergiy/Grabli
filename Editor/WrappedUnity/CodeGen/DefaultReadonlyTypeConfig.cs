@@ -24,6 +24,18 @@ namespace Grabli.WrappedUnity.CodeGen
             return initializer ?? (initializer = factory.CreateInitializer(Guid, SetRaw));
         }
 
+        private void SetRaw(TypeConfigRaw? rawObject)
+        {
+            if (rawObject.HasValue)
+            {
+                SetRaw(rawObject.Value);
+            }
+            else
+            {
+                Reset();
+            }
+        }
+
         private void SetRaw(TypeConfigRaw raw)
         {
             Namespace = raw.Namespace;
@@ -42,6 +54,18 @@ namespace Grabli.WrappedUnity.CodeGen
                 string message = $"Type {raw.FullTypeName} doesn't exist in the current AppDomain";
                 throw new ArgumentException(message, nameof(raw));
             }
+        }
+
+        private void Reset()
+        {
+            Namespace = default;
+            InterfaceName = default;
+            ClassName = default;
+            UnityVersionSpecific = default;
+            PackageId = default;
+            Approach = Approach.Undefined;
+            dependencyGuids = default;
+            Type = default;
         }
     }
 }

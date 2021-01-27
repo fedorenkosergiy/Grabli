@@ -8,7 +8,7 @@ namespace Grabli.WrappedUnity.CodeGen
     {
         [TestCase(RootTypeGuidApplication)]
         [TestCase(RootTypeGuidScreen)]
-        public void CheckInitIfWorks(string guid)
+        public void CheckDeinitIfWorks(string guid)
         {
             using (new FileContext(CreateFakeIOFile()))
             using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
@@ -16,14 +16,16 @@ namespace Grabli.WrappedUnity.CodeGen
                 DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(CreateFakeFactory(), guid);
                 Initializer initializer = config.GetInitializer();
                 initializer.Init();
-                Assert.IsTrue(initializer.IsInitialized);
+                initializer.Deinit();
+                Assert.IsFalse(initializer.IsInitialized);
             }
         }
 
-        [TestCase(GuidOfConfigWithCorruptedFullTypeName)]
-        public void CheckInitIfThrowsWhenTypeIsCorrupted(string guid)
+        [TestCase(RootTypeGuidApplication)]
+        [TestCase(RootTypeGuidScreen)]
+        public void CheckDeinitIfThrowsWhenAlreadyDeinitialized(string guid)
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<InvalidOperationException>(() =>
             {
                 using (new FileContext(CreateFakeIOFile()))
                 using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
@@ -31,6 +33,8 @@ namespace Grabli.WrappedUnity.CodeGen
                     DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(CreateFakeFactory(), guid);
                     Initializer initializer = config.GetInitializer();
                     initializer.Init();
+                    initializer.Deinit();
+                    initializer.Deinit();
                 }
             });
         }
