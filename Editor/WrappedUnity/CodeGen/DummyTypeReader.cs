@@ -2,24 +2,15 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-	public abstract class DummyTypeReader : TypeReader
-	{
-		public TypeConfigRaw Read(string guid)
-		{
-			if (guid.IsNull())
-			{
-				throw new ArgumentNullException(nameof(guid));
-			}
+    public abstract class DummyTypeReader : TypeReader, Thrower
+    {
+        public TypeConfigRaw Read(string guid)
+        {
+            this.ThrowIfArgumentIsNull(guid, nameof(guid));
+            this.ThrowIfStringIsEmpty(guid, nameof(guid));
+            return DoRead(guid);
+        }
 
-			if (guid.IsEmpty())
-			{
-				string argumentName = nameof(guid);
-				throw new ArgumentException(argumentName, $"{argumentName} is empty");
-			}
-
-			return DoRead(guid);
-		}
-
-		protected abstract TypeConfigRaw DoRead(string guid);
-	}
+        protected abstract TypeConfigRaw DoRead(string guid);
+    }
 }

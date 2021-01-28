@@ -8,12 +8,12 @@ namespace Grabli
 
 		public void Init()
 		{
-			CheckIfCanInit();
+			ThrowIfCantInit();
 			RunInitActions();
 			IsInitialized = true;
 		}
 
-		private void CheckIfCanInit()
+		private void ThrowIfCantInit()
 		{
 			if (IsInitialized)
 			{
@@ -25,12 +25,12 @@ namespace Grabli
 
 		public void Deinit()
 		{
-			CheckIfCanDeinit();
+			ThrowIfCantDeinit();
 			RunDeinitActions();
 			IsInitialized = false;
 		}
 
-		private void CheckIfCanDeinit()
+		private void ThrowIfCantDeinit()
 		{
 			if (!IsInitialized)
 			{

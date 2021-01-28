@@ -2,7 +2,7 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-    public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig
+    public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig, Thrower
     {
         private string[] dependenciesGuids;
         public DefaultWritableTypeConfig(string guid) : base(guid) { }
@@ -11,7 +11,41 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public void SetType(Type type)
         {
-            throw new NotImplementedException();
+            this.ThrowIfArgumentIsNull(type, nameof(type));
+            ThrowIfTypeIsInvalid(type, nameof(type));
+            Type = type;
+        }
+
+        private void ThrowIfTypeIsInvalid(Type type, string argumentName)
+        {
+            if (IsValidType(type, out string message))
+            {
+                return;
+            }
+
+            throw new ArgumentException(message, argumentName);
+        }
+
+        private bool IsValidType(Type type, out string message)
+        {
+            message = null;
+            if (type.IsDelegate())
+            {
+                message = "Type can not be a delegate";
+            }
+
+            if (type.IsAttribute())
+            {
+                message = "Type can not be an attribute";
+            }
+
+            if (type.IsClass)
+            {
+                return message.IsNullOrEmpty();
+            }
+
+            message = "Type should be a class";
+            return false;
         }
 
         public void SetInterfaceName(string interfaceName)

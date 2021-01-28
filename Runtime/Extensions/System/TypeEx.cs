@@ -93,5 +93,20 @@ namespace System
 		{
 			return type.IsCastableClass<ScriptableObject>();
 		}
+
+        public static bool IsAttribute(this Type type)
+        {
+            return type.InheritedFrom<Attribute>();
+        }
+
+        public static bool IsDelegate(this Type type)
+        {
+            return type.InheritedFrom<Delegate>();
+        }
+
+        public static bool IsVoid(this Type type)
+        {
+            return type == typeof(void);
+        }
 	}
 }
