@@ -16,5 +16,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
 		void AddDependency(TypeConfig config);
 		void RemoveDependency(TypeConfig config);
+
+        void SetSource(TypeConfig source, DependenciesResolver resolver);
     }
 }

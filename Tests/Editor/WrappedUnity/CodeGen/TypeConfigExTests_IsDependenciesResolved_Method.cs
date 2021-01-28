@@ -23,5 +23,19 @@ namespace Grabli.WrappedUnity.CodeGen
                 Assert.IsTrue(config.IsDependenciesResolved());
             }
         }
+        
+        [TestCase(RootTypeGuidApplication)]
+        [TestCase(RootTypeGuidScreen)]
+        [TestCase(RootTypeGuidInput)]
+        public void CheckIsDependenciesResolvedIfNotInitialized(string guid)
+        {
+            using (new FileContext(CreateFakeIOFile()))
+            using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
+            {
+                Factory factory = CreateFakeFactory();
+                TypeConfig config = factory.CreateTypeConfig<ReadonlyTypeConfig>(guid);
+                Assert.IsFalse(config.IsDependenciesResolved());
+            }
+        }
     }
 }

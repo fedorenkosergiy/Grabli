@@ -1,3 +1,5 @@
+using System;
+
 namespace Grabli.WrappedUnity.CodeGen
 {
     public static class ReadonlyTypeConfigEx
@@ -17,16 +19,22 @@ namespace Grabli.WrappedUnity.CodeGen
             typeConfigRaw.UnityVersionSpecific = config.UnityVersionSpecific;
             typeConfigRaw.PackageId = config.PackageId;
             typeConfigRaw.Approach = config.Approach;
-            typeConfigRaw.DependencyGuids = GenerateDependencies(config.Dependencies);
+            typeConfigRaw.DependencyGuids = config.GenerateDependencies();
             return typeConfigRaw;
         }
 
-        private static string[] GenerateDependencies(TypeConfig[] dependencies)
+        public static string[] GenerateDependencies(this TypeConfig config)
         {
-            string[] result = new string[dependencies.Length];
-            for (int i = 0; i < dependencies.Length; ++i)
+            if (!config.IsDependenciesResolved())
             {
-                result[i] = dependencies[i].Guid;
+                const string message = "Dependencies are not resolved";
+                throw new ArgumentException(message, nameof(config));
+            }
+
+            string[] result = new string[config.Dependencies.Length];
+            for (int i = 0; i < config.Dependencies.Length; ++i)
+            {
+                result[i] = config.Dependencies[i].Guid;
             }
 
             return result;
