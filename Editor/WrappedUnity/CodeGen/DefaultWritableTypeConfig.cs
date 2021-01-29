@@ -35,17 +35,23 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public void SetInterfaceName(string interfaceName)
         {
-            throw new NotImplementedException();
+            this.ThrowIfArgumentIsNull(interfaceName, nameof(interfaceName));
+            this.ThrowIfStringIsEmpty(interfaceName, nameof(interfaceName));
+            InterfaceName = interfaceName;
         }
 
         public void SetClassName(string className)
         {
-            throw new NotImplementedException();
+            this.ThrowIfArgumentIsNull(className, nameof(className));
+            this.ThrowIfStringIsEmpty(className, nameof(className));
+            ClassName = className;
         }
 
         public void SetSpaceName(string spaceName)
         {
-            throw new NotImplementedException();
+            this.ThrowIfArgumentIsNull(spaceName, nameof(spaceName));
+            this.ThrowIfStringIsEmpty(spaceName, nameof(spaceName));
+            SpaceName = spaceName;
         }
 
         public void SetUnityVersionSpecific()
