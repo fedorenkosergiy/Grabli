@@ -13,12 +13,12 @@ namespace Grabli.WrappedUnity.CodeGen
             }
         }
 
-        public override string Namespace
+        public override string SpaceName
         {
             get
             {
                 ThrowIfNotInitialized();
-                return base.Namespace;
+                return base.SpaceName;
             }
         }
 

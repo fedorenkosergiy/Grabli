@@ -29,7 +29,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		public static readonly string ApplicationTypeConfigContent = "{" +
 		                                                             $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
 		                                                             $"\"{typeof(UnityEngine.Application).FullName}\"," +
-		                                                             $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
+		                                                             $"\"{nameof(TypeConfigRaw.SpaceName)}\":" +
 		                                                             "\"Grabli.WrappedUnity\"," +
 		                                                             $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
 		                                                             "\"DefaultApplication\"," +
@@ -48,7 +48,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		public static readonly string ScreenTypeConfigContent = "{" +
 		                                                        $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
 		                                                        $"\"{typeof(UnityEngine.Screen).FullName}\"," +
-		                                                        $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
+		                                                        $"\"{nameof(TypeConfigRaw.SpaceName)}\":" +
 		                                                        "\"Grabli.WrappedUnity\"," +
 		                                                        $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
 		                                                        "\"DefaultScreen\"," +
@@ -66,7 +66,7 @@ namespace Grabli.WrappedUnity.CodeGen
         public static readonly string InputTypeConfigContent = "{" +
                                                                 $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
                                                                 $"\"{typeof(UnityEngine.Input).FullName}\"," +
-                                                                $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
+                                                                $"\"{nameof(TypeConfigRaw.SpaceName)}\":" +
                                                                 "\"Grabli.WrappedUnity\"," +
                                                                 $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
                                                                 "\"DefaultInput\"," +
@@ -84,7 +84,7 @@ namespace Grabli.WrappedUnity.CodeGen
         public static readonly string CompasTypeConfigContent = "{" +
                                                                 $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
                                                                 $"\"{typeof(UnityEngine.Compass).FullName}\"," +
-                                                                $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
+                                                                $"\"{nameof(TypeConfigRaw.SpaceName)}\":" +
                                                                 "\"Grabli.WrappedUnity\"," +
                                                                 $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
                                                                 "\"DefaultCompas\"," +
@@ -103,7 +103,7 @@ namespace Grabli.WrappedUnity.CodeGen
         public static readonly string ConfigWithCorruptedFullTypeName = "{" +
                                                                         $"\"{nameof(TypeConfigRaw.FullTypeName)}\":" +
                                                                         $"\"61d5ec908df442f584e39c2a77e06e6f\"," +
-                                                                        $"\"{nameof(TypeConfigRaw.Namespace)}\":" +
+                                                                        $"\"{nameof(TypeConfigRaw.SpaceName)}\":" +
                                                                         "\"Grabli.WrappedUnity\"," +
                                                                         $"\"{nameof(TypeConfigRaw.ClassName)}\":" +
                                                                         "\"DefaultScreen\"," +

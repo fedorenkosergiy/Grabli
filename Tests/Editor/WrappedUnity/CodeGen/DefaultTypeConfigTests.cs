@@ -8,7 +8,7 @@
             {
                 if (typeof(T) == typeof(TypeConfig))
                 {
-                    return (T) (TypeConfig) (new DefaultWritableTypeConfig(guid));
+                    return (T) (TypeConfig) (new DefaultWritableTypeConfig(this, guid));
                 }
 
                 return base.CreateTypeConfig<T>(guid);

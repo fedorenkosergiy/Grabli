@@ -13,7 +13,7 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             TypeConfigRaw typeConfigRaw = default;
             typeConfigRaw.FullTypeName = config.Type.FullName;
-            typeConfigRaw.Namespace = config.Namespace;
+            typeConfigRaw.SpaceName = config.SpaceName;
             typeConfigRaw.InterfaceName = config.InterfaceName;
             typeConfigRaw.ClassName = config.ClassName;
             typeConfigRaw.UnityVersionSpecific = config.UnityVersionSpecific;

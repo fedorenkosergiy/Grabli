@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 using Grabli.Pools;
+using UnityEngine.Serialization;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
@@ -9,7 +10,7 @@ namespace Grabli.WrappedUnity.CodeGen
 	public struct TypeConfigRaw
 	{
 		public string FullTypeName;
-		public string Namespace;
+		public string SpaceName;
 		public string InterfaceName;
 		public string ClassName;
 		public bool UnityVersionSpecific;
@@ -39,7 +40,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			}
 
 			return FullTypeName == other.FullTypeName &&
-			       Namespace == other.Namespace &&
+			       SpaceName == other.SpaceName &&
 			       InterfaceName == other.InterfaceName &&
 			       ClassName == other.ClassName &&
 			       UnityVersionSpecific == other.UnityVersionSpecific &&
@@ -53,7 +54,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			unchecked
 			{
 				var hashCode = (FullTypeName != null ? FullTypeName.GetHashCode() : 0);
-				hashCode = (hashCode * 397) ^ (Namespace != null ? Namespace.GetHashCode() : 0);
+				hashCode = (hashCode * 397) ^ (SpaceName != null ? SpaceName.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (InterfaceName != null ? InterfaceName.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (ClassName != null ? ClassName.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ UnityVersionSpecific.GetHashCode();
@@ -70,7 +71,7 @@ namespace Grabli.WrappedUnity.CodeGen
 			builder.Append('{');
 			builder.Append('\n');
 			AppendStringField(builder, nameof(FullTypeName), FullTypeName);
-			AppendStringField(builder, nameof(Namespace), Namespace);
+			AppendStringField(builder, nameof(SpaceName), SpaceName);
 			AppendStringField(builder, nameof(InterfaceName), InterfaceName);
 			AppendStringField(builder, nameof(ClassName), ClassName);
 			AppendValueTypeField(builder, nameof(UnityVersionSpecific), UnityVersionSpecific);

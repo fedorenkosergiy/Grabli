@@ -6,7 +6,7 @@ namespace Grabli.WrappedUnity.CodeGen
     {
         public string Guid { get; protected set; }
         public virtual Type Type { get; protected set; }
-        public virtual string Namespace { get; protected set; }
+        public virtual string SpaceName { get; protected set; }
         public virtual string InterfaceName { get; protected set; }
         public virtual string ClassName { get; protected set; }
         public virtual bool UnityVersionSpecific { get; protected set; }

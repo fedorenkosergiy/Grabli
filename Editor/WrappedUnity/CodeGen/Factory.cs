@@ -1,4 +1,6 @@
-﻿namespace Grabli.WrappedUnity.CodeGen
+﻿using System;
+
+namespace Grabli.WrappedUnity.CodeGen
 {
 	public interface Factory
 	{
@@ -8,5 +10,6 @@
         Initializer CreateInitializer(string guid, TypeConfigRawSetter setter);
 		DependenciesResolver GetResolver();
 		TypeReader GetReader();
-	}
+        Validator CreateTypeValidator(Type type);
+    }
 }

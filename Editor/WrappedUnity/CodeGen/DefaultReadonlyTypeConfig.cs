@@ -37,7 +37,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         private void SetRaw(TypeConfigRaw raw)
         {
-            Namespace = raw.Namespace;
+            SpaceName = raw.SpaceName;
             InterfaceName = raw.InterfaceName;
             ClassName = raw.ClassName;
             UnityVersionSpecific = raw.UnityVersionSpecific;
@@ -57,7 +57,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         private void Reset()
         {
-            Namespace = default;
+            SpaceName = default;
             InterfaceName = default;
             ClassName = default;
             UnityVersionSpecific = default;

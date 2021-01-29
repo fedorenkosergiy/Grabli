@@ -4,15 +4,16 @@ namespace Grabli.WrappedUnity.CodeGen
 {
     public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig, Thrower
     {
-        private SourceTypeValidator typeValidator;
+        private readonly Factory factory;
         private string[] dependenciesGuids;
 
-        public DefaultWritableTypeConfig(string guid) : base(guid)
+        public DefaultWritableTypeConfig(Factory factory) : this(factory, default) { }
+
+        public DefaultWritableTypeConfig(Factory factory, string guid) : base(guid)
         {
-            typeValidator = new SourceTypeValidator();
+            this.factory = factory;
         }
 
-        public DefaultWritableTypeConfig() : this(default) { }
 
         public void SetType(Type type)
         {
@@ -23,7 +24,8 @@ namespace Grabli.WrappedUnity.CodeGen
 
         private void ThrowIfTypeIsInvalid(Type type, string argumentName)
         {
-            if (typeValidator.IsValidType(type, out string message))
+            Validator validator = factory.CreateTypeValidator(type);
+            if (validator.IsValid(out string message))
             {
                 return;
             }
@@ -37,6 +39,11 @@ namespace Grabli.WrappedUnity.CodeGen
         }
 
         public void SetClassName(string className)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetSpaceName(string spaceName)
         {
             throw new NotImplementedException();
         }
@@ -86,7 +93,7 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             Guid = source.Guid;
             Type = source.Type;
-            Namespace = source.Namespace;
+            SpaceName = source.SpaceName;
             InterfaceName = source.InterfaceName;
             ClassName = source.ClassName;
             UnityVersionSpecific = source.UnityVersionSpecific;

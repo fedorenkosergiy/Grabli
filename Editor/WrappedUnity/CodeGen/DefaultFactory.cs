@@ -25,7 +25,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
             if (type == typeof(WritableTypeConfig))
             {
-                return (T) (WritableTypeConfig) (new DefaultWritableTypeConfig(guid));
+                return (T) (WritableTypeConfig) (new DefaultWritableTypeConfig(this, guid));
             }
 
             throw new InvalidOperationException($"Type {type.FullName} is not supported");
@@ -49,6 +49,11 @@ namespace Grabli.WrappedUnity.CodeGen
         public TypeReader GetReader()
         {
             return reader ?? (reader = new DefaultTypeReader(this));
+        }
+
+        public Validator CreateTypeValidator(Type type)
+        {
+            return new SourceTypeValidator(type);
         }
     }
 }

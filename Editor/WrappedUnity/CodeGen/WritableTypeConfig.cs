@@ -6,7 +6,8 @@ namespace Grabli.WrappedUnity.CodeGen
 	{
 		void SetType(Type type);
 		void SetInterfaceName(string interfaceName);
-		void SetClassName(string className);
+        void SetClassName(string className);
+        void SetSpaceName(string spaceName);
 		void SetUnityVersionSpecific();
 		void ResetUnityVersionSpecific();
 

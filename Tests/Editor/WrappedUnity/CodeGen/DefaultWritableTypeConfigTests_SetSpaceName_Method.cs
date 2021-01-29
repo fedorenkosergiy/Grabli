@@ -6,27 +6,27 @@ namespace Grabli.WrappedUnity.CodeGen
     public partial class DefaultWritableTypeConfigTests
     {
         [Test]
-        public void CheckSetInterfaceNameIfArgumentNull()
+        public void CheckSetSpaceNameIfArgumentNull()
         {
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(CreateFakeFactory());
-            Assert.Throws<ArgumentNullException>(() => config.SetInterfaceName(null));
+            Assert.Throws<ArgumentNullException>(() => config.SetSpaceName(null));
         }
         
         [Test]
-        public void CheckSetInterfaceNameIfArgumentEmpty()
+        public void CheckSetSpaceNameIfArgumentEmpty()
         {
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(CreateFakeFactory());
-            Assert.Throws<ArgumentException>(() => config.SetInterfaceName(string.Empty));
+            Assert.Throws<ArgumentException>(() => config.SetSpaceName(string.Empty));
         }
         
         [TestCase("Name")]
-        [TestCase("IName")]
-        [TestCase("InterfaceName")]
-        public void CheckSetInterfaceNameIfWorks(string expectedName)
+        [TestCase("SpaceName")]
+        [TestCase("MySpace")]
+        public void CheckSetSpaceNameIfWorks(string expectedName)
         {
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(CreateFakeFactory());
-            config.SetInterfaceName(expectedName);
-            string actualName = config.InterfaceName;
+            config.SetSpaceName(expectedName);
+            string actualName = config.SpaceName;
             Assert.AreEqual(expectedName, actualName);
         }
     }

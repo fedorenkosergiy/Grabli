@@ -66,7 +66,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			var a = new TypeConfigRaw();
 			a.Approach = Approach.WrapClass;
-			a.Namespace = "Namespace";
+			a.SpaceName = "Namespace";
 			a.ClassName = "MyClass";
 			a.DependencyGuids = new[] {"5cd1a9f2bb154572ad277ace454042e4", "cc8bd0cdeac44458813e3ba235d834dc"};
 			a.InterfaceName = "MyInterface";
@@ -80,7 +80,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			var a = new TypeConfigRaw();
 			a.Approach = Approach.WrapClass;
-			a.Namespace = "Namespace";
+			a.SpaceName = "Namespace";
 			a.ClassName = "MyClass";
 			a.DependencyGuids = new[] {"8ad1220447fd4c779ae53776d250f135"};
 			a.InterfaceName = "MyInterface";
@@ -94,7 +94,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			var a = new TypeConfigRaw();
 			a.Approach = Approach.WrapClass;
-			a.Namespace = "Namespace";
+			a.SpaceName = "Namespace";
 			a.ClassName = "MyClass";
 			a.DependencyGuids = new[] {"1289a9951ac74dc587f1d5bdc298d1be"};
 			a.InterfaceName = "MyInterface";
@@ -108,7 +108,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			var a = new TypeConfigRaw();
 			a.Approach = Approach.WrapClass;
-			a.Namespace = "Namespace";
+			a.SpaceName = "Namespace";
 			a.ClassName = "MyClass";
 			a.DependencyGuids = Array.Empty<string>();
 			a.InterfaceName = "MyInterface";
@@ -122,7 +122,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			var a = new TypeConfigRaw();
 			a.Approach = Approach.WrapClass;
-			a.Namespace = "Namespace";
+			a.SpaceName = "Namespace";
 			a.ClassName = "MyClass";
 			a.DependencyGuids = null;
 			a.InterfaceName = "MyInterface";
@@ -136,7 +136,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			return "{\n" +
 			       "FullTypeName : MyType\n" +
-			       "Namespace : Namespace\n" +
+			       "SpaceName : Namespace\n" +
 			       "InterfaceName : MyInterface\n" +
 			       "ClassName : MyClass\n" +
 			       "UnityVersionSpecific : False\n" +
@@ -152,7 +152,7 @@ namespace Grabli.WrappedUnity.CodeGen
 		{
 			return "{\n" +
 			       "FullTypeName : MyType\n" +
-			       "Namespace : Namespace\n" +
+			       "SpaceName : Namespace\n" +
 			       "InterfaceName : MyInterface\n" +
 			       "ClassName : MyClass\n" +
 			       "UnityVersionSpecific : False\n" +

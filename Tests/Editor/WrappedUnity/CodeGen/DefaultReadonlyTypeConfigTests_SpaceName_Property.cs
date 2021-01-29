@@ -15,7 +15,7 @@ namespace Grabli.WrappedUnity.CodeGen
             {
                 Factory factory = CreateFakeFactory();
                 DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
-                string unused = config.Namespace;
+                string unused = config.SpaceName;
             });
         }
         
@@ -30,7 +30,7 @@ namespace Grabli.WrappedUnity.CodeGen
                 DefaultReadonlyTypeConfig config = new DefaultReadonlyTypeConfig(factory, guid);
                 Initializer initializer = config.GetInitializer();
                 initializer.Init();
-                string actual = config.Namespace;
+                string actual = config.SpaceName;
                 Assert.AreEqual(expected, actual);
             }
         }

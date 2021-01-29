@@ -2,9 +2,15 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-    public class SourceTypeValidator
+    public class SourceTypeValidator : Validator
     {
-        public bool IsValidType(Type type, out string message)
+        private readonly Type type;
+        public SourceTypeValidator(Type type)
+        {
+            this.type = type;
+        }
+
+        public bool IsValid(out string message)
         {
             message = null;
             if (type.IsDelegate())
