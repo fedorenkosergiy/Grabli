@@ -14,7 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
             Assert.AreEqual(approach, config.Approach);
         }
         
-        [TestCaseSource(nameof(GetAllApproachValues))]
+        [TestCaseSource(nameof(GetAllApproachValuesExceptUndefined))]
         public void CheckSetApproachIfLogsWarningWhenDoubleCall(Approach approach)
         {
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(CreateFakeFactory());

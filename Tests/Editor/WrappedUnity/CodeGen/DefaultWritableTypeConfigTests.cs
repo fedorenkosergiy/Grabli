@@ -26,5 +26,18 @@ namespace Grabli.WrappedUnity.CodeGen
                 yield return new[] {values.GetValue(i)};
             }
         }
+        
+        private static IEnumerable<object[]> GetAllApproachValuesExceptUndefined()
+        {
+            Array values = Enum.GetValues(typeof(Approach));
+            for (int i = 0; i < values.Length; ++i)
+            {
+                if (values.GetValue(i).Equals(Approach.Undefined))
+                {
+                    continue;
+                }
+                yield return new[] {values.GetValue(i)};
+            }
+        }
     }
 }

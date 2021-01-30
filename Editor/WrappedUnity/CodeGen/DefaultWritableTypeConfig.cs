@@ -85,7 +85,8 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public void SetApproach(Approach approach)
         {
-            throw new NotImplementedException();
+            this.LogWarningValueDidntChange(Approach, approach);
+            Approach = approach;
         }
 
         public void AddDependency(TypeConfig config)
