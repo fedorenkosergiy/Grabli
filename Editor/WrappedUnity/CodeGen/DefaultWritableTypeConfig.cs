@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Grabli.WrappedUnity.CodeGen
 {
     public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig, Thrower, WastingLogger
     {
         private readonly Factory factory;
-        private string[] dependenciesGuids;
+        private string[] dependenciesGuidsCache;
+        private List<TypeConfig> dynamicDependencies = new List<TypeConfig>();
+        private TypeConfig[] dependenciesCache;
 
         public override string PackageId { get; protected set; } = string.Empty;
+
+        public override TypeConfig[] Dependencies => dependenciesCache ?? CacheDependencies();
 
         public DefaultWritableTypeConfig(Factory factory) : this(factory, default) { }
 
@@ -70,7 +75,7 @@ namespace Grabli.WrappedUnity.CodeGen
             ThrowIfPackageIdIsInvalid(packageId, nameof(packageId));
             PackageId = packageId;
         }
-        
+
         private void ThrowIfPackageIdIsInvalid(string packageId, string argumentName)
         {
             Validator validator = factory.CreatePackageIdValidator(packageId);
@@ -91,18 +96,61 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public void AddDependency(TypeConfig dependency)
         {
-            throw new NotImplementedException();
+            this.ThrowIfArgumentIsNull(dependency, nameof(dependency));
+            ThrowIfDependencyAlreadyExists(dependency, nameof(dependency));
+            dynamicDependencies.Add(dependency);
+            ClearCachedData();
+        }
+
+        private void ThrowIfDependencyAlreadyExists(TypeConfig dependency, string argumentName)
+        {
+            if (dynamicDependencies.Contains(dependency))
+            {
+                const string message = "Dependency already exists";
+                throw new ArgumentException(message, argumentName);
+            }
         }
 
         public void RemoveDependency(TypeConfig dependency)
         {
-            throw new NotImplementedException();
+            this.ThrowIfArgumentIsNull(dependency, nameof(dependency));
+            ThrowIfDependencyDoesntExist(dependency, nameof(dependency));
+            dynamicDependencies.Remove(dependency);
+            ClearCachedData();
+        }
+
+        private void ThrowIfDependencyDoesntExist(TypeConfig dependency, string argumentName)
+        {
+            if (dynamicDependencies.Contains(dependency))
+            {
+                return;
+            }
+
+            const string message = "Dependency doesn't exists";
+            throw new ArgumentException(message, argumentName);
         }
 
         protected override string[] GetDependenciesGuids()
         {
-            throw new NotImplementedException();
-            return dependenciesGuids ?? null;
+            return dependenciesGuidsCache ?? CacheDependenciesGuids();
+        }
+
+        private string[] CacheDependenciesGuids()
+        {
+            dependenciesGuidsCache = this.GenerateDependencies();
+            return dependenciesGuidsCache;
+        }
+
+        private TypeConfig[] CacheDependencies()
+        {
+            dependenciesCache = dynamicDependencies.ToArray();
+            return dependenciesCache;
+        }
+
+        private void ClearCachedData()
+        {
+            dependenciesCache = default;
+            dependenciesGuidsCache = default;
         }
 
         public void SetSource(TypeConfig source, DependenciesResolver resolver)
@@ -115,7 +163,7 @@ namespace Grabli.WrappedUnity.CodeGen
             UnityVersionSpecific = source.UnityVersionSpecific;
             PackageId = source.PackageId;
             Approach = source.Approach;
-            dependenciesGuids = source.GenerateDependencies();
+            dependenciesGuidsCache = source.GenerateDependencies();
             ResolveDependencies(resolver);
             throw new NotImplementedException();
         }

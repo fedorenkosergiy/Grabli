@@ -31,10 +31,11 @@ namespace Grabli.WrappedUnity.CodeGen
                 throw new ArgumentException(message, nameof(config));
             }
 
-            string[] result = new string[config.Dependencies.Length];
-            for (int i = 0; i < config.Dependencies.Length; ++i)
+            TypeConfig[] dependencies = config.Dependencies;
+            string[] result = new string[dependencies.Length];
+            for (int i = 0; i < dependencies.Length; ++i)
             {
-                result[i] = config.Dependencies[i].Guid;
+                result[i] = dependencies[i].Guid;
             }
 
             return result;
