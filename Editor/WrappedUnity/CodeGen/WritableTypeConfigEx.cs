@@ -21,5 +21,10 @@ namespace Grabli.WrappedUnity.CodeGen
 
             return false;
         }
+
+        public static void ResetApproach(this WritableTypeConfig config)
+        {
+            config.SetApproach(Approach.Undefined);
+        }
     }
 }
