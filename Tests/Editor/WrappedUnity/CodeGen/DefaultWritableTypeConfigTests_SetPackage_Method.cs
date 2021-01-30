@@ -10,6 +10,7 @@ namespace Grabli.WrappedUnity.CodeGen
         [TestCase("com.unity.json")]
         [TestCase("com.unity.ui")]
         [TestCase("com.grabli.core")]
+        [TestCase(maxLongPackageId)]
         public void CheckSetPackageSpecificIfWorks(string expected)
         {
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(CreateFakeFactory());
@@ -51,7 +52,7 @@ namespace Grabli.WrappedUnity.CodeGen
         [TestCase("json.unity.com")]
         [TestCase("json.unity.com$")]
         [TestCase("json.un?ity.com")]
-        [TestCase(TooLongPackageId)]
+        [TestCase(tooLongPackageId)]
         public void CheckSetPackageIfInvalidPackageId(string packageId)
         {
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(CreateFakeFactory());
