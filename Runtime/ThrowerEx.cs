@@ -19,5 +19,11 @@ namespace Grabli
                 throw new ArgumentException(argumentName, $"{argumentName} is empty");
             }
         }
+
+        public static void ThrowIfStringIsNullOrEmpty(this Thrower obj, string argument, string argumentName)
+        {
+            obj.ThrowIfArgumentIsNull(argument, argumentName);
+            obj.ThrowIfStringIsEmpty(argument, argumentName);
+        }
     }
 }

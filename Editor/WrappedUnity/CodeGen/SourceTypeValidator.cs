@@ -5,6 +5,7 @@ namespace Grabli.WrappedUnity.CodeGen
     public class SourceTypeValidator : Validator
     {
         private readonly Type type;
+
         public SourceTypeValidator(Type type)
         {
             this.type = type;
@@ -12,24 +13,21 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public bool IsValid(out string message)
         {
-            message = null;
+            message = string.Empty;
             if (type.IsDelegate())
             {
                 message = "Type can not be a delegate";
             }
-
-            if (type.IsAttribute())
+            else if (type.IsAttribute())
             {
                 message = "Type can not be an attribute";
             }
-
-            if (type.IsClass)
+            else if (!type.IsClass)
             {
-                return message.IsNullOrEmpty();
+                message = "Type should be a class";
             }
 
-            message = "Type should be a class";
-            return false;
+            return message.IsEmpty();
         }
     }
 }

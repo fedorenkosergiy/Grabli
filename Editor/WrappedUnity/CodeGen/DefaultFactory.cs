@@ -55,5 +55,10 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             return new SourceTypeValidator(type);
         }
+
+        public Validator CreatePackageIdValidator(string packageId)
+        {
+            return new PackageIdValidator(packageId);
+        }
     }
 }

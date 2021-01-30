@@ -2,10 +2,12 @@
 
 namespace Grabli.WrappedUnity.CodeGen
 {
-    public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig, Thrower
+    public class DefaultWritableTypeConfig : DefaultTypeConfig, WritableTypeConfig, Thrower, WastingLogger
     {
         private readonly Factory factory;
         private string[] dependenciesGuids;
+
+        public override string PackageId { get; protected set; } = string.Empty;
 
         public DefaultWritableTypeConfig(Factory factory) : this(factory, default) { }
 
@@ -13,7 +15,6 @@ namespace Grabli.WrappedUnity.CodeGen
         {
             this.factory = factory;
         }
-
 
         public void SetType(Type type)
         {
@@ -25,53 +26,61 @@ namespace Grabli.WrappedUnity.CodeGen
         private void ThrowIfTypeIsInvalid(Type type, string argumentName)
         {
             Validator validator = factory.CreateTypeValidator(type);
-            if (validator.IsValid(out string message))
-            {
-                return;
-            }
-
-            throw new ArgumentException(message, argumentName);
+            validator.ThrowArgumentExceptionIfInvalid(argumentName);
         }
 
         public void SetInterfaceName(string interfaceName)
         {
-            this.ThrowIfArgumentIsNull(interfaceName, nameof(interfaceName));
-            this.ThrowIfStringIsEmpty(interfaceName, nameof(interfaceName));
+            this.ThrowIfStringIsNullOrEmpty(interfaceName, nameof(interfaceName));
             InterfaceName = interfaceName;
         }
 
         public void SetClassName(string className)
         {
-            this.ThrowIfArgumentIsNull(className, nameof(className));
-            this.ThrowIfStringIsEmpty(className, nameof(className));
+            this.ThrowIfStringIsNullOrEmpty(className, nameof(className));
             ClassName = className;
         }
 
         public void SetSpaceName(string spaceName)
         {
-            this.ThrowIfArgumentIsNull(spaceName, nameof(spaceName));
-            this.ThrowIfStringIsEmpty(spaceName, nameof(spaceName));
+            this.ThrowIfStringIsNullOrEmpty(spaceName, nameof(spaceName));
             SpaceName = spaceName;
         }
 
         public void SetUnityVersionSpecific()
         {
-            throw new NotImplementedException();
+            SetUnityVersionSpecific(true);
+        }
+
+        private void SetUnityVersionSpecific(bool value)
+        {
+            this.LogWarningValueDidntChange(UnityVersionSpecific, value);
+            UnityVersionSpecific = value;
         }
 
         public void ResetUnityVersionSpecific()
         {
-            throw new NotImplementedException();
+            SetUnityVersionSpecific(false);
         }
 
         public void SetPackage(string packageId)
         {
-            throw new NotImplementedException();
+            this.LogWarningValueDidntChange(PackageId, packageId);
+            this.ThrowIfStringIsNullOrEmpty(packageId, nameof(packageId));
+            ThrowIfPackageIdIsInvalid(packageId, nameof(packageId));
+            PackageId = packageId;
+        }
+        
+        private void ThrowIfPackageIdIsInvalid(string packageId, string argumentName)
+        {
+            Validator validator = factory.CreatePackageIdValidator(packageId);
+            validator.ThrowArgumentExceptionIfInvalid(argumentName);
         }
 
         public void ResetPackage()
         {
-            throw new NotImplementedException();
+            this.LogWarningValueDidntChange(PackageId, string.Empty);
+            PackageId = string.Empty;
         }
 
         public void SetApproach(Approach approach)

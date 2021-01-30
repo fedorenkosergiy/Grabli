@@ -11,5 +11,6 @@ namespace Grabli.WrappedUnity.CodeGen
 		DependenciesResolver GetResolver();
 		TypeReader GetReader();
         Validator CreateTypeValidator(Type type);
+        Validator CreatePackageIdValidator(string packageId);
     }
 }
