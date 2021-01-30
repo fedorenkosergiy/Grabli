@@ -42,9 +42,9 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public static bool IsDependenciesResolved(this TypeConfig config)
         {
-            if (config is Initializable initializable)
+            if (config is Initializable initable)
             {
-                Initializer initializer = initializable.GetInitializer();
+                Initializer initializer = initable.GetInitializer();
                 if (!initializer.IsInitialized)
                 {
                     return false;
@@ -52,6 +52,27 @@ namespace Grabli.WrappedUnity.CodeGen
             }
 
             return config.Dependencies.Is();
+        }
+
+        public static bool IsDependentOn(this TypeConfig config, TypeConfig dependency)
+        {
+            if (!config.IsDependenciesResolved())
+            {
+                const string message = "Dependencies are not resolved";
+                throw new ArgumentException(message, nameof(config));
+            }
+
+            TypeConfig[] dependencies = config.Dependencies;
+
+            for (int i = 0; i < dependencies.Length; ++i)
+            {
+                if (dependencies[i] == dependency)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

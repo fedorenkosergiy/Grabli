@@ -89,12 +89,12 @@ namespace Grabli.WrappedUnity.CodeGen
             Approach = approach;
         }
 
-        public void AddDependency(TypeConfig config)
+        public void AddDependency(TypeConfig dependency)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveDependency(TypeConfig config)
+        public void RemoveDependency(TypeConfig dependency)
         {
             throw new NotImplementedException();
         }
