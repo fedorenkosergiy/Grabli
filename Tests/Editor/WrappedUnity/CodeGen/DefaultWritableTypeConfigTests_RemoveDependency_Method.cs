@@ -14,6 +14,7 @@ namespace Grabli.WrappedUnity.CodeGen
             TypeConfig dependency = factory.CreateTypeConfig<WritableTypeConfig>(TypeGuidCompas);
             config.AddDependency(dependency);
             config.RemoveDependency(dependency);
+            config.ResolveDependencies(factory.GetResolver());
             Assert.IsFalse(config.IsDependentOn(dependency));
         }
 
@@ -25,7 +26,7 @@ namespace Grabli.WrappedUnity.CodeGen
             TypeConfig dependency = factory.CreateTypeConfig<WritableTypeConfig>(TypeGuidCompas);
             Assert.Throws<ArgumentException>(() => config.RemoveDependency(dependency));
         }
-        
+
         [Test]
         public void CheckRemoveDependencyIfThrowsWhenNull()
         {

@@ -18,7 +18,7 @@ namespace Grabli.WrappedUnity.CodeGen
             return initializer ?? (initializer = factory.CreateInitializer(Guid, SetRaw));
         }
 
-        protected override string[] GetDependenciesGuids()
+        protected override string[] GetUnresolvedDependenciesGuids()
         {
             return dependencyGuids;
         }

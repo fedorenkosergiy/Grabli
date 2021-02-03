@@ -25,11 +25,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public static string[] GenerateDependencies(this TypeConfig config)
         {
-            if (!config.IsDependenciesResolved())
-            {
-                const string message = "Dependencies are not resolved";
-                throw new ArgumentException(message, nameof(config));
-            }
+            config.ThrowDependenciesAreNotResolved(nameof(config));
 
             TypeConfig[] dependencies = config.Dependencies;
             string[] result = new string[dependencies.Length];
@@ -39,6 +35,15 @@ namespace Grabli.WrappedUnity.CodeGen
             }
 
             return result;
+        }
+
+        public static void ThrowDependenciesAreNotResolved(this TypeConfig config, string argumentName)
+        {
+            if (!config.IsDependenciesResolved())
+            {
+                const string message = "Dependencies are not resolved";
+                throw new ArgumentException(message, argumentName);
+            }
         }
 
         public static bool IsDependenciesResolved(this TypeConfig config)
@@ -57,17 +62,13 @@ namespace Grabli.WrappedUnity.CodeGen
 
         public static bool IsDependentOn(this TypeConfig config, TypeConfig dependency)
         {
-            if (!config.IsDependenciesResolved())
-            {
-                const string message = "Dependencies are not resolved";
-                throw new ArgumentException(message, nameof(config));
-            }
+            config.ThrowDependenciesAreNotResolved(nameof(config));
 
             TypeConfig[] dependencies = config.Dependencies;
 
             for (int i = 0; i < dependencies.Length; ++i)
             {
-                if (dependencies[i] == dependency)
+                if (dependencies[i].Guid == dependency.Guid)
                 {
                     return true;
                 }

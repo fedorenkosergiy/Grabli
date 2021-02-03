@@ -22,7 +22,7 @@ namespace Grabli.WrappedUnity.CodeGen
         public virtual void ResolveDependencies(DependenciesResolver resolver)
         {
             ThrowIfDependenciesResolved();
-            Dependencies = resolver.Resolve(GetDependenciesGuids());
+            Dependencies = resolver.Resolve(GetUnresolvedDependenciesGuids());
         }
 
         private void ThrowIfDependenciesResolved()
@@ -34,7 +34,7 @@ namespace Grabli.WrappedUnity.CodeGen
             }
         }
 
-        protected abstract string[] GetDependenciesGuids();
+        protected abstract string[] GetUnresolvedDependenciesGuids();
 
         protected void ResetDependencies()
         {
