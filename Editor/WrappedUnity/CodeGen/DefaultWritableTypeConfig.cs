@@ -96,7 +96,13 @@ namespace Grabli.WrappedUnity.CodeGen
             this.ThrowIfArgumentIsNull(dependency, nameof(dependency));
             ThrowIfDependencyAlreadyExists(dependency, nameof(dependency));
             dynamicDependencies.Add(dependency.Guid);
-            ClearCachedData();
+            ResetDependencies();
+        }
+
+        protected override void ResetDependencies()
+        {
+            base.ResetDependencies();
+            dependenciesGuidsCache = default;
         }
 
         private void ThrowIfDependencyAlreadyExists(TypeConfig dependency, string argumentName)
@@ -113,7 +119,7 @@ namespace Grabli.WrappedUnity.CodeGen
             this.ThrowIfArgumentIsNull(dependency, nameof(dependency));
             ThrowIfDependencyDoesntExist(dependency, nameof(dependency));
             dynamicDependencies.Remove(dependency.Guid);
-            ClearCachedData();
+            ResetDependencies();
         }
 
         private void ThrowIfDependencyDoesntExist(TypeConfig dependency, string argumentName)
@@ -140,11 +146,6 @@ namespace Grabli.WrappedUnity.CodeGen
                 dependenciesGuidsCache[i] = dynamicDependencies[i];
             }
             return dependenciesGuidsCache;
-        }
-
-        private void ClearCachedData()
-        {
-            dependenciesGuidsCache = default;
         }
 
         public void SetSource(TypeConfig source, DependenciesResolver resolver)

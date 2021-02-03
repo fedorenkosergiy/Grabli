@@ -34,5 +34,21 @@ namespace Grabli.WrappedUnity.CodeGen
             DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(factory, RootTypeGuidInput);
             Assert.Throws<ArgumentNullException>(() => config.RemoveDependency(null));
         }
+        
+        [Test]
+        public void CheckRemoveDependencyIfRequireResolutionAfter()
+        {
+            using (new FileContext(CreateFakeIOFile()))
+            using (new AssetDatabaseContext(CreateFakeAssetDatabase()))
+            {
+                Factory factory = CreateFakeFactory();
+                DefaultWritableTypeConfig config = new DefaultWritableTypeConfig(factory, RootTypeGuidInput);
+                TypeConfig dependency = factory.CreateTypeConfig<WritableTypeConfig>(TypeGuidCompas);
+                config.AddDependency(dependency);
+                config.ResolveDependencies(factory.GetResolver());
+                config.RemoveDependency(dependency);
+                Assert.IsFalse(config.IsDependenciesResolved());
+            }
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace Grabli.WrappedUnity.CodeGen
 
         protected abstract string[] GetUnresolvedDependenciesGuids();
 
-        protected void ResetDependencies()
+        protected virtual void ResetDependencies()
         {
             Dependencies = default;
         }
