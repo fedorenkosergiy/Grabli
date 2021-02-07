@@ -2,6 +2,6 @@
 {
     public interface EditorWindowFactory
     {
-        EditorWindow Instantiate<T>() where T : class, EditorWindow, new();
+        T Instantiate<T>() where T : class, EditorWindow, new();
     }
 }

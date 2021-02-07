@@ -7,44 +7,52 @@ namespace Grabli.WrappedUnity
 {
     public class DefaultEditorWindowFactory : EditorWindowFactory
     {
-        private Dictionary<Type, Type> hosts = new Dictionary<Type, Type>();
-        public EditorWindow Instantiate<T>() where T : class, EditorWindow, new()
+        private readonly ModuleBuilder dynamicTypesBuilder;
+
+        private readonly Dictionary<Type, Type> hosts = new Dictionary<Type, Type>();
+
+        public DefaultEditorWindowFactory()
         {
-            AssemblyName aName = new AssemblyName("DynamicAssemblyExample");
-            AssemblyBuilder ab =
+            AssemblyName assemblyName = new AssemblyName("DefaultEditorWindowFactoryAssembly");
+            AssemblyBuilder assemblyBuilder =
                 AppDomain.CurrentDomain.DefineDynamicAssembly(
-                    aName,
+                    assemblyName,
                     AssemblyBuilderAccess.RunAndSave);
+            dynamicTypesBuilder =
+                assemblyBuilder.DefineDynamicModule(assemblyName.Name, assemblyName.Name + ".dll");
+        }
 
-            // For a single-module assembly, the module name is usually
-            // the assembly name plus an extension.
-            ModuleBuilder mb =
-                ab.DefineDynamicModule(aName.Name, aName.Name + ".dll");
+        public T Instantiate<T>() where T : class, EditorWindow, new()
+        {
+            Type windowType = typeof(T);
+            if (!hosts.TryGetValue(windowType, out Type cycleRunnerType))
+            {
+                cycleRunnerType = GenerateCycleRunnerType<T>(windowType);
+                hosts.Add(windowType, cycleRunnerType);
+            }
 
+
+            EditorWindowCycleRunner
+                host = (EditorWindowCycleRunner) UnityEditor.EditorWindow.GetWindow(cycleRunnerType);
+            return (T) host.Window;
+        }
+
+        private Type GenerateCycleRunnerType<T>(Type windowType) where T : class, EditorWindow, new()
+        {
             Type baseType = typeof(DefaultEditorWindowCycleRunner<T>);
-            
-            TypeBuilder tb = mb.DefineType(
-                "MyDynamicType",
+            TypeBuilder typeBuilder = dynamicTypesBuilder.DefineType(
+                $"{windowType.Name}CycleRunner",
                 TypeAttributes.Public, baseType);
-            
-            ConstructorBuilder ctor0 = tb.DefineConstructor(
+            ConstructorBuilder constructor = typeBuilder.DefineConstructor(
                 MethodAttributes.Public,
                 CallingConventions.Standard,
-                Type.EmptyTypes );
-
-            ConstructorInfo baseCtorInfo = baseType.GetConstructor(Array.Empty<Type>());
-            
-            
-            ILGenerator ctor0IL = ctor0.GetILGenerator();
-            // For a constructor, argument zero is a reference to the new
-            // instance. Push it on the stack before pushing the default
-            // value on the stack, then call constructor ctor1.
-            ctor0IL.Emit(OpCodes.Ldarg_0);
-            ctor0IL.Emit(OpCodes.Call, baseCtorInfo);
-            ctor0IL.Emit(OpCodes.Ret);
-            
-            EditorWindowCycleRunner host = (EditorWindowCycleRunner)UnityEditor.EditorWindow.GetWindow(tb.CreateType());
-            return host.Window;
+                Type.EmptyTypes);
+            ConstructorInfo baseConstructor = baseType.GetConstructor(Array.Empty<Type>());
+            ILGenerator constructorImplementation = constructor.GetILGenerator();
+            constructorImplementation.Emit(OpCodes.Ldarg_0);
+            constructorImplementation.Emit(OpCodes.Call, baseConstructor);
+            constructorImplementation.Emit(OpCodes.Ret);
+            return typeBuilder.CreateType();
         }
     }
 }
