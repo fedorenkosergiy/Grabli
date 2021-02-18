@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public static class ArrayEx
 {
 	public static int FirstIndex<T>(this T[] array)
@@ -9,7 +7,7 @@ public static class ArrayEx
 
 	public static int LastIndex<T>(this T[] array)
 	{
-		if (array.IsEmpty())
+		if (array.Length == 0)
 		{
 			return -1;
 		}
