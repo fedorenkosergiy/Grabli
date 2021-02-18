@@ -3,18 +3,18 @@ namespace System.Collections.Generic
 {
 	public static class ICollectionEx
 	{
-		public static bool IsEmpty<T>(this ICollection<T> collection)
+		public static bool IsEmptyCollection<T>(this ICollection<T> collection)
 		{
 			return collection.Count == 0;
 		}
 
 		public static bool IsNotEmpty<T>(this ICollection<T> collection)
 		{
-			return !collection.IsEmpty();
+			return !collection.IsEmptyCollection();
 		}
 		public static bool IsNullOrEmpty<T>(this ICollection<T> collection)
 		{
-			return collection.IsNull() || collection.IsEmpty();
+			return collection.IsNull() || collection.IsEmptyCollection();
 		}
 
 		public static int FirstIndex<T>(this ICollection<T> list)
@@ -24,7 +24,7 @@ namespace System.Collections.Generic
 
 		public static int LastIndex<T>(this ICollection<T> list)
 		{
-			if (list.IsEmpty())
+			if (list.IsEmptyCollection())
 			{
 				return -1;
 			}

@@ -2,9 +2,9 @@ namespace System.Collections.Generic
 {
 	public static class IListEx
 	{
-		public static T First<T>(this IList<T> list)
+		public static T FirstOfList<T>(this IList<T> list)
 		{
-			if (list.IsEmpty())
+			if (list.IsEmptyCollection())
 			{
 				throw new IndexOutOfRangeException();
 			}
@@ -13,7 +13,7 @@ namespace System.Collections.Generic
 
 		public static T Last<T>(this IList<T> list)
 		{
-			if (list.IsEmpty())
+			if (list.IsEmptyCollection())
 			{
 				throw new IndexOutOfRangeException();
 			}
@@ -31,18 +31,18 @@ namespace System.Collections.Generic
 			{
 				return false;
 			}
-			if (list.IsEmpty())
+			if (list.IsEmptyCollection())
 			{
 				return false;
 			}
 			if (list.Count == 1)
 			{
-				result = list.First();
+				result = list.FirstOfList();
 				return true;
 			}
 			if (list.Count == 2)
 			{
-				result = avgFunction(list.First(), list.Last());
+				result = avgFunction(list.FirstOfList(), list.Last());
 				return true;
 			}
 

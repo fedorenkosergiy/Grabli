@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Grabli.WrappedUnity.CodeGen
@@ -21,7 +21,7 @@ namespace Grabli.WrappedUnity.CodeGen
                 throw new ArgumentNullException(nameof(dependencyGuids));
             }
 
-            if (dependencyGuids.IsEmpty())
+            if (dependencyGuids.IsEmptyArray())
             {
                 return Array.Empty<TypeConfig>();
             }

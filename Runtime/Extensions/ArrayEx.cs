@@ -7,10 +7,15 @@ public static class ArrayEx
 
 	public static int LastIndex<T>(this T[] array)
 	{
-		if (array.Length == 0)
+		if (array.IsEmptyArray())
 		{
 			return -1;
 		}
 		return array.Length - 1;
 	}
+
+    public static bool IsEmptyArray<T>(this T[] array)
+    {
+        return array.Length == 0;
+    }
 }

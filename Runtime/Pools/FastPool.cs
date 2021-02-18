@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Grabli.Pools
@@ -14,7 +13,7 @@ namespace Grabli.Pools
 			lock (_pool)
 			{
 				T result;
-				if (_pool.IsEmpty())
+				if (_pool.IsEmptyReadOnlyCollection())
 				{
 					result = new T();
 					GetOrRegisterCounter(typeof(T)).Up();

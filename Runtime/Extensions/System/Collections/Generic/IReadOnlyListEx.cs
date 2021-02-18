@@ -4,7 +4,7 @@ namespace System.Collections.Generic
     {
         public static T First<T>(this IReadOnlyList<T> list)
         {
-            if (list.IsEmpty())
+            if (list.IsEmptyReadOnlyCollection())
             {
                 throw new IndexOutOfRangeException();
             }
