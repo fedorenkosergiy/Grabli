@@ -1,17 +1,17 @@
 #if RELEASE_CTX && !CUSTOM_CTX
+using SystemInterface.IO;
+using SystemWrapper.IO;
+
 namespace Grabli.WrappedUnity
 {
 	public static class Ctx
 	{
-		public readonly static Time Time = new DefaultTime();
-
-		public readonly static Input Input = new DefaultInput();
-
-		public readonly static Screen Screen = new DefaultScreen();
-
-		public readonly static Application Application = new DefaultApplication();
-
-		public readonly static WrappersFactory Factory = new DefaultWrappersFactory();
+		public static readonly Time Time = new DefaultTime();
+		public static readonly Input Input = new DefaultInput();
+		public static readonly Screen Screen = new DefaultScreen();
+		public static readonly Application Application = new DefaultApplication();
+		public static readonly WrappersFactory Factory = new DefaultWrappersFactory();
+		public static readonly IFile File = new FileWrap();
 	}
 }
 #endif
