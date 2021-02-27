@@ -29,7 +29,7 @@ namespace Grabli.WrappedUnity
 
 		public bool isFocused => throw new NotImplementedException();
 
-		public bool isPlaying => throw new NotImplementedException();
+        public bool isPlaying => UApplication.isPlaying;
 
 		public bool webSecurityEnabled => throw new NotImplementedException();
 
