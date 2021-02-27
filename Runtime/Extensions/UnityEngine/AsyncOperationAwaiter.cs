@@ -19,10 +19,11 @@ namespace UnityEngine
 
 		public void OnCompleted(Action continuation) => callback = continuation;
 
-		private void OnRequestCompleted(AsyncOperation operation) => callback();
-	}
+		private void OnRequestCompleted(AsyncOperation operation) => callback?.Invoke();
 
-	internal class AsyncOperationAwaiter : VoidAwaiter
+    }
+
+    internal class AsyncOperationAwaiter : VoidAwaiter
 	{
 		protected AsyncOperation operation;
 		private Action callback;
@@ -39,6 +40,6 @@ namespace UnityEngine
 
 		public void OnCompleted(Action continuation) => callback = continuation;
 
-		private void OnRequestCompleted(AsyncOperation operation) => callback();
+		private void OnRequestCompleted(AsyncOperation operation) => callback?.Invoke();
 	}
 }
