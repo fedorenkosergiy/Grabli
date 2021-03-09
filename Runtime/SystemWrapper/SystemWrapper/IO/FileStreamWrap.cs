@@ -1,15 +1,9 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.AccessControl;
-using System.Security.Permissions;
 using System.Threading;
 using System.Threading.Tasks;
 using SystemInterface.IO;
-using SystemInterface.Microsoft.Win32.SafeHandles;
-using SystemInterface.Security.AccessControl;
-using SystemWrapper.Microsoft.Win32.SafeHandles;
-using SystemWrapper.Security.AccessControl;
 
 namespace SystemWrapper.IO
 {
@@ -61,26 +55,6 @@ namespace SystemWrapper.IO
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class for the specified file handle, with the specified read/write permission.
-        /// </summary>
-        /// <param name="handle">A file handle for the file that the current FileStream object will encapsulate. </param>
-        /// <param name="access">A FileAccess constant that sets the CanRead and CanWrite properties of the FileStream object. </param>
-        public FileStreamWrap(ISafeFileHandle handle, FileAccess access)
-        {
-            Initialize(handle, access);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class for the specified file handle, with the specified read/write permission.
-        /// </summary>
-        /// <param name="handle">A file handle for the file that the current FileStream object will encapsulate. </param>
-        /// <param name="access">A FileAccess constant that sets the CanRead and CanWrite properties of the FileStream object. </param>
-        public void Initialize(ISafeFileHandle handle, FileAccess access)
-        {
-            FileStreamInstance = new FileStream(handle.SafeFileHandleInstance, access);
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class with the specified path and creation mode.
         /// </summary>
         /// <param name="path">A relative or absolute path for the file that the current FileStream object will encapsulate.</param>
@@ -98,28 +72,6 @@ namespace SystemWrapper.IO
         public void Initialize(string path, FileMode mode)
         {
             FileStreamInstance = new FileStream(path, mode);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class for the specified file handle, with the specified read/write permission, and buffer size.
-        /// </summary>
-        /// <param name="handle">A file handle for the file that the current FileStream object will encapsulate. </param>
-        /// <param name="access">A FileAccess constant that sets the CanRead and CanWrite properties of the FileStream object. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes. </param>
-        public FileStreamWrap(ISafeFileHandle handle, FileAccess access, int bufferSize)
-        {
-            Initialize(handle, access, bufferSize);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class for the specified file handle, with the specified read/write permission, and buffer size.
-        /// </summary>
-        /// <param name="handle">A file handle for the file that the current FileStream object will encapsulate. </param>
-        /// <param name="access">A FileAccess constant that sets the CanRead and CanWrite properties of the FileStream object. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes. </param>
-        public void Initialize(ISafeFileHandle handle, FileAccess access, int bufferSize)
-        {
-            FileStreamInstance = new FileStream(handle.SafeFileHandleInstance, access, bufferSize);
         }
 
         /// <summary>
@@ -142,32 +94,6 @@ namespace SystemWrapper.IO
         public void Initialize(string path, FileMode mode, FileAccess access)
         {
             FileStreamInstance = new FileStream(path, mode, access);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class for the specified file handle, with the specified read/write permission, and buffer size, and synchronous or asynchronous state.
-        /// </summary>
-        /// <param name="handle">A file handle for the file that the current FileStream object will encapsulate. </param>
-        /// <param name="access">A FileAccess constant that sets the CanRead and CanWrite properties of the FileStream object. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes. </param>
-        /// <param name="isAsync"> <c>true</c> if the handle was opened asynchronously (that is, in overlapped I/O mode); otherwise, false. </param>
-        [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
-        public FileStreamWrap(ISafeFileHandle handle, FileAccess access, int bufferSize, bool isAsync)
-        {
-            Initialize(handle, access, bufferSize, isAsync);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class for the specified file handle, with the specified read/write permission, and buffer size, and synchronous or asynchronous state.
-        /// </summary>
-        /// <param name="handle">A file handle for the file that the current FileStream object will encapsulate. </param>
-        /// <param name="access">A FileAccess constant that sets the CanRead and CanWrite properties of the FileStream object. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes. </param>
-        /// <param name="isAsync"> <c>true</c> if the handle was opened asynchronously (that is, in overlapped I/O mode); otherwise, false. </param>
-        [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
-        public void Initialize(ISafeFileHandle handle, FileAccess access, int bufferSize, bool isAsync)
-        {
-            FileStreamInstance = new FileStream(handle.SafeFileHandleInstance, access, bufferSize, isAsync);
         }
 
         /// <summary>
@@ -276,64 +202,6 @@ namespace SystemWrapper.IO
             FileStreamInstance = new FileStream(path, mode, access, share, bufferSize, options);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class with the specified path, creation mode, access rights and sharing permission, the buffer size, and additional file options.
-        /// </summary>
-        /// <param name="path">A relative or absolute path for the file that the current FileStream object will encapsulate.</param>
-        /// <param name="mode">A FileMode constant that determines how to open or create the file.</param>
-        /// <param name="rights">A FileSystemRights constant that determines the access rights to use when creating access and audit rules for the file.</param>
-        /// <param name="share">A FileShare constant that determines how the file will be shared by processes. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes.</param>
-        /// <param name="options">A FileOptions value that specifies additional file options.</param>
-        public FileStreamWrap(string path, FileMode mode, FileSystemRights rights, FileShare share, int bufferSize, FileOptions options)
-        {
-            Initialize(path, mode, rights, share, bufferSize, options);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class with the specified path, creation mode, access rights and sharing permission, the buffer size, and additional file options.
-        /// </summary>
-        /// <param name="path">A relative or absolute path for the file that the current FileStream object will encapsulate.</param>
-        /// <param name="mode">A FileMode constant that determines how to open or create the file.</param>
-        /// <param name="rights">A FileSystemRights constant that determines the access rights to use when creating access and audit rules for the file.</param>
-        /// <param name="share">A FileShare constant that determines how the file will be shared by processes. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes.</param>
-        /// <param name="options">A FileOptions value that specifies additional file options.</param>
-        public void Initialize(string path, FileMode mode, FileSystemRights rights, FileShare share, int bufferSize, FileOptions options)
-        {
-            FileStreamInstance = new FileStream(path, mode, rights, share, bufferSize, options);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class with the specified path, creation mode, access rights and sharing permission, the buffer size, additional file options, access control and audit security.
-        /// </summary>
-        /// <param name="path">A relative or absolute path for the file that the current FileStream object will encapsulate.</param>
-        /// <param name="mode">A FileMode constant that determines how to open or create the file.</param>
-        /// <param name="rights">A FileSystemRights constant that determines the access rights to use when creating access and audit rules for the file.</param>
-        /// <param name="share">A FileShare constant that determines how the file will be shared by processes. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes.</param>
-        /// <param name="options">A FileOptions value that specifies additional file options.</param>
-        /// <param name="fileSecurity">A FileSecurity constant that determines the access control and audit security for the file.</param>
-        public FileStreamWrap(string path, FileMode mode, FileSystemRights rights, FileShare share, int bufferSize, FileOptions options, FileSecurity fileSecurity)
-        {
-            Initialize(path, mode, rights, share, bufferSize, options, fileSecurity);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.IO.FileStreamWrap"/> class with the specified path, creation mode, access rights and sharing permission, the buffer size, additional file options, access control and audit security.
-        /// </summary>
-        /// <param name="path">A relative or absolute path for the file that the current FileStream object will encapsulate.</param>
-        /// <param name="mode">A FileMode constant that determines how to open or create the file.</param>
-        /// <param name="rights">A FileSystemRights constant that determines the access rights to use when creating access and audit rules for the file.</param>
-        /// <param name="share">A FileShare constant that determines how the file will be shared by processes. </param>
-        /// <param name="bufferSize">A positive Int32 value greater than 0 indicating the buffer size. For bufferSize values between one and eight, the actual buffer size is set to eight bytes.</param>
-        /// <param name="options">A FileOptions value that specifies additional file options.</param>
-        /// <param name="fileSecurity">A FileSecurity constant that determines the access control and audit security for the file.</param>
-        public void Initialize(string path, FileMode mode, FileSystemRights rights, FileShare share, int bufferSize, FileOptions options, FileSecurity fileSecurity)
-        {
-            FileStreamInstance = new FileStream(path, mode, rights, share, bufferSize, options, fileSecurity);
-        }
-
         #endregion Constructors and Initializers
 
         /// <summary>
@@ -423,42 +291,6 @@ namespace SystemWrapper.IO
             set { FileStreamInstance.Position = value; }
         }
 
-        /// <inheritdoc />
-        public ISafeFileHandle SafeFileHandle
-        {
-            get { return new SafeFileHandleWrap(FileStreamInstance.SafeFileHandle); }
-        }
-
-        /// <summary>
-        /// Begins an asynchronous read.
-        /// </summary>
-        /// <param name="array">The buffer to read data into.</param>
-        /// <param name="offset">The byte offset in array at which to begin reading.</param>
-        /// <param name="numBytes">The maximum number of bytes to read.</param>
-        /// <param name="userCallback">The method to be called when the asynchronous read operation is completed.</param>
-        /// <param name="stateObject">A user-provided object that distinguishes this particular asynchronous read request from other requests.</param>
-        /// <returns>A user-provided object that distinguishes this particular asynchronous read request from other requests.</returns>
-        [HostProtection(SecurityAction.LinkDemand, ExternalThreading = true)]
-        public IAsyncResult BeginRead(byte[] array, int offset, int numBytes, AsyncCallback userCallback, object stateObject)
-        {
-            return FileStreamInstance.BeginRead(array, offset, numBytes, userCallback, stateObject);
-        }
-
-        /// <summary>
-        /// Begins an asynchronous write.
-        /// </summary>
-        /// <param name="array">The buffer to read data into.</param>
-        /// <param name="offset">The byte offset in array at which to begin reading.</param>
-        /// <param name="numBytes">The maximum number of bytes to read.</param>
-        /// <param name="userCallback">The method to be called when the asynchronous read operation is completed.</param>
-        /// <param name="stateObject">A user-provided object that distinguishes this particular asynchronous read request from other requests.</param>
-        /// <returns>An IAsyncResult that references the asynchronous write.</returns>
-        [HostProtection(SecurityAction.LinkDemand, ExternalThreading = true)]
-        public IAsyncResult BeginWrite(byte[] array, int offset, int numBytes, AsyncCallback userCallback, object stateObject)
-        {
-            return FileStreamInstance.BeginWrite(array, offset, numBytes, userCallback, stateObject);
-        }
-
         /// <summary>
         /// Closes the current stream and releases any resources (such as sockets and file handles) associated with the current stream.
         /// </summary>
@@ -492,12 +324,6 @@ namespace SystemWrapper.IO
         public void Flush()
         {
             FileStreamInstance.Flush();
-        }
-
-        /// <inheritdoc />
-        public IFileSecurity GetAccessControl()
-        {
-            return new FileSecurityWrap(FileStreamInstance.GetAccessControl());
         }
 
         /// <inheritdoc />
@@ -538,12 +364,6 @@ namespace SystemWrapper.IO
             return FileStreamInstance.Seek(offset, origin);
         }
 
-        /// <inheritdoc />
-        public void SetAccessControl(IFileSecurity fileSecurity)
-        {
-            FileStreamInstance.SetAccessControl(fileSecurity.FileSecurityInstance);
-        }
-
         /// <summary>
         /// Sets the length of this stream to the given value.
         /// </summary>
@@ -551,13 +371,6 @@ namespace SystemWrapper.IO
         public void SetLength(long value)
         {
             FileStreamInstance.SetLength(value);
-        }
-
-        /// <inheritdoc />
-        [HostProtection(SecurityAction.LinkDemand, Synchronization = true)]
-        public IStream Synchronized(IStream stream)
-        {
-            return new FileStreamWrap(Stream.Synchronized(stream.StreamInstance));
         }
 
         /// <inheritdoc />
@@ -665,6 +478,21 @@ namespace SystemWrapper.IO
         public async Task CopyToAsync(IStream destination, int bufferSize, CancellationToken cancellationToken)
         {
             await StreamInstance.CopyToAsync(destination.StreamInstance, bufferSize, cancellationToken);
+        }
+
+        public IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IStream Synchronized(IStream stream)
+        {
+            throw new NotImplementedException();
         }
     }
 }

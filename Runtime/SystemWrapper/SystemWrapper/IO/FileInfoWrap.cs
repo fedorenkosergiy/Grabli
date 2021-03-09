@@ -1,11 +1,8 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.AccessControl;
 using SystemInterface;
 using SystemInterface.IO;
-using SystemInterface.Security.AccessControl;
-using SystemWrapper.Security.AccessControl;
 
 namespace SystemWrapper.IO
 {
@@ -207,18 +204,6 @@ namespace SystemWrapper.IO
         }
 
         /// <inheritdoc />
-        public IFileSecurity GetAccessControl()
-        {
-            return new FileSecurityWrap(FileInfoInstance.GetAccessControl());
-        }
-
-        /// <inheritdoc />
-        public IFileSecurity GetAccessControl(AccessControlSections includeSections)
-        {
-            return new FileSecurityWrap(FileInfoInstance.GetAccessControl(includeSections));
-        }
-
-        /// <inheritdoc />
         public void MoveTo(string destFileName)
         {
             FileInfoInstance.MoveTo(destFileName);
@@ -276,12 +261,6 @@ namespace SystemWrapper.IO
         public IFileInfo Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
         {
             return new FileInfoWrap(FileInfoInstance.Replace(destinationFileName, destinationBackupFileName, ignoreMetadataErrors));
-        }
-
-        /// <inheritdoc />
-        public void SetAccessControl(IFileSecurity fileSecurity)
-        {
-            FileInfoInstance.SetAccessControl(fileSecurity.FileSecurityInstance);
         }
 
         /// <inheritdoc />

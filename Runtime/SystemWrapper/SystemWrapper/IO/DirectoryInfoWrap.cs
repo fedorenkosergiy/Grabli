@@ -1,12 +1,8 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Remoting;
-using System.Security.AccessControl;
 using SystemInterface;
 using SystemInterface.IO;
-using SystemInterface.Security.AccessControl;
-using SystemWrapper.Security.AccessControl;
 
 namespace SystemWrapper.IO
 {
@@ -152,28 +148,11 @@ namespace SystemWrapper.IO
             DirectoryInfo.Create();
         }
 
-        /// <inheritdoc />
-        public void Create(IDirectorySecurity directorySecurity)
-        {
-            DirectoryInfo.Create(directorySecurity.DirectorySecurityInstance);
-        }
-
-        /// <inheritdoc />
-        public ObjRef CreateObjRef(Type requestedType)
-        {
-            return DirectoryInfo.CreateObjRef(requestedType);
-        }
 
         /// <inheritdoc />
         public IDirectoryInfo CreateSubdirectory(string path)
         {
             return new DirectoryInfoWrap(DirectoryInfo.CreateSubdirectory(path));
-        }
-
-        /// <inheritdoc />
-        public IDirectoryInfo CreateSubdirectory(string path, IDirectorySecurity directorySecurity)
-        {
-            return new DirectoryInfoWrap(DirectoryInfo.CreateSubdirectory(path, directorySecurity.DirectorySecurityInstance));
         }
 
         /// <inheritdoc />
@@ -186,18 +165,6 @@ namespace SystemWrapper.IO
         public void Delete(bool recursive)
         {
             DirectoryInfo.Delete(recursive);
-        }
-
-        /// <inheritdoc />
-        public IDirectorySecurity GetAccessControl()
-        {
-            return new DirectorySecurityWrap(DirectoryInfo.GetAccessControl());
-        }
-
-        /// <inheritdoc />
-        public IDirectorySecurity GetAccessControl(AccessControlSections includeSections)
-        {
-            return new DirectorySecurityWrap(DirectoryInfo.GetAccessControl(includeSections));
         }
 
         /// <inheritdoc />
@@ -276,12 +243,6 @@ namespace SystemWrapper.IO
         public void Refresh()
         {
             DirectoryInfo.Refresh();
-        }
-
-        /// <inheritdoc />
-        public void SetAccessControl(IDirectorySecurity directorySecurity)
-        {
-            DirectoryInfo.SetAccessControl(directorySecurity.DirectorySecurityInstance);
         }
 
         /// <inheritdoc />

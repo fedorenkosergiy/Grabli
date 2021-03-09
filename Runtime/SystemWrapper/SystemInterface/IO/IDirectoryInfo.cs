@@ -1,8 +1,5 @@
 using System;
 using System.IO;
-using System.Runtime.Remoting;
-using System.Security.AccessControl;
-using SystemInterface.Security.AccessControl;
 
 namespace SystemInterface.IO
 {
@@ -104,32 +101,11 @@ namespace SystemInterface.IO
         void Create();
 
         /// <summary>
-        /// Creates a directory using a DirectorySecurity object.
-        /// </summary>
-        /// <param name="directorySecurity">The access control to apply to the directory.</param>
-        void Create(IDirectorySecurity directorySecurity);
-
-        /// <summary>
-        /// Creates an object that contains all the relevant information required to generate a proxy used to communicate with a remote object.
-        /// </summary>
-        /// <param name="requestedType">The <see cref="T:System.Type"/> of the object that the new <see cref="T:System.Runtime.Remoting.ObjRef"/> will reference. </param>
-        /// <returns>Information required to generate a proxy.</returns>
-        ObjRef CreateObjRef(Type requestedType);
-
-        /// <summary>
         /// Creates a subdirectory or subdirectories on the specified path. The specified path can be relative to this instance of the IDirectoryInfoWrap class.
         /// </summary>
         /// <param name="path">The specified path. This cannot be a different disk volume or Universal Naming Convention (UNC) name. </param>
         /// <returns>The last directory specified in <paramref name="path"/>.</returns>
         IDirectoryInfo CreateSubdirectory(string path);
-
-        /// <summary>
-        /// Creates a subdirectory or subdirectories on the specified path with the specified security. The specified path can be relative to this instance of the IDirectoryInfoWrap class.
-        /// </summary>
-        /// <param name="path">The specified path. This cannot be a different disk volume or Universal Naming Convention (UNC) name. </param>
-        /// <param name="directorySecurity">The security to apply. </param>
-        /// <returns>The last directory specified in <paramref name="path"/>.</returns>
-        IDirectoryInfo CreateSubdirectory(string path, IDirectorySecurity directorySecurity);
 
         /// <summary>
         /// Deletes this <see cref="T:System.IO.DirectoryInfo"/> if it is empty.
@@ -141,19 +117,6 @@ namespace SystemInterface.IO
         /// </summary>
         /// <param name="recursive"><c>true</c> to delete this directory, its subdirectories, and all files; otherwise, <c>false</c>.</param>
         void Delete(bool recursive);
-
-        /// <summary>
-        /// Gets a <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the access control list (ACL) entries for the directory described by the current DirectoryInfo object.
-        /// </summary>
-        /// <returns>A <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the access control rules for the directory.</returns>
-        IDirectorySecurity GetAccessControl();
-
-        /// <summary>
-        /// Gets a <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the specified type of access control list (ACL) entries for the directory described by the current DirectoryInfo object.
-        /// </summary>
-        /// <param name="includeSections">One of the <see cref="T:System.Security.AccessControl.AccessControlSections"/> values that specifies the type of access control list (ACL) information to receive.</param>
-        /// <returns>A <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the access control rules for the file described by the path parameter.</returns>
-        IDirectorySecurity GetAccessControl(AccessControlSections includeSections);
 
         /// <summary>
         /// Returns the subdirectories of the current directory.
@@ -232,12 +195,6 @@ namespace SystemInterface.IO
         /// Refreshes the state of the object.
         /// </summary>
         void Refresh();
-
-        /// <summary>
-        /// Applies access control list (ACL) entries described by a DirectorySecurity object to the directory described by the current DirectoryInfo object.
-        /// </summary>
-        /// <param name="directorySecurity">A IDirectorySecurityWrap object that describes an ACL entry to apply to the directory described by the path parameter. </param>
-        void SetAccessControl(IDirectorySecurity directorySecurity);
 
         /// <summary>
         /// Returns the original path that was passed by the user.

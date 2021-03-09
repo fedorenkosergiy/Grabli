@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Security.AccessControl;
-using SystemInterface.Security.AccessControl;
 
 namespace SystemInterface.IO
 {
@@ -42,14 +41,6 @@ namespace SystemInterface.IO
         IDirectoryInfo CreateDirectory(string path);
 
         /// <summary>
-        /// Creates all the directories in the specified path, applying the specified Windows security.
-        /// </summary>
-        /// <param name="path">The directory to create.</param>
-        /// <param name="directorySecurity">The access control to apply to the directory.</param>
-        /// <returns>A <see cref="T:SystemInterface.IO.IDirectoryWrap"/> object representing the newly created directory. </returns>
-        IDirectoryInfo CreateDirectory(string path, IDirectorySecurity directorySecurity);
-
-        /// <summary>
         /// Deletes an empty directory from a specified path.
         /// </summary>
         /// <param name="path">The name of the empty directory to remove. This directory must be writable or empty. </param>
@@ -68,21 +59,6 @@ namespace SystemInterface.IO
         /// <param name="path">The path to test. </param>
         /// <returns><c>true</c> if (param name="path") refers to an existing directory; otherwise, <c>false</c>.</returns>
         bool Exists(string path);
-
-        /// <summary>
-        /// Gets a <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the access control list (ACL) entries for a specified directory.
-        /// </summary>
-        /// <param name="path">The path to a directory containing a <see cref="DirectorySecurity"/> object that describes the file's access control list (ACL) information. </param>
-        /// <returns>A <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the access control rules for the file described by the (param name="path") parameter. </returns>
-        IDirectorySecurity GetAccessControl(string path);
-
-        /// <summary>
-        /// Gets a <see cref="T:SystemInterface.Security.AccessControl.IDirectorySecurityWrap"/> object that encapsulates the access control list (ACL) entries for a specified directory.
-        /// </summary>
-        /// <param name="path">The path to a directory containing a <see cref="T:System.Security.AccessControl.DirectorySecurity"/> object that describes the file's access control list (ACL) information. </param>
-        /// <param name="includeSections">One of the <see cref="T:System.Security.AccessControl.AccessControlSections"/> values that specifies the type of access control list (ACL) information to receive. </param>
-        /// <returns></returns>
-        IDirectorySecurity GetAccessControl(string path, AccessControlSections includeSections);
 
         /// <summary>
         /// Gets the creation date and time of a directory.
@@ -221,13 +197,6 @@ namespace SystemInterface.IO
         /// <param name="sourceDirName">The path of the file or directory to move.</param>
         /// <param name="destDirName">The path to the new location for <paramref name="sourceDirName"/>. If <paramref name="sourceDirName"/> is a file, then <paramref name="destDirName"/> must also be a file name.</param>
         void Move(string sourceDirName, string destDirName);
-
-        /// <summary>
-        /// Applies access control list (ACL) entries described by a <see cref="T:SystemInterface.IO.IDirectoryWrap"/> object to the specified directory.
-        /// </summary>
-        /// <param name="path">A directory to add or remove access control list (ACL) entries from.</param>
-        /// <param name="directorySecurity">A <see cref="T:SystemInterface.IO.IDirectoryWrap"/> object that describes an ACL entry to apply to the directory described by the path parameter.</param>
-        void SetAccessControl(string path, IDirectorySecurity directorySecurity);
 
         /// <summary>
         /// Sets the creation date and time for the specified file or directory.

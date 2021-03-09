@@ -1,8 +1,6 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.AccessControl;
-using SystemInterface.Security.AccessControl;
 
 namespace SystemInterface.IO
 {
@@ -159,19 +157,6 @@ namespace SystemInterface.IO
         void Encrypt();
 
         /// <summary>
-        /// Gets a IFileSecurityWrap object that encapsulates the access control list (ACL) entries for the file described by the current IFileInfoWrap object.
-        /// </summary>
-        /// <returns>A IFileSecurityWrap object that encapsulates the access control rules for the current file. </returns>
-        IFileSecurity GetAccessControl();
-
-        /// <summary>
-        /// Gets a IFileSecurityWrap object that encapsulates the access control list (ACL) entries for the file described by the current IFileInfoWrap object.
-        /// </summary>
-        /// <param name="includeSections">One of the AccessControlSections values that specifies which group of access control entries to retrieve. </param>
-        /// <returns>A IFileSecurityWrap object that encapsulates the access control rules for the current file. </returns>
-        IFileSecurity GetAccessControl(AccessControlSections includeSections);
-
-        /// <summary>
         /// Moves a specified file to a new location, providing the option to specify a new file name.
         /// </summary>
         /// <param name="destFileName">The path to move the file to, which can specify a different file name.</param>
@@ -242,12 +227,6 @@ namespace SystemInterface.IO
         /// <returns>A IFileInfoWrap object that encapsulates information about the file described by the destFileName parameter.</returns>
         [ComVisible(false)]
         IFileInfo Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors);
-
-        /// <summary>
-        /// Applies access control list (ACL) entries described by a IFileSecurityWrap object to the file described by the current IFileInfoWrap object.
-        /// </summary>
-        /// <param name="fileSecurity">A IFileSecurityWrap object that describes an access control list (ACL) entry to apply to the current file.</param>
-        void SetAccessControl(IFileSecurity fileSecurity);
 
         /// <summary>
         /// Returns the path as a string.

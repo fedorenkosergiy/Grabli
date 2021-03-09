@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Runtime.Remoting;
-using System.Security.Permissions;
 using System.Text;
 
 namespace SystemInterface.IO
@@ -107,14 +105,6 @@ namespace SystemInterface.IO
         /// Implements a TextWriter for writing characters to a stream in a particular encoding.
         /// </summary>
         void Close();
-
-        /// <summary>
-        /// Creates an object that contains all the relevant information required to generate a proxy used to communicate with a remote object.
-        /// </summary>
-        /// <param name="requestedType">The Type of the object that the new ObjRef will reference.</param>
-        /// <returns>Information required to generate a proxy.</returns>
-        [SecurityPermissionAttribute(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
-        ObjRef CreateObjRef(Type requestedType);
 
         /// <summary>
         /// Clears all buffers for the current writer and causes any buffered data to be written to the underlying stream.

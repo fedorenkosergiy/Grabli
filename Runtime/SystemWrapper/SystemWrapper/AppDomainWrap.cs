@@ -69,12 +69,6 @@ namespace SystemWrapper
         }
 
         /// <inheritdoc />
-        public IAssembly Load(IAssemblyName assemblyRef)
-        {
-            return new AssemblyWrap(AppDomainInstance.Load(assemblyRef.AssemblyNameInstance));
-        }
-
-        /// <inheritdoc />
         public void SetData(string name, object data)
         {
             AppDomainInstance.SetData(name, data);

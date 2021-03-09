@@ -42,13 +42,6 @@ namespace SystemInterface
         object GetData(string name);
 
         /// <summary>
-        /// Loads an Assembly given its IAssemblyNameWrap.
-        /// </summary>
-        /// <param name="assemblyRef">An object that describes the assembly to load.</param>
-        /// <returns>The loaded assembly.</returns>
-        IAssembly Load(IAssemblyName assemblyRef);
-
-        /// <summary>
         /// Assigns the specified value to the specified application domain property.
         /// </summary>
         /// <param name="name">The name of a user-defined application domain property to create or change.</param>

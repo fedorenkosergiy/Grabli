@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 
 namespace SystemInterface.IO
 {
@@ -62,13 +61,5 @@ namespace SystemInterface.IO
         /// </summary>
         /// <returns>A string containing all characters from the current position to the end of the ITextReaderWrap.</returns>
         string ReadToEnd();
-
-        /// <summary>
-        /// Creates a thread-safe wrapper around the specified ITextReaderWrap.
-        /// </summary>
-        /// <param name="reader">The ITextReaderWrap to synchronize.</param>
-        /// <returns>A thread-safe ITextReaderWrap.</returns>
-        [HostProtection(SecurityAction.LinkDemand, Synchronization = true)]
-        ITextReader Synchronized(ITextReader reader);
     }
 }

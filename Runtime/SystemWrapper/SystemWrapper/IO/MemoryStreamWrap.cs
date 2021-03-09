@@ -279,20 +279,6 @@ namespace SystemWrapper.IO
         }
 
         /// <inheritdoc />
-        [HostProtection(SecurityAction.LinkDemand, ExternalThreading = true)]
-        public IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
-        {
-            return MemoryStreamInstance.BeginRead(buffer, offset, count, callback, state);
-        }
-
-        /// <inheritdoc />
-        [HostProtection(SecurityAction.LinkDemand, ExternalThreading = true)]
-        public IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
-        {
-            return MemoryStreamInstance.BeginWrite(buffer, offset, count, callback, state);
-        }
-
-        /// <inheritdoc />
         public virtual void Close()
         {
             MemoryStreamInstance.Close();
@@ -357,13 +343,6 @@ namespace SystemWrapper.IO
         public void SetLength(long value)
         {
             MemoryStreamInstance.SetLength(value);
-        }
-
-        /// <inheritdoc />
-        [HostProtection(SecurityAction.LinkDemand, Synchronization = true)]
-        public IStream Synchronized(IStream stream)
-        {
-            return new MemoryStreamWrap(Stream.Synchronized(stream.StreamInstance));
         }
 
         /// <summary>
@@ -468,6 +447,21 @@ namespace SystemWrapper.IO
         public async Task CopyToAsync(IStream destination, int bufferSize, CancellationToken cancellationToken)
         {
             await StreamInstance.CopyToAsync(destination.StreamInstance, bufferSize, cancellationToken);
+        }
+
+        public IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IStream Synchronized(IStream stream)
+        {
+            throw new NotImplementedException();
         }
     }
 }

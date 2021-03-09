@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.AccessControl;
 using System.Text;
-using SystemInterface.Security.AccessControl;
 
 namespace SystemInterface.IO
 {
@@ -92,16 +89,6 @@ namespace SystemInterface.IO
         IFileStream Create(string path, int bufferSize, FileOptions options);
 
         /// <summary>
-        /// Creates or overwrites the specified file with the specified buffer size, file options, and file security.
-        /// </summary>
-        /// <param name="path">The name of the file. </param>
-        /// <param name="bufferSize">The number of bytes buffered for reads and writes to the file. </param>
-        /// <param name="options">One of the FileOptions values that describes how to create or overwrite the file. </param>
-        /// <param name="fileSecurity">One of the IFileSecurityWrap values that determines the access control and audit security for the file. </param>
-        /// <returns>A new file with the specified buffer size, file options, and file security. </returns>
-        IFileStream Create(string path, int bufferSize, FileOptions options, IFileSecurity fileSecurity);
-
-        /// <summary>
         /// Creates or opens a file for writing UTF-8 encoded text.
         /// </summary>
         /// <param name="path">The file to be opened for writing. </param>
@@ -132,21 +119,6 @@ namespace SystemInterface.IO
         /// <param name="path">The file to check.</param>
         /// <returns> <c>true</c> if the caller has the required permissions and path contains the name of an existing file; otherwise, <c>false</c>. This method also returns false if path is nullNothingnullptra null reference (Nothing in Visual Basic), an invalid path, or a zero-length string. If the caller does not have sufficient permissions to read the specified file, no exception is thrown and the method returns false regardless of the existence of path.</returns>
         bool Exists(string path);
-
-        /// <summary>
-        /// Gets a IFileSecurityWrap object that encapsulates the access control list (ACL) entries for a specified file.
-        /// </summary>
-        /// <param name="path">The path to a file containing a FileSecurity object that describes the file's access control list (ACL) information.</param>
-        /// <returns>A IFileSecurityWrap object that encapsulates the access control rules for the file described by the path parameter. </returns>
-        IFileSecurity GetAccessControl(string path);
-
-        /// <summary>
-        /// Gets a IFileSecurityWrap object that encapsulates the access control list (ACL) entries for a specified file.
-        /// </summary>
-        /// <param name="path">The path to a file containing a FileSecurity object that describes the file's access control list (ACL) information.</param>
-        /// <param name="includeSections">One of the AccessControlSections values that specifies the type of access control list (ACL) information to receive.</param>
-        /// <returns>A IFileSecurityWrap object that encapsulates the access control rules for the file described by the path parameter.</returns>
-        IFileSecurity GetAccessControl(string path, AccessControlSections includeSections);
 
         /// <summary>
         /// Gets the FileAttributes of the file on the path.
@@ -320,13 +292,6 @@ namespace SystemInterface.IO
         /// <param name="destinationBackupFileName">The name of the backup file. </param>
         /// <param name="ignoreMetadataErrors"><c>true</c> to ignore merge errors (such as attributes and access control lists (ACLs)) from the replaced file to the replacement file; otherwise, <c>false</c></param>
         void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors);
-
-        /// <summary>
-        /// Applies access control list (ACL) entries described by a IFileSecurityWrap object to the specified file.
-        /// </summary>
-        /// <param name="path">A file to add or remove access control list (ACL) entries from. </param>
-        /// <param name="fileSecurity">A IFileSecurityWrap object that describes an ACL entry to apply to the file described by the path parameter. </param>
-        void SetAccessControl(string path, IFileSecurity fileSecurity);
 
         /// <summary>
         /// Sets the specified FileAttributes of the file on the specified path.
