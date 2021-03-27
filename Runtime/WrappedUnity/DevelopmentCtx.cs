@@ -11,6 +11,7 @@ namespace Grabli.WrappedUnity
 		public static Application Application => ApplicationContext.Instance;
 		public static WrappersFactory Factory => WrappersFactoryContext.Instance;
 		public static IFile File => FileContext.Instance;
+		public static IDateTime DateTime = DateTimeContext.Instance;
 	}
 }
 #endif
