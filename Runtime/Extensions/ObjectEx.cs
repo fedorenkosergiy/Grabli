@@ -19,6 +19,12 @@ public static class ObjectEx
 		return value;
 	}
 
+    public static T Warning<T>(this T value)
+    {
+        Debug.LogWarning(GetValidLog(value));
+        return value;
+    }
+
 	private static object GetValidLog(object value)
 	{
 		return value ?? "NULL";
