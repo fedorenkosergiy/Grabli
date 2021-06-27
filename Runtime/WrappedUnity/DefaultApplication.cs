@@ -93,6 +93,16 @@ namespace Grabli.WrappedUnity
 		public event LogCallback logMessageReceivedThreaded;
 		public event Action<bool> focusChanged;
 
+        public DefaultApplication()
+        {
+            UApplication.logMessageReceived += InvokeLogMessageReceived;
+        }
+
+        private void InvokeLogMessageReceived(string condition, string stackTrace, LogType type)
+        {
+            logMessageReceived?.Invoke(condition, stackTrace, type);
+        }
+
 		public void CancelQuit()
 		{
 			throw new NotImplementedException();
