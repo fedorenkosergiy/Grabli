@@ -3,12 +3,14 @@ using System.Collections.Generic;
 
 namespace Grabli.WrappedUnity
 {
-	public class Context<CType, T, I> : IDisposable where CType : Context<CType, T, I>, new() where T : I, new()
+	public abstract class Context<CType, T, I> : IDisposable where CType : Context<CType, T, I>, new() where T : I, new()
 	{
 		private I instance;
 		private bool isDisposed;
 		private static Stack<Context<CType, T, I>> contexts = new Stack<Context<CType, T, I>>();
 
+        protected abstract bool MoveEventInvocationLists { get; }
+        
 		public static I Instance => contexts.Peek().instance;
 
 		static Context()
@@ -39,6 +41,11 @@ namespace Grabli.WrappedUnity
 			{
 				throw new InvalidOperationException("Wrong context");
 			}
+
+            if (MoveEventInvocationLists)
+            {
+                throw new NotImplementedException();
+            }
 			instance = default;
 			isDisposed = true;
 		}
