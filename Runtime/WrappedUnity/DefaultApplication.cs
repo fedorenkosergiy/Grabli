@@ -6,7 +6,10 @@ using UApplication = UnityEngine.Application;
 namespace Grabli.WrappedUnity
 {
 	public class DefaultApplication : Application
-	{
+    {
+        private LogCallback logMessageReceivedInvocationList;
+        private bool logMessageReceivedInitialized;
+        
 		public string version => UApplication.version;
 
 		public string unityVersion => throw new NotImplementedException();
@@ -88,19 +91,36 @@ namespace Grabli.WrappedUnity
 		public event Action quitting;
 		public event Func<bool> wantsToQuit;
 		public event LowMemoryCallback lowMemory;
-		public event LogCallback logMessageReceived;
+		public event LogCallback logMessageReceived
+        {
+            add
+            {
+                TryInitLogMessageReceivedEvent();
+                logMessageReceivedInvocationList += value;
+            }
+            remove
+            {
+                logMessageReceivedInvocationList -= value;
+            }
+        }
 		public event Action<string> deepLinkActivated;
 		public event LogCallback logMessageReceivedThreaded;
 		public event Action<bool> focusChanged;
 
-        public DefaultApplication()
+        private void TryInitLogMessageReceivedEvent()
         {
+            if (logMessageReceivedInitialized)
+            {
+                return;
+            }
+
+            logMessageReceivedInitialized = true;
             UApplication.logMessageReceived += InvokeLogMessageReceived;
         }
 
         private void InvokeLogMessageReceived(string condition, string stackTrace, LogType type)
         {
-            logMessageReceived?.Invoke(condition, stackTrace, type);
+            logMessageReceivedInvocationList?.Invoke(condition, stackTrace, type);
         }
 
 		public void CancelQuit()
