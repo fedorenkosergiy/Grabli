@@ -30,14 +30,21 @@ namespace Grabli
             switch(store)
             {
                 case AppStore.Undefined: return false;
+                case AppStore.GooglePlayMarket:
+                    
 #if GRABLI_STORE_SUPPORTED_GOOGLE_PLAY_MARKET
-                case AppStore.GooglePlayMarket: return true;
+                    return true;
+#else
+                    return false;
 #endif
 #if GRABLI_STORE_SUPPORTED_AMAZON_APP_STORE
                 case AppStore.AmazonAppStore: return true;
 #endif
+                case AppStore.AppleAppStore:
 #if GRABLI_STORE_SUPPORTED_APPLE_APP_STORE
-                case AppStore.AppleAppStore: return true;
+                    return true;
+#else
+                    return false
 #endif
 #if GRABLI_STORE_SUPPORTED_SAMSUNG_GALAXY_STORE
                 case AppStore.SamsungGalaxyStore: return true;
