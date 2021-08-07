@@ -44,7 +44,7 @@ namespace Grabli
 #if GRABLI_STORE_SUPPORTED_APPLE_APP_STORE
                     return true;
 #else
-                    return false
+                    return false;
 #endif
 #if GRABLI_STORE_SUPPORTED_SAMSUNG_GALAXY_STORE
                 case AppStore.SamsungGalaxyStore: return true;
