@@ -40,7 +40,7 @@ namespace Grabli.WrappedUnity
 
 		public bool isBatchMode => throw new NotImplementedException();
 
-		public string identifier => throw new NotImplementedException();
+		public string identifier => UApplication.identifier;
 
 		public ApplicationInstallMode installMode => throw new NotImplementedException();
 
