@@ -252,7 +252,11 @@ namespace Grabli.WrappedUnity
 
 		public void Quit()
 		{
-			throw new NotImplementedException();
+#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+#else
+			UApplication.Quit();
+#endif
 		}
 
 		public void RegisterLogCallback(LogCallback handler)

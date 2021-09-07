@@ -1,3 +1,4 @@
+using Grabli.WrappedUnity;
 using System;
 using UnityEngine;
 
@@ -10,6 +11,10 @@ namespace Grabli.Runtime.Utils
             switch(platform)
             {
                 case RuntimePlatform.Android: DoAndroidRestart(); return;
+                case RuntimePlatform.OSXEditor:
+                case RuntimePlatform.WindowsEditor:
+                case RuntimePlatform.LinuxEditor:
+                    DoEditorRestart();return;
                 default: throw new NotSupportedException();
             }
         }
@@ -17,7 +22,7 @@ namespace Grabli.Runtime.Utils
         /// <summary>
         /// https://noodle1983.github.io/2018/11/17/RestartAndroidAppInUnityPureC/
         /// </summary>
-        public void DoAndroidRestart()
+        private void DoAndroidRestart()
         {
 #if UNITY_ANDROID
             using (AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -41,6 +46,15 @@ namespace Grabli.Runtime.Utils
                 int pid = process.CallStatic<int>("myPid");
                 process.CallStatic("killProcess", pid);
             }
+#endif
+        }
+
+        private  async void DoEditorRestart()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            await System.Threading.Tasks.Task.Delay(1000);
+            UnityEditor.EditorApplication.isPlaying = true;
 #endif
         }
     }
