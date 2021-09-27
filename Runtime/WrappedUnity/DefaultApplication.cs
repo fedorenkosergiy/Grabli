@@ -67,7 +67,7 @@ namespace Grabli.WrappedUnity
 		public string consoleLogPath => throw new NotImplementedException();
 
 		public StackTraceLogType stackTraceLogType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public int targetFrameRate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public int targetFrameRate { get => UApplication.targetFrameRate; set => UApplication.targetFrameRate = value; }
 
 		public string cloudProjectId => throw new NotImplementedException();
 
