@@ -10,7 +10,7 @@ namespace System.Reflection
         {
             try
             {
-                if (assembly.IsDynamic)
+                if (assembly.IsDynamic || assembly.Location.IsNullOrEmpty())
                 {
                     return false;
                 }
