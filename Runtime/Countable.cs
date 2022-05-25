@@ -2,6 +2,6 @@ namespace Grabli
 {
 	public interface Countable
 	{
-		Huint Count { get; }
+		int Count { get; }
 	}
 }

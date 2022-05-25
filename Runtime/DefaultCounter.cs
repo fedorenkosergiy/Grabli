@@ -2,11 +2,11 @@ namespace Grabli
 {
 	public class DefaultCounter : Counter
 	{
-		public virtual Huint Count {get; protected set;}
+		public virtual int Count {get; protected set;}
 
 		public virtual bool Down()
 		{
-			if (Count > Huint.MinValue)
+			if (Count > 0)
 			{
 				Count--;
 				return true;
@@ -16,7 +16,7 @@ namespace Grabli
 
 		public virtual bool Up()
 		{
-			if (Count < Huint.MaxValue)
+			if (Count < int.MaxValue)
 			{
 				Count++;
 				return true;
