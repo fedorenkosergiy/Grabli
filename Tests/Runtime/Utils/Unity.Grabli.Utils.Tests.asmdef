@@ -1,8 +1,9 @@
 {
     "name": "Unity.Grabli.Utils.Tests",
+    "rootNamespace": "",
     "references": [
         "GUID:fd8056f45eb69e24ca64c630a1b676ff",
-        "GUID:41a3881af0056d5498eb40797c5a5c4f"
+        "GUID:94b495f9055de034aba12db6a9c8c6f1"
     ],
     "includePlatforms": [
         "Editor"

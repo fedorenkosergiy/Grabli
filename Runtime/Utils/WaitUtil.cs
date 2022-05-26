@@ -1,4 +1,3 @@
-using Grabli.WrappedUnity;
 using System.Threading.Tasks;
 namespace Grabli.Utils
 {
@@ -8,9 +7,8 @@ namespace Grabli.Utils
 
 		public static async Task SkipFrames(uint numberOfFramesToSkip)
 		{
-			Time time = Ctx.Time;
-			int frameNumber = time.frameCount;
-			while (time.frameCount - frameNumber < numberOfFramesToSkip)
+			int frameNumber = MoqunityApi.Static.Time.frameCount;
+			while (MoqunityApi.Static.Time.frameCount - frameNumber < numberOfFramesToSkip)
 			{
 				await Task.Yield();
 			}

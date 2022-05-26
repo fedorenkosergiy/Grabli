@@ -1,7 +1,9 @@
-using Grabli.WrappedUnity;
 using NUnit.Framework;
 using System.Threading.Tasks;
 using Moq;
+using Moqunity;
+using Moqunity.Abstract;
+using Moqunity.Abstract.UnityEngine;
 
 namespace Grabli.Utils
 {
@@ -14,7 +16,9 @@ namespace Grabli.Utils
 		public void CheckIfSkipFrameWorksWell(int currentFrame, int nextFrame)
 		{
 			Time fakeTime = GetTimeThatIncreaseFrameNumberEachTenRequests(currentFrame);
-			using (new TimeContext(fakeTime))
+            Mock<StaticProvider> staticProvider = new Mock<StaticProvider>();
+            staticProvider.Setup(sp => sp.Time).Returns(fakeTime);
+            using (new TestingMoqunityApi(staticProvider.Object, null))
 			{
 				Task.Run(async () => await WaitUtil.SkipFrame()).GetAwaiter().GetResult();
 				Assert.AreEqual(fakeTime.frameCount, nextFrame);

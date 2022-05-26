@@ -8,7 +8,8 @@
   "dependencies": {
     "com.unity.ext.nunit": "1.0.6",
     "com.unity.modules.assetbundle": "1.0.0",
-    "com.unity.modules.imgui": "1.0.0"
+    "com.unity.modules.imgui": "1.0.0",
+    "fedorenkosergiy.moqunity": "0.3.0"
  },
  "keywords": [
     "Grabli",
