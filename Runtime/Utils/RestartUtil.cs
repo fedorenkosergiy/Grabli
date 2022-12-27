@@ -33,7 +33,7 @@ namespace Grabli.Runtime.Utils
                 intent.Call<AndroidJavaObject>("setFlags", 0x20000000);//Intent.FLAG_ACTIVITY_SINGLE_TOP
 
                 AndroidJavaClass pendingIntent = new AndroidJavaClass("android.app.PendingIntent");
-                AndroidJavaObject contentIntent = pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent, 0x8000000); //PendingIntent.FLAG_UPDATE_CURRENT = 134217728 [0x8000000]
+                AndroidJavaObject contentIntent = pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent, 0x8400000); //PendingIntent.FLAG_UPDATE_CURRENT = 134217728 [0x8000000] + FLAG_IMMUTABLE
                 AndroidJavaObject alarmManager = currentActivity.Call<AndroidJavaObject>("getSystemService", "alarm");
                 AndroidJavaClass system = new AndroidJavaClass("java.lang.System");
                 long currentTime = system.CallStatic<long>("currentTimeMillis");
