@@ -19,7 +19,7 @@ namespace Grabli.Runtime.Utils
         }
 
         /// <summary>
-        /// https://noodle1983.github.io/2018/11/17/RestartAndroidAppInUnityPureC/
+        /// https://stackoverflow.com/questions/67984329/is-there-a-way-to-restart-an-unity-app-on-android
         /// </summary>
         private void DoAndroidRestart()
         {
