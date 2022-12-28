@@ -24,24 +24,20 @@ namespace Grabli.Runtime.Utils
         private void DoAndroidRestart()
         {
 #if UNITY_ANDROID
-            using (AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
             {
-                AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                const int kIntent_FLAG_ACTIVITY_CLEAR_TASK = 0x00008000;
+                const int kIntent_FLAG_ACTIVITY_NEW_TASK = 0x10000000;
 
-                AndroidJavaObject pm = currentActivity.Call<AndroidJavaObject>("getPackageManager");
-                AndroidJavaObject intent = pm.Call<AndroidJavaObject>("getLaunchIntentForPackage", Application.identifier);
-                intent.Call<AndroidJavaObject>("setFlags", 0x20000000);//Intent.FLAG_ACTIVITY_SINGLE_TOP
+                var currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                var pm = currentActivity.Call<AndroidJavaObject>("getPackageManager");
+                var intent = pm.Call<AndroidJavaObject>("getLaunchIntentForPackage", Application.identifier);
 
-                AndroidJavaClass pendingIntent = new AndroidJavaClass("android.app.PendingIntent");
-                AndroidJavaObject contentIntent = pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent, 0xc000000); //PendingIntent.FLAG_UPDATE_CURRENT = 134217728 [0x8000000] + FLAG_IMMUTABLE
-                AndroidJavaObject alarmManager = currentActivity.Call<AndroidJavaObject>("getSystemService", "alarm");
-                AndroidJavaClass system = new AndroidJavaClass("java.lang.System");
-                long currentTime = system.CallStatic<long>("currentTimeMillis");
-                alarmManager.Call("set", 1, currentTime + 500, contentIntent); // android.app.AlarmManager.RTC = 1 [0x1]
-
+                intent.Call<AndroidJavaObject>("setFlags",
+                    kIntent_FLAG_ACTIVITY_NEW_TASK | kIntent_FLAG_ACTIVITY_CLEAR_TASK);
+                currentActivity.Call("startActivity", intent);
                 currentActivity.Call("finish");
-
-                AndroidJavaClass process = new AndroidJavaClass("android.os.Process");
+                var process = new AndroidJavaClass("android.os.Process");
                 int pid = process.CallStatic<int>("myPid");
                 process.CallStatic("killProcess", pid);
             }
