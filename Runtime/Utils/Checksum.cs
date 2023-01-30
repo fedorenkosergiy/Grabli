@@ -15,14 +15,17 @@ namespace Grabli.Utils
 
 		private static string GetStringDump(object obj, HashSet<object> handled)
 		{
-			if (obj.IsNull() || handled.Contains(obj))
+            if (obj.IsNull() || handled.Contains(obj))
 			{
 				return string.Empty;
 			}
-			else
-			{
-				handled.Add(obj);
-			}
+            handled.Add(obj);
+
+            if (obj is string str) 
+            {
+                return str;
+            }
+            
 			BindingFlags allFields = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
 			FieldInfo[] fields = obj.GetType().GetFields(allFields);
 			StringBuilder builder = StringBuilderPool.Get();
