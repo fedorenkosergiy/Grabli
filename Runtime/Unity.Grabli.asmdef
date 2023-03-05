@@ -1,6 +1,9 @@
 {
     "name": "Unity.Grabli",
-    "references": [],
+    "rootNamespace": "",
+    "references": [
+        "GUID:43b243fe22fde4214a059b41a612313d"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Grabli.Abstraction;
 
 namespace Grabli
 {
     public static class AppStoreEx
     {
-        private static IDictionary<AppStore, ISet<RuntimePlatform>> platformsByStore;
+        private static readonly IDictionary<AppStore, ISet<RuntimePlatform>> platformsByStore;
 
         static AppStoreEx()
         {
@@ -18,7 +19,7 @@ namespace Grabli
             platformsByStore.Add(AppStore.AmazonAppStore, android);
             platformsByStore.Add(AppStore.AppleAppStore, ios);
             platformsByStore.Add(AppStore.GooglePlayMarket, android);
-            platformsByStore.Add(AppStore.HuaweiAppMarket, android);
+            platformsByStore.Add(AppStore.HuaweiAppGallery, android);
             platformsByStore.Add(AppStore.OperaMobileStore, android);
             platformsByStore.Add(AppStore.SamsungGalaxyStore, android);
             platformsByStore.Add(AppStore.Undefined, new HashSet<RuntimePlatform>());
@@ -26,12 +27,12 @@ namespace Grabli
         }
 
         public static bool IsSupported(this AppStore store)
-        { 
-            switch(store)
+        {
+            switch (store)
             {
                 case AppStore.Undefined: return false;
                 case AppStore.GooglePlayMarket:
-                    
+
 #if GRABLI_STORE_SUPPORTED_GOOGLE_PLAY_MARKET
                     return true;
 #else
@@ -50,7 +51,7 @@ namespace Grabli
                 case AppStore.SamsungGalaxyStore: return true;
 #endif
 #if GRABLI_STORE_SUPPORTED_HUAWEI_APP_MARKET
-                case AppStore.HuaweiAppMarket: return true;
+                case AppStore.HuaweiAppGallery: return true;
 #endif
 #if GRABLI_STORE_SUPPORTED_OPERA_MOBILE_STORE
                 case AppStore.OperaMobileStore: return true;
@@ -59,7 +60,7 @@ namespace Grabli
                 case AppStore.XiaomiAppStore: return true;
 #endif
                 default: throw new System.NotImplementedException();
-            }    
+            }
         }
 
         public static bool IsPlatformSupported(this AppStore store, RuntimePlatform platform)
