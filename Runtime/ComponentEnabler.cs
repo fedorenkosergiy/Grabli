@@ -14,13 +14,21 @@ namespace Grabli
 
         public void Disable()
         {
-            if (this.IsDisabled()) return;
+            if (this.IsDisabled())
+            {
+                return;
+            }
+
             component.enabled = false;
         }
 
         public void Enable()
         {
-            if (IsEnabled) return;
+            if (IsEnabled)
+            {
+                return;
+            }
+
             component.enabled = true;
         }
     }

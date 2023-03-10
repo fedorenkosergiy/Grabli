@@ -28,13 +28,20 @@ namespace Grabli.Utils
 
 		private static void CheckCount(int targetCount)
 		{
-			if (targetCount > MaxCapacity) throw null;
-		}
+			if (targetCount > MaxCapacity)
+            {
+                throw null;
+            }
+        }
 
 		public bool Add(T item)
 		{
-			if (Contains(item)) return false;
-			CheckCount(Count + 1);
+			if (Contains(item))
+            {
+                return false;
+            }
+
+            CheckCount(Count + 1);
 			list.Add(item);
 			return true;
 		}

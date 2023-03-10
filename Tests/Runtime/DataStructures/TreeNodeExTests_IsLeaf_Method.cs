@@ -18,8 +18,12 @@ namespace Grabli.DataStructures
 				childrenMock.Setup(children => children.Nodes).Returns(() =>
 				{
 					var nodes = new List<TreeNode<int>>();
-					for (int i = 0; i < childrenCound; nodes.Add(null), ++i) ;
-					return nodes;
+					for (int i = 0; i < childrenCound; nodes.Add(null), ++i)
+                    {
+                        
+                    }
+
+                    return nodes;
 				});
 				return childrenMock.Object;
 			});

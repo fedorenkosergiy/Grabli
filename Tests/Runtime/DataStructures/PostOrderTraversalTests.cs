@@ -58,9 +58,12 @@ namespace Grabli.DataStructures
 
 		private TreeNode<int> GetSubTree(TreeNode<int> localRoot, Func<int, int, int> comparison)
 		{
-			if (localRoot.Children.IsEmpty()) return null;
+			if (localRoot.Children.IsEmpty())
+            {
+                return null;
+            }
 
-			int firstChild = localRoot.Children.Nodes[0].Item;
+            int firstChild = localRoot.Children.Nodes[0].Item;
 			if (localRoot.Children.Count() == 2)
 			{
 				int secondChild = localRoot.Children.Nodes[1].Item;

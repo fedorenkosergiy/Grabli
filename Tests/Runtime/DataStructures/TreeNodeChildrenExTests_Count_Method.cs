@@ -24,8 +24,12 @@ namespace Grabli.DataStructures
 			mock.Setup(children => children.Nodes).Returns(() =>
 			{
 				var nodes = new List<TreeNode<int>>();
-				for (int i = 0; i < expected; nodes.Add(null), ++i) ;
-				return nodes;
+				for (int i = 0; i < expected; nodes.Add(null), ++i)
+                {
+                    
+                }
+
+                return nodes;
 			});
 			var count = mock.Object.Count();
 			Assert.AreEqual(expected, count);
