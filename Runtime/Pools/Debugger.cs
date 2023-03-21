@@ -6,9 +6,7 @@ using Grabli.Abstraction;
 
 namespace Grabli.Pools
 {
-	using static Defines;
-
-	public static class Debugger
+    public static class Debugger
 	{
 		private static object _locker = new object();
 		private static IDictionary<Type, NonNegativeCounter> _counters = new Dictionary<Type, NonNegativeCounter>();
@@ -46,7 +44,7 @@ namespace Grabli.Pools
 		/// <summary>
 		/// Works only in a development build or in the editor
 		/// </summary>
-		[Conditional(DEVELOPMENT_BUILD), Conditional(UNITY_EDITOR)]
+		[Conditional(Constant.Define.DevelopmentBuild), Conditional(Constant.Define.UnityEditor)]
 		public static void ResetAllPools()
 		{
 			lock (_locker)
