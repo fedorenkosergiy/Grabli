@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using Grabli.Abstraction;
 
 namespace Grabli.Pools
 {
@@ -10,7 +11,7 @@ namespace Grabli.Pools
 	public static class Debugger
 	{
 		private static object _locker = new object();
-		private static IDictionary<Type, Counter> _counters = new Dictionary<Type, Counter>();
+		private static IDictionary<Type, NonNegativeCounter> _counters = new Dictionary<Type, NonNegativeCounter>();
 		private static List<Type> _types = new List<Type>();
 
 		public static IReadOnlyList<Type> GetTypes()
@@ -20,7 +21,7 @@ namespace Grabli.Pools
 
 		public static Countable GetCountable(Type type)
 		{
-			if (_counters.TryGetValue(type, out Counter counter))
+			if (_counters.TryGetValue(type, out NonNegativeCounter counter))
 			{
 				return counter;
 			}
@@ -31,11 +32,11 @@ namespace Grabli.Pools
 		{
 			lock (_locker)
 			{
-				if (_counters.TryGetValue(type, out Counter counter))
+				if (_counters.TryGetValue(type, out NonNegativeCounter counter))
 				{
 					return counter;
 				}
-				counter = new DefaultCounter();
+				counter = new NonNegativeCounter();
 				_counters.Add(type, counter);
 				_types.Add(type);
 				return counter;

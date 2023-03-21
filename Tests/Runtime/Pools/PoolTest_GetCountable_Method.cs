@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using System;
-using Grabli;
+using Grabli.Abstraction;
 
 namespace Grabli.Pools
 {
@@ -17,7 +17,7 @@ namespace Grabli.Pools
 		public void GetCountableCountEqualsOne()
 		{
 			Pool<object>.Get();
-			int actual = Debugger.GetCountable(typeof(object)).Count;
+			int actual = Debugger.GetCountable(typeof(object)).Count();
 			const int EXPECTED = 1;
 			Assert.AreEqual(EXPECTED, actual);
 		}
@@ -27,7 +27,7 @@ namespace Grabli.Pools
 		{
 			object obj = Pool<object>.Get();
 			Pool<object>.Release(obj);
-			int actual = Debugger.GetCountable(typeof(object)).Count;
+			int actual = Debugger.GetCountable(typeof(object)).Count();
 			const int EXPECTED = 1;
 			Assert.AreEqual(EXPECTED, actual);
 		}
@@ -39,7 +39,7 @@ namespace Grabli.Pools
 			{
 				Pool<object>.Get();
 			}
-			int actual = Debugger.GetCountable(typeof(object)).Count;
+			int actual = Debugger.GetCountable(typeof(object)).Count();
 			Assert.AreEqual(n, actual);
 		}
 
@@ -54,7 +54,7 @@ namespace Grabli.Pools
 					Pool<object>.Release(obj);
 				}
 			}
-			int actual = Debugger.GetCountable(typeof(object)).Count;
+			int actual = Debugger.GetCountable(typeof(object)).Count();
 			int expected = get - release;
 			Assert.AreEqual(expected, actual);
 		}

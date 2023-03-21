@@ -16,7 +16,7 @@ namespace Grabli.Pools
 				if (_pool.IsEmptyReadOnlyCollection())
 				{
 					result = new T();
-					GetOrRegisterCounter(typeof(T)).Up();
+					GetOrRegisterCounter(typeof(T)).GoUp();
 				}
 				else
 				{

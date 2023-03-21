@@ -29,7 +29,7 @@ namespace Grabli.Pools
 			{
 				GUILayout.BeginHorizontal();
 				GUILayout.Label(GetTypeName(types[i]));
-				GUILayout.Label(GetCountable(types[i]).Count.ToString());
+				GUILayout.Label(GetCountable(types[i]).Count().ToString());
 				GUILayout.EndHorizontal();
 			}
 		}
