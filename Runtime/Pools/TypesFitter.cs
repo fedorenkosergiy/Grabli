@@ -9,7 +9,7 @@ namespace Grabli.Pools
 		private static IDictionary<Type, string> _betterPools = new Dictionary<Type, string>()
 		{
 			{ typeof(StringBuilder), nameof(StringBuilderPool) },
-			{ typeof(List<>), nameof(ListPool<object>) },
+			{ typeof(List<>), nameof(UnityEngine.Pool.ListPool<object>) },
 			{ typeof(Stack<>), nameof(StackPool<object>) },
 		};
 
