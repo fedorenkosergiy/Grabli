@@ -10,7 +10,6 @@ namespace Grabli.Pools
 
 	public class DebuggerWindow : EditorWindow
 	{
-		//[OpenWindowMethod]
 		public static void Open()
 		{
 			DebuggerWindow window = CreateInstance<DebuggerWindow>();
