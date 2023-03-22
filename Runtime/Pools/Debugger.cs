@@ -6,7 +6,7 @@ using Grabli.Abstraction;
 
 namespace Grabli.Pools
 {
-    public static class Debugger
+    internal static class Debugger
 	{
 		private static object _locker = new object();
 		private static IDictionary<Type, NonNegativeCounter> _counters = new Dictionary<Type, NonNegativeCounter>();

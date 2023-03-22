@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Grabli.Pools
 {
-	public static class ListPool<T>
+	internal static class ListPool<T>
 	{
 		public static List<T> Get() => FastPool<List<T>>.Get();
 
