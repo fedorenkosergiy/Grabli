@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Grabli.Pools
 {
@@ -8,7 +7,6 @@ namespace Grabli.Pools
 	{
 		private static IDictionary<Type, string> _betterPools = new Dictionary<Type, string>()
 		{
-			{ typeof(StringBuilder), nameof(StringBuilderPool) },
 			{ typeof(List<>), nameof(UnityEngine.Pool.ListPool<object>) },
 			{ typeof(Stack<>), nameof(StackPool<object>) },
 		};

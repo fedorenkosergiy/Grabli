@@ -1,4 +1,4 @@
-using Grabli.Pools;
+using Grabli.Pool;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,12 +8,12 @@ namespace Grabli.Utils
 {
 	public static class Checksum
 	{
-		public static int GetChecksum(object obj)
+		public static int GetChecksum(object obj, StringBuilderPool pool)
 		{
-			return GetStringDump(obj, new HashSet<object>()).GetHashCode();
+			return GetStringDump(obj, new HashSet<object>(), pool).GetHashCode();
 		}
 
-		private static string GetStringDump(object obj, HashSet<object> handled)
+		private static string GetStringDump(object obj, HashSet<object> handled, StringBuilderPool pool)
 		{
             if (obj.IsNull() || handled.Contains(obj))
 			{
@@ -28,7 +28,7 @@ namespace Grabli.Utils
             
 			BindingFlags allFields = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
 			FieldInfo[] fields = obj.GetType().GetFields(allFields);
-			StringBuilder builder = StringBuilderPool.Get();
+			pool.Get(out StringBuilder builder);
 			for (int i = 0; i < fields.Length; ++i)
 			{
 				FieldInfo field = fields[i];
@@ -55,16 +55,16 @@ namespace Grabli.Utils
 						for (int j = 0; j < array.Length; ++j)
 						{
 							builder.Append(j);
-							builder.Append(GetStringDump(array.GetValue(j), handled));
+							builder.Append(GetStringDump(array.GetValue(j), handled, pool));
 						}
 					}
 					else
 					{
-						builder.Append(GetStringDump(value, handled));
+						builder.Append(GetStringDump(value, handled, pool));
 					}
 				}
 			}
-			return StringBuilderPool.GetValueAndRelease(builder);
+			return pool.GetValueAndRelease(builder);
 		}
 	}
 }
