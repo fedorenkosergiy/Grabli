@@ -2,7 +2,7 @@ using System.Text;
 
 namespace Grabli.Pools
 {
-	public static class StringBuilderPool
+	internal static class StringBuilderPool
 	{
 		public static StringBuilder Get() => FastPool<StringBuilder>.Get();
 

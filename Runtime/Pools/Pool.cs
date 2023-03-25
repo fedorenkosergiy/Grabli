@@ -1,6 +1,6 @@
 namespace Grabli.Pools
 {
-	public static class Pool<T> where T : class, new()
+	internal static class Pool<T> where T : class, new()
 	{
 		public static T Get()
 		{

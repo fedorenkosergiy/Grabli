@@ -2,7 +2,7 @@ using System;
 
 namespace Grabli.Pools
 {
-	public class ThereIsBetterPoolException : Exception
+	internal class ThereIsBetterPoolException : Exception
 	{
 		private const string FORMAT = "{0} pool fits better to {1}";
 

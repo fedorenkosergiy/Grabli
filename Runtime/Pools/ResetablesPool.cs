@@ -2,13 +2,13 @@ using Grabli.Abstraction;
 
 namespace Grabli.Pools
 {
-	public static class ResetablesPool<T> where T : class, ResetCallbackReceiver, new()
+	internal static class ResetablesPool<T> where T : class, Resetable, new()
 	{
 		public static T Get() => FastPool<T>.Get();
 
 		public static void Release(T value)
 		{
-			value.OnReset();
+			value.Reset();
 			FastPool<T>.Release(value);
 		}
 	}

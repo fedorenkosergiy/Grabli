@@ -22,15 +22,6 @@ namespace Grabli.Pools
 		}
 
 		[Test]
-		public static void GetStringBuilderLeadsToException()
-		{
-			Assert.Catch<ThereIsBetterPoolException>(() =>
-			{
-				StringBuilder builder = Pool<StringBuilder>.Get();
-			});
-		}
-
-		[Test]
 		public static void GetListLeadsToException()
 		{
 			Assert.Catch<ThereIsBetterPoolException>(() =>

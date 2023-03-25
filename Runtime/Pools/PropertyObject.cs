@@ -1,6 +1,6 @@
 namespace Grabli.Pools
 {
-	public abstract class PropertyObject : Property
+	internal abstract class PropertyObject : Property
 	{
 		protected object Owner { get; private set; }
 

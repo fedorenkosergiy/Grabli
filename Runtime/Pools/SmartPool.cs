@@ -2,7 +2,7 @@ using System;
 
 namespace Grabli.Pools
 {
-	public static class SmartPool<T> where T : class, Property, new()
+	internal static class SmartPool<T> where T : class, Property, new()
 	{
 		public static T Get(object owner)
 		{
