@@ -26,7 +26,7 @@ namespace Grabli.Utils
             Object[] assets = PlayerSettings.GetPreloadedAssets();
             for (int i = 0; i < assets.Length; ++i)
             {
-                assets[i].LogFormat($"PreloadedAssets[{i}]: {{0}}");
+                assets[i].UnityLogFormat($"PreloadedAssets[{i}]: {{0}}");
             }
         }
     }

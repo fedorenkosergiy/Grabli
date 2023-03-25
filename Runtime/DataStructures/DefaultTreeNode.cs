@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+
 namespace Grabli.DataStructures
 {
     public class DefaultTreeNode<T> : TreeNode<T>
@@ -13,9 +15,9 @@ namespace Grabli.DataStructures
             Parent = parent;
         }
 
-        public DefaultTreeNode(TreeFactory<T> factory, T item)
+        public DefaultTreeNode([NotNull] TreeFactory<T> factory, T item)
         {
-            factory.TryThrowArgumentNullException(nameof(factory));
+            if (factory.IsNull()) throw new System.ArgumentNullException(nameof(factory));
             Item = item;
             Children = factory.CreateNodeChildren(this);
         }
